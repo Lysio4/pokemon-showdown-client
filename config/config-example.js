@@ -22,7 +22,7 @@ Config.defaultserver = {
 	id: 'showdown',
 	host: 'api.showdown.lysio.ovh',
 	port: 443,
-	httpport: 80,
+	httpport: 8000,
 	altport: 80,
 	registered: true
 };
