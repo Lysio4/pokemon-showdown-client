@@ -33,6 +33,12 @@
 				if (this.curTeam.format.includes('legends')) {
 					this.curTeam.dex = Dex.mod('gen9legendsou');
 				}
+				if (this.curTeam.format.includes('toho')) {
+					this.curTeam.dex = Dex.mod('toho');
+				}
+				if (this.curTeam.format.includes('agoldenexperience')) {
+					this.curTeam.dex = Dex.mod('agoldenexperience');
+				}
 				Storage.activeSetList = this.curSetList;
 			}
 		},
