@@ -25,6 +25,8 @@ const Dex = require('../caches/pokemon-showdown/dist/sim/dex').Dex;
 const CompoundWordNames = require('../caches/pokemon-showdown/dist/data/aliases').CompoundWordNames;
 const toID = Dex.toID;
 // test
+const ModConfigData = require('../config/mod-config').ModConfigData;
+const ModConfig = ModConfigData.ClientMods;
 var Formats = require('../caches/pokemon-showdown/dist/config/formats.js').Formats;
 
 for (const modid in Dex.dexes) {
