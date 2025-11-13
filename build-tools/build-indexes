@@ -584,6 +584,13 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
+		} else if (is2hu) {
+			BattleTeambuilderTable['toho'] = {};
+			BattleTeambuilderTable['toho'].tiers = tiers;
+			BattleTeambuilderTable['toho'].overrideTier = overrideTier;
+			BattleTeambuilderTable['toho'].formatSlices = formatSlices;
+			BattleTeambuilderTable['toho'].items = items;
+			BattleTeambuilderTable['toho'].learnsets = {};
 		} else if (gen === 'gen9') {
 			BattleTeambuilderTable.tiers = tiers;
 			BattleTeambuilderTable.items = items;
@@ -686,7 +693,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				continue;
 			}
 			if (item.isNonstandard && !isMetBattle) {
-				if (isNatDex) {
+				if (isNatDex || isAGE || is2hu) {
 					let curItem = item;
 					let curGen = genNum;
 					while (curItem.isNonstandard && curGen >= 7) {
