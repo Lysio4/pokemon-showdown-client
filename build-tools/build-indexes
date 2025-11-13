@@ -22,6 +22,28 @@ console.log("DONE");
 const Dex = require('../caches/pokemon-showdown/dist/sim/dex').Dex;
 const CompoundWordNames = require('../caches/pokemon-showdown/dist/data/aliases').CompoundWordNames;
 const toID = Dex.toID;
+// test
+var Formats = require('../caches/DH2/dist/config/formats.js').Formats;
+
+for (const modid in Dex.dexes) {
+	try {
+		if ((/gen\d/.test(modid) && modid.length === 4) || modid === 'base') continue;
+		let teambuilderConfig = Dex.dexes[modid].data.Scripts.teambuilderConfig;
+		teambuilderConfig = teambuilderConfig ? teambuilderConfig : {};
+		if(teambuilderConfig.moveIsNotUseless) teambuilderConfig.moveIsNotUseless = JSON.stringify(teambuilderConfig.moveIsNotUseless.toString());
+		ModConfig[modid] = ModConfig[modid] ? ModConfig[modid] : {};
+		ModConfig[modid] = Object.assign(ModConfig[modid], teambuilderConfig);
+	} catch(err) {
+		// delete ModConfig[modid];
+		// delete BattleTeambuilderTable[modid];
+		if (debug) {
+			console.log("WARNING: Failed to load config data for " + modid);
+			console.log("This was the error:");
+			console.log(err);
+		}
+	}
+}
+// test
 process.stdout.write("Loading gen 6 data... ");
 Dex.includeData();
 console.log("DONE");
