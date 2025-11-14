@@ -286,6 +286,9 @@ export const Dex = new class implements ModdedDex {
 		if (dex.gen === 9 && formatid.includes('agoldenexperience')) {
 			dex = Dex.mod('gen9agoldenexperience' as ID);
 		}
+		if (dex.gen === 9 && formatid.includes('toho')) {
+			dex = Dex.mod('toho' as ID);
+		}
 		return dex;
 	}
 
@@ -870,7 +873,7 @@ export const Dex = new class implements ModdedDex {
 		if (Dex.prefs('nopastgens')) gen = 9;
 		if (Dex.prefs('bwgfx') && gen > 5) gen = 5;
 		// TODO: refactor after we get home sprites for Z-A Megas and Eternal Floette
-		let homeExists = (!species.isNonstandard || !['CAP', 'Custom'].includes(species.isNonstandard) ||
+		let homeExists = (!species.isNonstandard || !['CAP', 'Custom', 'Toho'].includes(species.isNonstandard) ||
 			species.id === "xerneasneutral") && ![
 			"floetteeternal", "pichuspikyeared", "pikachubelle", "pikachucosplay", "pikachulibre", "pikachuphd", "pikachupopstar", "pikachurockstar",
 		].includes(species.id) && !(species.isMega && species.gen === 9);

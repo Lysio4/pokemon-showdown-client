@@ -719,8 +719,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (format.includes('toho')) {
 			this.formatType = 'toho';
 			this.dex = Dex.mod('toho' as ID);
-			format = format.slice(9) as ID;
-			if (!format) format = 'ou' as ID;
 		}
 		this.format = format;
 
@@ -1163,13 +1161,13 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		} else if (this.formatType === 'rs') {
 			tierSet = tierSet.slice(slices.Regular);
 		// AGE + Touhoumons
-		} else if (this.formatType === 'gen9agoldenexperienceuu') {
+		} else if (this.formatType === 'agoldenexperienceuu') {
 			tierSet = tierSet.slice(slices.UU);
-		} else if (this.formatType === 'gen9agoldenexperienceru') {
+		} else if (this.formatType === 'agoldenexperienceru') {
 			tierSet = tierSet.slice(slices.RU || slices.UU);
-		} else if (this.formatType === 'gen9agoldenexperiencenu') {
+		} else if (this.formatType === 'agoldenexperiencenu') {
 			tierSet = tierSet = tierSet.slice(slices.NU || slices.RU || slices.UU);
-		} else if (this.formatType === 'gen9agoldenexperiencepu') {
+		} else if (this.formatType === 'agoldenexperiencepu') {
 			tierSet = tierSet.slice(slices.PU || slices.NU);
 		} else if (format === 'toho' || format.includes('toho')) {
 			tierSet = tierSet.slice(slices.Toho);

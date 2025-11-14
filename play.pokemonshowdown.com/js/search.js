@@ -244,7 +244,8 @@
 				rubl: "RUBL",
 				nubl: "NUBL",
 				publ: "PUBL",
-				zubl: "ZUBL"
+				zubl: "ZUBL",
+				toho: "Toho"
 			};
 			var tier = { name: tierTable[id] };
 			return this.renderTierRow(tier, matchStart, matchLength, errorMessage);
