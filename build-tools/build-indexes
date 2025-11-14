@@ -83,7 +83,7 @@ function requireNoCache(pathSpec) {
 		'monster', 'water1', 'bug', 'flying', 'field', 'fairy', 'grass', 'humanlike', 'water3', 'mineral', 'amorphous', 'water2', 'ditto', 'dragon', 'undiscovered',
 	].map(x => toID(x) + ' egggroup'));
 	index = index.concat([
-		'ou', 'uu', 'ru', 'nu', 'pu', 'zu', 'lc', 'nfe', 'uber', 'uubl', 'rubl', 'nubl', 'publ', 'zubl', 'cap', 'caplc', 'capnfe',
+		'ou', 'uu', 'ru', 'nu', 'pu', 'zu', 'lc', 'nfe', 'uber', 'uubl', 'rubl', 'nubl', 'publ', 'zubl', 'cap', 'caplc', 'capnfe', 'toho',
 	].map(x => toID(x) + ' tier'));
 
 	const BattleArticleTitles = {};
@@ -364,6 +364,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					if (species.tier === 'CAP LC') tier = 'LC';
 					if (species.tier === 'CAP NFE') tier = 'NFE';
 					if (species.tier === 'CAP') tier = 'OU';
+					if (species.tier === 'Toho') tier = 'OU';
 					const format = Dex.formats.get(gen + 'metronomebattle');
 					let bst = 0;
 					for (const stat of Object.values(species.baseStats)) {
@@ -423,6 +424,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 						return "NFE";
 					}
 					return "Regular";
+				}
+				if (is2hu) {
+					if (species.tier !== 'Toho') return 'Illegal';
+					return "Toho";					
 				}
 				if (isGen9BH) {
 					if ((species.natDexTier === 'Illegal' || species.forme.includes('Totem')) &&
@@ -640,6 +645,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (gen === 'gen4') {
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
+			if (is2hu) {
+				return ["Toho"];
+			}
 			return [
 				"CAP", "CAP NFE", "CAP LC", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
 			];
@@ -714,6 +722,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			case 'choiceband':
 			case 'choicespecs':
 			case 'eviolite':
+			case 'indecisiveorb':
 				greatItems.push(id);
 				break;
 			// great everywhere but metronome

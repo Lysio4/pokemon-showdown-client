@@ -1162,6 +1162,17 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			tierSet = tierSet.slice(slices.Uber);
 		} else if (this.formatType === 'rs') {
 			tierSet = tierSet.slice(slices.Regular);
+		// AGE + Touhoumons
+		} else if (this.formatType === 'gen9agoldenexperienceuu') {
+			tierSet = tierSet.slice(slices.UU);
+		} else if (this.formatType === 'gen9agoldenexperienceru') {
+			tierSet = tierSet.slice(slices.RU || slices.UU);
+		} else if (this.formatType === 'gen9agoldenexperiencenu') {
+			tierSet = tierSet = tierSet.slice(slices.NU || slices.RU || slices.UU);
+		} else if (this.formatType === 'gen9agoldenexperiencepu') {
+			tierSet = tierSet.slice(slices.PU || slices.NU);
+		else if (format === 'toho' || format.includes('toho')) {
+			tierSet = tierSet.slice(0, slices.AG || slices.Uber).concat(tierSet.slice(slices.OU));
 		} else if (!isDoublesOrBS) {
 			tierSet = [
 				...tierSet.slice(slices.OU, slices.UU),
