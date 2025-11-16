@@ -228,21 +228,21 @@ export const Dex = new class implements ModdedDex {
 	readonly statNamesExceptHP: readonly Dex.StatNameExceptHP[] = ['atk', 'def', 'spa', 'spd', 'spe'];
 
 	pokeballs: string[] | null = null;
-/**
+
 	resourcePrefix = (() => {
 		let prefix = '';
 		if (window.document?.location?.protocol !== 'http:') prefix = 'https:';
 		return `${prefix}//${window.Config ? Config.routes.client : 'play.pokemonshowdown.com'}/`;
 	})();
-*/
-	resourcePrefix = 'https://raw.githubusercontent.com/TheAnimemer/anicap-sprites-data/master/'
-/**
+
+	// resourcePrefix = 'https://raw.githubusercontent.com/TheAnimemer/anicap-sprites-data/master/'
+
 	fxPrefix = (() => {
 		const protocol = (window.document?.location?.protocol !== 'http:') ? 'https:' : '';
 		return `${protocol}//${window.Config ? Config.routes.client : 'play.pokemonshowdown.com'}/fx/`;
 	})();
-*/
-	fxPrefix = 'https://raw.githubusercontent.com/TheAnimemer/anicap-sprites-data/master/fx/'
+
+	// fxPrefix = 'https://raw.githubusercontent.com/TheAnimemer/anicap-sprites-data/master/fx/'
 
 	loadedSpriteData = { xy: 1, bw: 0 };
 	moddedDexes: { [mod: string]: ModdedDex } = {};
