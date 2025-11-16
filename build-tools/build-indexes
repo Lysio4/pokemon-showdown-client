@@ -332,6 +332,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isRS) genStr += 'rs';
 			// custom mods
 			if (isAGE) genStr += 'agoldenexperience';
+			if (is2hu) genStr += 'toho';
 			return genStr;
 		})();
 		// process.stdout.write("" + gen + (isDoubles ? " doubles" : "") + "... ");
@@ -590,12 +591,12 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 		} else if (is2hu) {
-			BattleTeambuilderTable['toho'] = {};
-			BattleTeambuilderTable['toho'].tiers = tiers;
-			BattleTeambuilderTable['toho'].overrideTier = overrideTier;
-			BattleTeambuilderTable['toho'].formatSlices = formatSlices;
-			BattleTeambuilderTable['toho'].items = items;
-			BattleTeambuilderTable['toho'].learnsets = {};
+			BattleTeambuilderTable['gen9toho'] = {};
+			BattleTeambuilderTable['gen9toho'].tiers = tiers;
+			BattleTeambuilderTable['gen9toho'].overrideTier = overrideTier;
+			BattleTeambuilderTable['gen9toho'].formatSlices = formatSlices;
+			BattleTeambuilderTable['gen9toho'].items = items;
+			BattleTeambuilderTable['gen9toho'].learnsets = {};
 		} else if (gen === 'gen9') {
 			BattleTeambuilderTable.tiers = tiers;
 			BattleTeambuilderTable.items = items;
@@ -1388,7 +1389,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	// Mods
 	//
 
-	for (const mod of ['gen3rs', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'gen9agoldenexperience', 'toho']) {
+	for (const mod of ['gen3rs', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'gen9agoldenexperience', 'gen9toho']) {
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;
 		const parentDex = Dex.forGen(modDex.gen);

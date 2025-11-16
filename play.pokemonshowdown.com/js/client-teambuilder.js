@@ -34,7 +34,7 @@
 					this.curTeam.dex = Dex.mod('gen9legendsou');
 				}
 				if (this.curTeam.format.includes('toho')) {
-					this.curTeam.dex = Dex.mod('toho');
+					this.curTeam.dex = Dex.mod('gen9toho');
 				}
 				if (this.curTeam.format.includes('gen9agoldenexperience')) {
 					this.curTeam.dex = Dex.mod('gen9agoldenexperience');

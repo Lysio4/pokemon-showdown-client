@@ -98,7 +98,7 @@ $formats = array(
 	'gen9agoldenexperienceru' => 'A Golden Experience RU',
 	'gen9agoldenexperiencenu' => 'A Golden Experience NU',
 	'gen9agoldenexperiencepu' => 'A Golden Experience PU',
-	'toho' => 'Toho',
+	'gen9toho' => 'Toho',
 );
 
 if (isset($_REQUEST['user']) && strlen($_REQUEST['user'])) {

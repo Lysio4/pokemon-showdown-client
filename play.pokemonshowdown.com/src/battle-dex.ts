@@ -291,7 +291,7 @@ export const Dex = new class implements ModdedDex {
 			dex = Dex.mod('gen9agoldenexperience' as ID);
 		}
 		if (dex.gen === 9 && formatid.includes('toho')) {
-			dex = Dex.mod('toho' as ID);
+			dex = Dex.mod('gen9toho' as ID);
 		}
 		return dex;
 	}
