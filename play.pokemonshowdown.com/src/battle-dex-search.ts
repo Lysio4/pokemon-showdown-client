@@ -715,10 +715,13 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.dex = Dex.mod('gen9agoldenexperience' as ID);
 			format = format.slice(9) as ID;
 			if (!format) format = 'ou' as ID;
+			this.isDoubles = format.includes('doubles');
 		}
 		if (format.includes('toho')) {
 			this.formatType = 'gen9toho';
 			this.dex = Dex.mod('gen9toho' as ID);
+			if (!format) format = 'ou' as ID;
+			this.isDoubles = format.includes('doubles');
 		}
 		this.format = format;
 
@@ -869,7 +872,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.format.startsWith('battlespot') ||
 			this.format.startsWith('battlestadium') ||
 			this.format.startsWith('battlefestival') ||
-			(this.dex.gen === 9 && this.formatType !== 'natdex' && this.formatType !== 'legendsza')
+			(this.dex.gen === 9 && this.formatType !== 'natdex' && this.formatType !== 'legendsza' && this.formatType !== 'agoldenexperience' && this.formatType !== 'toho')
 		) {
 			if (gen === 9) {
 				genChar = 'a';
