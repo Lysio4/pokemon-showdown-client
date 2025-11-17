@@ -428,7 +428,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				}
 				if (is2hu) {
 					if (species.tier !== 'Toho') return 'Illegal';
-					return "Toho";					
+					return species.tier;					
 				}
 				if (isGen9BH) {
 					if ((species.natDexTier === 'Illegal' || species.forme.includes('Totem')) &&
@@ -445,6 +445,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 						species.nfe ? (species.prevo ? 'NFE' : 'LC') : 'Regular';
 				}
 				if (species.tier === 'CAP' || species.tier === 'CAP NFE' || species.tier === 'CAP LC') {
+					return species.tier;
+				}
+				if (species.tier === 'Toho') {
 					return species.tier;
 				}
 				if (isDoubles && genNum > 4) {
