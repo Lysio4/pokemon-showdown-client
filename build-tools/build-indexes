@@ -432,7 +432,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 						return 'Illegal';
 					}
 					if (species.tier !== 'Toho') return 'Illegal';
-					return species.tier;					
+					return "Regular";					
 				}
 				if (isGen9BH) {
 					if ((species.natDexTier === 'Illegal' || species.forme.includes('Totem')) &&
