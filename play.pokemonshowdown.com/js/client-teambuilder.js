@@ -768,7 +768,7 @@
 				this.curTeam.dex = Dex.mod('gen9legendsou');
 			}
 			if (this.curTeam.format.includes('toho')) {
-				this.curTeam.dex = Dex.mod('toho');
+				this.curTeam.dex = Dex.mod('gen9toho');
 			}
 			if (this.curTeam.format.includes('gen9agoldenexperience')) {
 				this.curTeam.dex = Dex.mod('gen9agoldenexperience');
@@ -1630,7 +1630,7 @@
 				this.curTeam.dex = Dex.mod('gen9legendsou');
 			}
 			if (this.curTeam.format.includes('toho')) {
-				this.curTeam.dex = Dex.mod('toho');
+				this.curTeam.dex = Dex.mod('gen9toho');
 			}
 			if (this.curTeam.format.includes('gen9agoldenexperience')) {
 				this.curTeam.dex = Dex.mod('gen9agoldenexperience');
@@ -2284,6 +2284,8 @@
 				smogdexid += '/doubles';
 			} else if (format === 'ou' || format === 'uu' || format === 'ru' || format === 'nu' || format === 'pu' || format === 'lc' || format === 'monotype' || format === 'mixandmega' || format === 'nfe' || format === 'nationaldex' || format === 'stabmons' || format === '1v1' || format === 'almostanyability') {
 				smogdexid += '/' + format;
+			} else if (format === 'agoldenexperience') {
+				smogdexid += '/nationaldex';
 			} else if (format === 'balancedhackmons') {
 				smogdexid += '/bh';
 			} else if (format === 'anythinggoes') {
@@ -2862,7 +2864,7 @@
 			var set = this.curSet;
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
-			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex');
+			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex') || this.curTeam.format.includes('agoldenexperience');
 			var isHackmons = this.curTeam.format.includes('hackmons') || this.curTeam.format.endsWith('bh');
 			var species = this.curTeam.dex.species.get(set.species);
 			if (!set) return;
@@ -2963,7 +2965,7 @@
 			var species = this.curTeam.dex.species.get(set.species);
 			var isLetsGo = this.curTeam.format.includes('letsgo');
 			var isBDSP = this.curTeam.format.includes('bdsp');
-			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex');
+			var isNatDex = this.curTeam.format.includes('nationaldex') || this.curTeam.format.includes('natdex') || this.curTeam.format.includes('agoldenexperience');
 
 			// level
 			var level = parseInt(this.$chart.find('input[name=level]').val(), 10);
