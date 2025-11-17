@@ -427,6 +427,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return "Regular";
 				}
 				if (is2hu) {
+					if (species.isNonstandard) {
+						if (species.isNonstandard === 'Future' && species.tier === 'Toho') return null;
+						return 'Illegal';
+					}
 					if (species.tier !== 'Toho') return 'Illegal';
 					return species.tier;					
 				}
