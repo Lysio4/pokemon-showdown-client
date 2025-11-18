@@ -641,8 +641,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 
 		const tierOrder = (() => {
 			if (isVGC || isGen9BH) {
-				return ["Toho", "UUBL", "NFE", "LC"]
-				// return ["Mythical", "Restricted Legendary", "Regular", "NFE", "LC"];
+				return ["Mythical", "Restricted Legendary", "Regular", "NFE", "LC"];
 			}
 			if (isRS) {
 				return ["Regular", "NFE", "LC", "Uber"];
@@ -657,7 +656,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["Toho", "UUBL", "LC"];
 			}
 			if (isAGE) {
-				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
+				// return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
+				return ["Toho", "UUBL", "NFE", "LC"]
 			}
 			return [
 				"CAP", "CAP NFE", "CAP LC", "AG", "Uber", "(Uber)", "OU", "(OU)", "Toho", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
