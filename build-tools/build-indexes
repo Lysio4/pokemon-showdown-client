@@ -603,6 +603,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9toho'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9toho'].items = items;
 			BattleTeambuilderTable['gen9toho'].learnsets = {};
+			console.log(tiers);
+			console.log(overrideTier);
+			console.log(formatSlices);
+			console.log(items);
 		} else if (gen === 'gen9') {
 			BattleTeambuilderTable.tiers = tiers;
 			BattleTeambuilderTable.items = items;
@@ -653,7 +657,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
 			if (is2hu) {
-				return ["Toho", "OU"];
+				return ["Toho", "UUBL", "LC"];
 			}
 			if (isAGE) {
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
@@ -671,8 +675,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				let usedTier = tier;
 				if (usedTier === "(DUU)") usedTier = "DNU";
 				formatSlices[usedTier] = tiers.length;
-				if (is2hu) console.log(usedTier, formatSlices[usedTier], tier, tierTable[tier]);
-				if (isAGE) console.log(usedTier, formatSlices[usedTier], tier, tierTable[tier]);
 			}
 			if (!tierTable[tier]) continue;
 			if (tier === "(PU)") {
