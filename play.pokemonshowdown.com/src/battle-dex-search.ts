@@ -1095,7 +1095,6 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		} else if (this.formatType === 'agoldenexperience') {
 			table = table[`gen9agoldenexperience`];
 		} else if (this.formatType === 'toho') {
-			console.log("Found you!");
 			table = table[`gen9toho`];
 		}
 

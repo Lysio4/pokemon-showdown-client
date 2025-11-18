@@ -654,9 +654,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
 			if (is2hu) {
+				print("I am Touhou");
 				return ["Toho"];
 			}
 			if (isAGE) {
+				print("I am Golden");
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
 			}
 			return [
