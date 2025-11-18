@@ -655,7 +655,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			}
 			if (is2hu) {
 				console.log("I am Touhou");
-				return ["Toho"];
+				return ["Toho", "OU"];
 			}
 			if (isAGE) {
 				console.log("I am Golden");
