@@ -767,7 +767,7 @@
 			if (this.curTeam.format.includes('legends')) {
 				this.curTeam.dex = Dex.mod('gen9legendsou');
 			}
-			if (this.curTeam.format.includes('toho')) {
+			if (this.curTeam.format.includes('touhou')) {
 				this.curTeam.dex = Dex.mod('gen9toho');
 			}
 			if (this.curTeam.format.includes('gen9agoldenexperience')) {
