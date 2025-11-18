@@ -596,7 +596,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
-			console.log(tiers);
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
@@ -604,7 +603,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9toho'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9toho'].items = items;
 			BattleTeambuilderTable['gen9toho'].learnsets = {};
-			console.log(tiers);
 		} else if (gen === 'gen9') {
 			BattleTeambuilderTable.tiers = tiers;
 			BattleTeambuilderTable.items = items;
@@ -643,7 +641,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 
 		const tierOrder = (() => {
 			if (isVGC || isGen9BH) {
-				return ["Mythical", "Restricted Legendary", "Regular", "NFE", "LC"];
+				return ["Toho", "UUBL", "NFE", "LC"]
+				// return ["Mythical", "Restricted Legendary", "Regular", "NFE", "LC"];
 			}
 			if (isRS) {
 				return ["Regular", "NFE", "LC", "Uber"];
