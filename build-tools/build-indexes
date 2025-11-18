@@ -332,7 +332,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isRS) genStr += 'rs';
 			// custom mods
 			if (isAGE) genStr += 'agoldenexperience';
-			if (is2hu) genStr += 'touhoumons';
+			if (is2hu) genStr += 'toho';
 			if (is2hu) console.log(genStr);
 			return genStr;
 		})();
