@@ -1450,14 +1450,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;
 		const parentDex = Dex.forGen(modDex.gen);
-		console.log("mod: " + mod);
-		console.log("modDex: " + modDex);
-		console.log("modData: " + modData);
 
 		const overrideSpeciesData = {};
 		BattleTeambuilderTable[mod].overrideSpeciesData = overrideSpeciesData;
 		for (const id in modData.Pokedex) {
-			console.log(id);
+			console.log(id, mod);
 			const modEntry = modDex.species.get(id);
 			const parentEntry = parentDex.species.get(id);
 			for (const key of overrideSpeciesKeys) {
