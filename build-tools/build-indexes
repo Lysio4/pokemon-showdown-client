@@ -1454,8 +1454,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const overrideSpeciesData = {};
 		BattleTeambuilderTable[mod].overrideSpeciesData = overrideSpeciesData;
 		for (const id in modData.Pokedex) {
-			// console.log(id, mod);
-			if (id.includes('eimu')) console.log ("I found Reimu", id, mod);
 			const modEntry = modDex.species.get(id);
 			const parentEntry = parentDex.species.get(id);
 			for (const key of overrideSpeciesKeys) {
