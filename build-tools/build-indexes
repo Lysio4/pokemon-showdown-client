@@ -674,8 +674,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				let usedTier = tier;
 				if (usedTier === "(DUU)") usedTier = "DNU";
 				formatSlices[usedTier] = tiers.length;
+				console.log(usedTier, formatSlices[usedTier], tier, tierTable[tier]);
 			}
-			console.log(usedTier, formatSlices[usedTier], tier, tierTable[tier]);
 			if (!tierTable[tier]) continue;
 			if (tier === "(PU)") {
 				tiers.push(['header', "Below PU"]);
