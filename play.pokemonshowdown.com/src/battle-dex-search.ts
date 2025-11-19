@@ -720,8 +720,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (format.includes('touhoumons')) {
 			this.formatType = 'gen9toho';
 			this.dex = Dex.mod('gen9toho' as ID);
-			format = format.slice(9) as ID;
-			if (!format) format = 'ou' as ID;
 			this.isDoubles = format.includes('doubles');
 		}
 		this.format = format;
