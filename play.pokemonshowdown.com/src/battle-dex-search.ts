@@ -574,7 +574,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' | 'nfe' |
 		'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'agoldenexperience' | 'toho' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'agoldenexperience' | 'toho' | 'touhoumons' | null = null;
 	isDoubles = false;
 
 	/**
@@ -932,6 +932,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'legendsza' ? `gen9legendsou` :
 			this.formatType === 'agoldenexperience' ? `gen9agoldenexperience` :
 			this.formatType === 'toho' ? `gen9toho` :
+			this.formatType === 'touhoumons' ? `gen9toho` :
 			`gen${gen}`;
 		if (table?.[tableKey]) {
 			table = table[tableKey];
@@ -1093,7 +1094,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			table = table[`gen9legendsou`];
 		} else if (this.formatType === 'agoldenexperience') {
 			table = table[`gen9agoldenexperience`];
-		} else if (this.formatType === 'toho') {
+		} else if (this.formatType === 'toho' | this.formatType === 'touhoumons') {
 			table = table[`gen9toho`];
 		}
 
