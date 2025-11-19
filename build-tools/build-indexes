@@ -434,6 +434,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					console.log("Second print");
 					console.log(species.name, species.id, species.tier);
 					if (species.tier !== 'Toho') return 'Illegal';
+					console.log("Third print");
+					console.log(species.name, species.id, species.tier);
 					return species.tier;					
 				}
 				if (isGen9BH) {
@@ -453,9 +455,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (species.tier === 'CAP' || species.tier === 'CAP NFE' || species.tier === 'CAP LC') {
 					return species.tier;
 				}
-				if (species.tier === 'Toho') {
+				/*if (species.tier === 'Toho') {
 					return species.tier;
-				}
+				}*/
 				if (isDoubles && genNum > 4) {
 					return species.doublesTier;
 				}
