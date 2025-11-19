@@ -365,7 +365,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					if (species.tier === 'CAP LC') tier = 'LC';
 					if (species.tier === 'CAP NFE') tier = 'NFE';
 					if (species.tier === 'CAP') tier = 'OU';
-					if (species.tier === 'Toho') tier = 'OU';
 					const format = Dex.formats.get(gen + 'metronomebattle');
 					let bst = 0;
 					for (const stat of Object.values(species.baseStats)) {
@@ -427,15 +426,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return "Regular";
 				}
 				if (is2hu) {
-					console.log("I am here")
-					console.log(species.name, species.id, species.tier);
 					const validNum = (baseSpecies.num <= -2001);
 					if (!validNum) return 'Illegal';
-					console.log("Second print");
-					console.log(species.name, species.id, species.tier);
 					if (species.tier !== 'Toho') return 'Illegal';
-					console.log("Third print");
-					console.log(species.name, species.id, species.tier);
 					return species.tier;					
 				}
 				if (isGen9BH) {
@@ -664,7 +657,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
 			}
 			return [
-				"Toho", "CAP", "CAP NFE", "CAP LC", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
+				"CAP", "CAP NFE", "CAP LC", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
 			];
 		})();
 
