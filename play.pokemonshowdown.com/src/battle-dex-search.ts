@@ -717,7 +717,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (!format) format = 'ou' as ID;
 			this.isDoubles = format.includes('doubles');
 		}
-		if (format.includes('touhoumons')) {
+		if (format.includes('touhoumons') || format.includes('toho')) {
 			this.formatType = 'gen9toho';
 			this.dex = Dex.mod('gen9toho' as ID);
 			this.isDoubles = format.includes('doubles');
