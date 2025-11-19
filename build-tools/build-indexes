@@ -428,9 +428,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				}
 				if (is2hu) {
 					console.log("I am here")
+					console.log(species, species.tier);
 					const validNum = (baseSpecies.num <= -2001);
 					if (!validNum) return 'Illegal';
-					console.log(species.tier);
+					console.log("Second print");
+					console.log(species, species.tier);
 					if (species.tier !== 'Toho') return 'Illegal';
 					return species.tier;					
 				}
