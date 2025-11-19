@@ -673,7 +673,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (is2hu) console.log(tier, tierOrder, usedTier, formatSlices[usedTier]);
 			}
 			if (!tierTable[tier]) continue;
-			if (is2hu) console.log(tierTable[tier]);
+			if (is2hu) console.log(tier, tierTable[tier]);
 			if (tier === "(PU)") {
 				tiers.push(['header', "Below PU"]);
 			} else if (tier === "(DUU)") {
@@ -688,6 +688,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			tiers.push(...tierTable[tier]);
 		}
 		if (!isDoubles) {
+			if (is2hu) console.log("I'm alive");
 			if (!formatSlices['OU']) formatSlices['OU'] = formatSlices['New'];
 			if (!formatSlices['UU']) formatSlices['UU'] = formatSlices['New'];
 			if (!formatSlices['RU']) formatSlices['RU'] = formatSlices['New'];
