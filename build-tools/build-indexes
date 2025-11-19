@@ -668,11 +668,12 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				"(DUU)": 1, "DToho": 1, New: 1, Legal: 1, Regular: 1, "Restricted Legendary": 1, "CAP LC": 1,
 			}) {
 				let usedTier = tier;
-				if (is2hu) console.log(tier, tierOrder, usedTier);
 				if (usedTier === "(DUU)") usedTier = "DNU";
 				formatSlices[usedTier] = tiers.length;
+				if (is2hu) console.log(tier, tierOrder, usedTier, formatSlices[usedTier]);
 			}
 			if (!tierTable[tier]) continue;
+			if (is2hu) console.log(tierTable[tier]);
 			if (tier === "(PU)") {
 				tiers.push(['header', "Below PU"]);
 			} else if (tier === "(DUU)") {
