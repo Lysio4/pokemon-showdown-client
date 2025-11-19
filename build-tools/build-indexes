@@ -651,9 +651,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (gen === 'gen4') {
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
-			if (is2hu) {
+			/*if (is2hu) {
 				return ["Toho"];
-			}
+			}*/
 			if (isAGE) {
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
 			}
