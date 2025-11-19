@@ -670,7 +670,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				let usedTier = tier;
 				if (usedTier === "(DUU)") usedTier = "DNU";
 				formatSlices[usedTier] = tiers.length;
-				if (is2hu) console.log(tier, tierOrder, usedTier, formatSlices[usedTier]);
 			}
 			if (!tierTable[tier]) continue;
 			if (is2hu) console.log(tier, tierTable[tier]);
@@ -689,6 +688,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		}
 		if (!isDoubles) {
 			if (is2hu) console.log("I'm alive");
+			if (!formatSlices['Toho']) formatSlices['Toho'] = formatSlices['New'];
 			if (!formatSlices['OU']) formatSlices['OU'] = formatSlices['New'];
 			if (!formatSlices['UU']) formatSlices['UU'] = formatSlices['New'];
 			if (!formatSlices['RU']) formatSlices['RU'] = formatSlices['New'];
