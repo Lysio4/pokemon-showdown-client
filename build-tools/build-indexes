@@ -1302,7 +1302,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	// Touhou test
 	const TouhouLearnsets = Dex.mod('gen9toho').data.Learnsets;
 	for (const id in TouhouLearnsets) {
-		const learnset = AGELearnsets[id].learnset;
+		const learnset = TouhouLearnsets[id].learnset;
 		if (!learnset) continue;
 		BattleTeambuilderTable['gen9toho'].learnsets[id] = {};
 		for (const moveid in learnset) {
