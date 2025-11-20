@@ -658,12 +658,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (is2hu) {
 				return ["Toho"];
 			}
-			/*if (isAGE) {
+			if (isAGE) {
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
-			}*/
-			return [
-				"CAP", "CAP NFE", "CAP LC", "Toho", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
-			];
+			}
+			if (!isAGE && !is2hu && !isRS) {
+				return [
+					"CAP", "CAP NFE", "CAP LC", "Toho", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
+				];
+			}
 		})();
 
 		for (const tier of tierOrder) {
