@@ -400,6 +400,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return tier;
 				}
 				if (isLetsGo) {
+					console.log(genNum);
 					const validNum = (baseSpecies.num <= 151 && species.num >= 1) || [808, 809].includes(baseSpecies.num);
 					if (!validNum) return 'Illegal';
 					if (species.forme && !['Alola', 'Mega', 'Mega-X', 'Mega-Y', 'Starter'].includes(species.forme)) return 'Illegal';
@@ -427,7 +428,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return "Regular";
 				}
 				if (is2hu) {
-					console.log(genNum, genStr);
 					const validNum = (baseSpecies.num <= -2001);
 					if (!validNum) return 'Illegal';
 					if (species.isNonstandard) {
