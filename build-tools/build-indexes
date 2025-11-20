@@ -427,7 +427,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return "Regular";
 				}
 				if (is2hu) {
-					// console.log(genNum);
+					console.log(genNum, genStr);
 					const validNum = (baseSpecies.num <= -2001);
 					if (!validNum) return 'Illegal';
 					if (species.isNonstandard) {
@@ -461,7 +461,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return species.doublesTier;
 				}
 				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411)) {
-					console.log(genNum);
 					return species.natDexTier;
 				}
 				return species.tier;
