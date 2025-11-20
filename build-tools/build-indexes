@@ -661,13 +661,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isAGE) {
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
 			}
-			if (!isAGE && !is2hu && !isRS) {
+			else {
 				return [
 					"CAP", "CAP NFE", "CAP LC", "Toho", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
 				];
 			}
 		})();
-		console.log(tierOrder);
+		if (isAGE) console.log(tierOrder);
+		if (is2hu) console.log(tierOrder);
 		for (const tier of tierOrder) {
 			if (tier in {
 				OU: 1, UUBL: 1, AG: 1, Uber: 1, UU: 1, RU: 1, NU: 1, PU: 1, ZU: 1, NFE: 1, LC: 1, "Toho": 1, DOU: 1, DUU: 1,
