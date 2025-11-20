@@ -299,7 +299,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	// process.stdout.write("\n  ");
 	for (const genIdent of [...TOUHOUTIER,...GENS, ...DOUBLES, ...VGC, ...NFE, ...STADIUM, ...OTHER, ...NATDEX, ...LC]) {
 		console.log(genIdent);
-		const is2hu = genIdent === 9.98;
 		const isLetsGo = (genIdent === 7.1);
 		const isBDSP = (genIdent === 8.6 || genIdent === -8.6);
 		const isMetBattle = ('' + genIdent).endsWith('.2');
@@ -320,6 +319,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const isRS = genIdent === 3.1;
 		// custom formats
 		const isAGE = genIdent === 9.99;
+		const is2hu = genIdent === 9.98;
 		const gen = (() => {
 			let genStr = 'gen' + genNum;
 			if (isSSDLC1) genStr += 'dlc1';
@@ -335,6 +335,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			// custom mods
 			if (isAGE) genStr += 'agoldenexperience';
 			if (is2hu) genStr += 'toho';
+			console.log(genStr);
 			return genStr;
 		})();
 		// process.stdout.write("" + gen + (isDoubles ? " doubles" : "") + "... ");
@@ -428,6 +429,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return "Regular";
 				}
 				if (is2hu) {
+					console.log(species.id);
 					const validNum = (baseSpecies.num <= -2001);
 					if (!validNum) return 'Illegal';
 					if (species.tier !== 'Toho') return 'Illegal';
