@@ -147,6 +147,9 @@ export class DexSearch {
 					uber: "Uber",
 					caplc: "CAP LC",
 					capnfe: "CAP NFE",
+					// custom
+					toho: "Toho",
+					dtoho: "DToho",
 				};
 				entry[1] = toID(entry[1]);
 				entry[1] = tierTable[entry[1]] || entry[1].toUpperCase();
@@ -714,7 +717,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType = 'agoldenexperience';
 			this.dex = Dex.mod('gen9agoldenexperience' as ID);
 			format = format.slice(9) as ID;
-			// if (!format) format = 'ou' as ID;
+			if (!format) format = 'ou' as ID;
 			this.isDoubles = format.includes('doubles');
 		}
 		if (format.includes('touhoumons') || format.includes('toho')) {
