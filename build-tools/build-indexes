@@ -426,7 +426,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					}
 					return "Regular";
 				}
-				/*if (is2hu) {
+				if (is2hu) {
 					const validNum = (baseSpecies.num <= -2001);
 					if (!validNum) return 'Illegal';
 					if (species.isNonstandard) {
@@ -435,7 +435,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					}
 					if (species.tier !== 'Toho') return 'Illegal';
 					return "Toho";				
-				}*/
+				}
 				if (isGen9BH) {
 					if ((species.natDexTier === 'Illegal' || species.forme.includes('Totem')) &&
 						!['Floette-Eternal', 'Greninja-Ash', 'Xerneas-Neutral'].includes(species.name)) {
