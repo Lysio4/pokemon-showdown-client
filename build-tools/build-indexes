@@ -349,7 +349,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const gen5zuBans = {};
 		const gen4puBans = {};
 		for (const id of pokemon) {
-			console.log(Dex.mod);
+			console.log(Dex.mod(gen));
 			const species = Dex.mod(gen).species.get(id);
 			const baseSpecies = Dex.mod(gen).species.get(species.baseSpecies);
 			if (species.gen > genNum) continue;
