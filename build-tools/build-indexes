@@ -659,9 +659,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["Toho"];
 			}
 			if (isAGE) {
+				if (isAGE) console.log("I work correctly");
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
 			}
 			if (!isAGE && !is2hu && !isRS) {
+				if (isAGE) console.log("I don't :(");
 				return [
 					"CAP", "CAP NFE", "CAP LC", "Toho", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
 				];
