@@ -350,7 +350,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const gen4puBans = {};
 		for (const id of pokemon) {
 			const species = Dex.mod(gen).species.get(id);
-			console.log(species.gen, species.id);
 			const baseSpecies = Dex.mod(gen).species.get(species.baseSpecies);
 			if (species.gen > genNum) continue;
 			const speciesTier = (() => {
@@ -428,11 +427,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return "Regular";
 				}
 				if (is2hu) {
-					// console.log(species.id);
 					const validNum = (baseSpecies.num <= -2001);
 					if (!validNum) return 'Illegal';
+					if (species.isNonstandard) {
+						if (species.isNonstandard === 'Unobtainable') return 'Unreleased';
+						return 'Illegal';
+					}
 					if (species.tier !== 'Toho') return 'Illegal';
-					return species.tier;					
+					return "Toho";				
 				}
 				if (isGen9BH) {
 					if ((species.natDexTier === 'Illegal' || species.forme.includes('Totem')) &&
