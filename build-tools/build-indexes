@@ -400,7 +400,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return tier;
 				}
 				if (isLetsGo) {
-					console.log(genNum);
 					const validNum = (baseSpecies.num <= 151 && species.num >= 1) || [808, 809].includes(baseSpecies.num);
 					if (!validNum) return 'Illegal';
 					if (species.forme && !['Alola', 'Mega', 'Mega-X', 'Mega-Y', 'Starter'].includes(species.forme)) return 'Illegal';
@@ -587,6 +586,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9ssb'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9ssb'].formatSlices = formatSlices;
 		} else if (isLegendsZA) {
+			console.log(genNum);
 			BattleTeambuilderTable['gen9legendsou'] = {};
 			BattleTeambuilderTable['gen9legendsou'].tiers = tiers;
 			BattleTeambuilderTable['gen9legendsou'].overrideTier = overrideTier;
@@ -594,6 +594,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9legendsou'].items = items;
 			BattleTeambuilderTable['gen9legendsou'].learnsets = {};
 		} else if (isAGE) {
+			console.log(genNum);
 			BattleTeambuilderTable['gen9agoldenexperience'] = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
 			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
@@ -601,6 +602,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 		} else if (is2hu) {
+			console.log(genNum);
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
 			BattleTeambuilderTable['gen9toho'].overrideTier = overrideTier;
