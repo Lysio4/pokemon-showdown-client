@@ -656,7 +656,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
 			if (is2hu) {
-				return ["Toho", "Illegal"];
+				return ["CAP", "OU", "RUBL", "LC"];
 			}
 			if (isAGE) {
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
@@ -1453,7 +1453,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;
 		const parentDex = Dex.forGen(modDex.gen);
-		if (mod === 'gen9toho') console.log(mod, modDex);
 
 		const overrideSpeciesData = {};
 		BattleTeambuilderTable[mod].overrideSpeciesData = overrideSpeciesData;
