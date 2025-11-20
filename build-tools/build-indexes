@@ -426,7 +426,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					}
 					return "Regular";
 				}
-				if (is2hu) {
+				if (is2hu && genNum === 9.98) {
+					console.log("I am here");
 					const validNum = (baseSpecies.num <= -2001);
 					if (!validNum) return 'Illegal';
 					if (species.isNonstandard) {
@@ -453,9 +454,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (species.tier === 'CAP' || species.tier === 'CAP NFE' || species.tier === 'CAP LC') {
 					return species.tier;
 				}
-				/*if (species.tier === 'Toho') {
+				if (species.tier === 'Toho') {
 					return species.tier;
-				}*/
+				}
 				if (isDoubles && genNum > 4) {
 					return species.doublesTier;
 				}
