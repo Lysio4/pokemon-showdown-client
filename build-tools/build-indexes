@@ -646,19 +646,19 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isVGC || isGen9BH) {
 				return ["Mythical", "Restricted Legendary", "Regular", "NFE", "LC"];
 			}
-			if (isRS) {
+			else if (isRS) {
 				return ["Regular", "NFE", "LC", "Uber"];
 			}
-			if (isDoubles && genNum > 4) {
+			else if (isDoubles && genNum > 4) {
 				return ["DToho", "DUber", "(DUber)", "DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
 			}
-			if (gen === 'gen4') {
+			else if (gen === 'gen4') {
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
-			if (is2hu) {
+			else if (is2hu) {
 				return ["Toho"];
 			}
-			if (isAGE) {
+			else if (isAGE) {
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
 			}
 			else {
