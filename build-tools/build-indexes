@@ -656,13 +656,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
 			if (is2hu) {
-				console.log(BattleTeambuilderTable['gen9toho'].tiers);
-				return ["CAP", "OU", "RUBL", "LC"];
+				return ["Toho"];
 			}
-			if (isAGE) {
-				console.log(BattleTeambuilderTable['gen9agoldenexperience'].tiers);
+			/*if (isAGE) {
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
-			}
+			}*/
 			return [
 				"CAP", "CAP NFE", "CAP LC", "Toho", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
 			];
