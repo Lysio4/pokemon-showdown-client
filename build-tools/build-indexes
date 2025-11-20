@@ -660,6 +660,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["CAP", "OU", "RUBL", "LC"];
 			}
 			if (isAGE) {
+				console.log(BattleTeambuilderTable['gen9agoldenexperience'].tiers);
 				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC"];
 			}
 			return [
