@@ -1140,7 +1140,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 				});
 			}
 		} else if (format === 'agoldenexperience' || format.includes('agoldenexperience')) {
-			tierSet = tierSet.slice(slices.OU, slices.AG || slices.Uber);
+			tierSet = tierSet.slice(slices.OU, slices.UU);
 			// tierSet = tierSet.slice(slices.OU, slices.AG || slices.Uber).concat(tierSet.slice(slices.UU));
 		} else if (format === 'ou') tierSet = tierSet.slice(slices.OU);
 		else if (format === 'uubl') tierSet = tierSet.slice(slices.UUBL);
