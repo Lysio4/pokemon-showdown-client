@@ -1169,7 +1169,11 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		} else if (this.formatType === 'rs') {
 			tierSet = tierSet.slice(slices.Regular);
 		// AGE + Touhoumons
-		} else if (format === 'agoldenexperience' || format.includes('agoldenexperience')) tierSet = tierSet.slice(slices.OU, slices.AG || slices.Uber).concat(tierSet.slice(slices.UU));
+		} else if (format === 'agoldenexperience' || format.includes('agoldenexperience')) {
+			console.log(tierSet);
+			tierSet = tierSet.slice(slices.OU, slices.AG || slices.Uber).concat(tierSet.slice(slices.UU));
+			console.log(tierSet);
+		}
 		/*else if (format === 'agoldenexperienceuu' || format.includes('agoldenexperienceuu')) tierSet = tierSet.slice(slices.UU);
 		else if (format === 'agoldenexperienceru' || format.includes('agoldenexperienceru')) tierSet = tierSet.slice(slices.RU);
 		else if (format === 'agoldenexperiencenu' || format.includes('agoldenexperiencenu')) tierSet = tierSet.slice(slices.NU);
