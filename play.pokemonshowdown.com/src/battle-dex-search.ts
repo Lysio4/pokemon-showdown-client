@@ -1177,7 +1177,10 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		else if (format === 'agoldenexperienceru' || format.includes('agoldenexperienceru')) tierSet = tierSet.slice(slices.RU);
 		else if (format === 'agoldenexperiencenu' || format.includes('agoldenexperiencenu')) tierSet = tierSet.slice(slices.NU);
 		else if (format === 'agoldenexperiencepu' || format.includes('agoldenexperiencepu')) tierSet = tierSet.slice(slices.PU);*/
-		else if (format === 'toho' || format.includes('toho') || format === 'touhoumons' || format.includes('touhoumons')) {
+		// else if (format === 'toho' || format.includes('toho') || format === 'touhoumons' || format.includes('touhoumons')) {
+		else if (format === 'touhoumons') {
+			tierSet = tierSet.slice(slices.Toho, slices.AG);
+		} else if (format === 'touhoumonsdoubles' || format.includes('touhoumonsdoubles')) {
 			tierSet = tierSet.slice(slices.Toho, slices.AG);
 		} else if (!isDoublesOrBS) {
 			tierSet = [
