@@ -713,11 +713,10 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			format = format.slice(9) as ID;
 			if (!format) format = 'ou' as ID;
 		}
-		if (format.includes('agoldenexperience')) {
+		if (format.includes('agoldenexperience') || format.includes('golden')) {
 			this.formatType = 'agoldenexperience';
 			this.dex = Dex.mod('gen9agoldenexperience' as ID);
 			format = format.slice(9) as ID;
-			if (!format) format = 'ou' as ID;
 			this.isDoubles = format.includes('doubles');
 		}
 		if (format.includes('touhoumons') || format.includes('toho')) {
