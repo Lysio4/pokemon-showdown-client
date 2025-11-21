@@ -599,13 +599,13 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
-		/*} else if (is2hu) {
+		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
 			BattleTeambuilderTable['gen9toho'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9toho'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9toho'].items = items;
-			BattleTeambuilderTable['gen9toho'].learnsets = {};*/
+			BattleTeambuilderTable['gen9toho'].learnsets = {};
 		} else if (gen === 'gen9') {
 			BattleTeambuilderTable.tiers = tiers;
 			BattleTeambuilderTable.items = items;
@@ -1306,7 +1306,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		}
 	}
 	// Touhou test
-	/*const TouhouLearnsets = Dex.mod('gen9toho').data.Learnsets;
+	const TouhouLearnsets = Dex.mod('gen9toho').data.Learnsets;
 	for (const id in TouhouLearnsets) {
 		const learnset = TouhouLearnsets[id].learnset;
 		if (!learnset) continue;
@@ -1351,7 +1351,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				BattleTeambuilderTable['gen9toho'].learnsets[id][moveid] += 'a';
 			}
 		}
-	}*/
+	}
 
 	// Client relevant data that should be overridden by past gens and mods
 	const overrideSpeciesKeys = [
