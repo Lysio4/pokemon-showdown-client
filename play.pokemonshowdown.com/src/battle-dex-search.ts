@@ -1168,12 +1168,12 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		} else if (this.formatType === 'rs') {
 			tierSet = tierSet.slice(slices.Regular);
 		// AGE + Touhoumons
-		/*} else if (format === 'agoldenexperienceuu' || format.includes('agoldenexperienceuu')) tierSet = tierSet.slice(slices.UU);
+		}/* else if (format === 'agoldenexperienceuu' || format.includes('agoldenexperienceuu')) tierSet = tierSet.slice(slices.UU);
 		else if (format === 'agoldenexperienceru' || format.includes('agoldenexperienceru')) tierSet = tierSet.slice(slices.RU || slices.UU);
 		else if (format === 'agoldenexperiencenu' || format.includes('agoldenexperiencenu')) tierSet = tierSet.slice(slices.NU || slices.RU || slices.UU);
-		else if (format === 'agoldenexperiencepu' || format.includes('agoldenexperiencepu')) tierSet = tierSet.slice(slices.PU || slices.NU);
+		else if (format === 'agoldenexperiencepu' || format.includes('agoldenexperiencepu')) tierSet = tierSet.slice(slices.PU || slices.NU);*/
 		else if (format === 'toho' || format.includes('toho') || format === 'touhoumons' || format.includes('touhoumons')) {
-			tierSet = tierSet.slice(slices.Toho);*/
+			tierSet = tierSet.slice(slices.Toho);
 		} else if (!isDoublesOrBS) {
 			tierSet = [
 				...tierSet.slice(slices.OU, slices.UU),
