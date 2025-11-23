@@ -562,6 +562,23 @@ export const Dex = new class implements ModdedDex {
 		}
 		return false;
 	}
+	// from dh2
+	// getSpriteMod is used to find the correct mod folder for the sprite url to use
+	// id is the name of the pokemon, type, or item. folder refers to "front", or "back-shiny" etc. overrideStandard is false for custom elements and true for canon elements
+	getSpriteMod(optionsMod: string, spriteId: string, filepath: string, overrideStandard: boolean = false) {
+		if (!window.ModSprites[spriteId]) return '';
+		if ((!optionsMod || !window.ModSprites[spriteId][optionsMod]) && !overrideStandard) { // for custom elements only, it will use sprites from another mod if the mod provided doesn't have one
+			for (const modName in window.ModSprites[spriteId]) {
+				if (window.ModSprites[spriteId][modName].includes(filepath)) return modName;
+				if (window.ModSprites[spriteId][modName].includes('ani' + filepath)) return modName;
+			}
+		}
+		if (optionsMod && window.ModSprites[spriteId][optionsMod]) {		
+			if (window.ModSprites[spriteId][optionsMod].includes('ani' + filepath)) return optionsMod;
+			if (window.ModSprites[spriteId][optionsMod].includes(filepath)) return optionsMod;
+		}
+		return ''; // must be a real Pokemon or not have custom sprite data
+	}
 
 	loadSpriteData(gen: 'xy' | 'bw') {
 		if (this.loadedSpriteData[gen]) return;
