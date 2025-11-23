@@ -583,8 +583,10 @@ export const Dex = new class implements ModdedDex {
 		noScale?: boolean,
 		mod?: string,
 		dynamax?: boolean,
-	} = { gen: 6 }) {
+	} = { gen: 6, mod: ''}) {
 		const mechanicsGen = options.gen || 6;
+		// dh2
+		if (options.mod && window.ModConfig[options.mod].spriteGen) mechanicsGen = window.ModConfig[options.mod].spriteGen;
 		let isDynamax = !!options.dynamax;
 		if (pokemon instanceof Pokemon) {
 			if (pokemon.volatiles.transform) {
@@ -603,6 +605,19 @@ export const Dex = new class implements ModdedDex {
 				}
 			}
 			pokemon = pokemon.getSpeciesForme() + (isGigantamax ? '-Gmax' : '');
+		}
+		// taken from dh2
+		const modSpecies = Dex.species.get(pokemon);
+		let resourcePrefix = Dex.resourcePrefix;
+		let spriteDir = 'sprites/';
+		let hasCustomSprite = false;
+		let modSpriteId = toID(modSpecies.spriteid);		
+		options.mod = this.getSpriteMod(options.mod, modSpriteId, isFront ? 'front' : 'back', modSpecies.exists);
+		if (options.mod) {
+			resourcePrefix = Dex.modResourcePrefix;
+			spriteDir = `${options.mod}/sprites/`;
+			hasCustomSprite = true;
+			if (this.getSpriteMod(options.mod, modSpriteId, (isFront ? 'front' : 'back') + '-shiny', modSpecies.exists) === '') options.shiny = false;
 		}
 		const species = Dex.species.get(pokemon);
 		// Gmax sprites are already extremely large, so we don't need to double.
@@ -650,6 +665,13 @@ export const Dex = new class implements ModdedDex {
 		let miscData = null;
 		let speciesid = species.id;
 		if (species.isTotem) speciesid = toID(name);
+		// taken from dh2
+		if (baseDir === '' && window.BattlePokemonSprites) {
+			animationData = BattlePokemonSprites[speciesid];
+		}
+		if (baseDir === 'gen5' && window.BattlePokemonSpritesBW) {
+			animationData = BattlePokemonSpritesBW[speciesid];
+		}
 		if (window.BattlePokemonSprites) miscData = BattlePokemonSprites[speciesid];
 		if (!miscData && window.BattlePokemonSpritesBW) miscData = BattlePokemonSpritesBW[speciesid];
 		if (!miscData) miscData = {};
@@ -719,6 +741,14 @@ export const Dex = new class implements ModdedDex {
 			spriteData.cryurl = `sprites/${options.mod}/audio/${toID(species.baseSpecies)}`;
 			spriteData.cryurl += '.mp3';
 		}
+		// taken from dh2
+		let hasCustomAnim = false;
+		if (hasCustomSprite && window.ModSprites[modSpriteId][options.mod].includes('ani' + facing)){
+			hasCustomAnim = true;
+			animationData[facing] = {};
+			animationData[facing].w = 192;
+			animationData[facing].h = 192;
+		}
 
 		let animatedSprite = false;
 		if (!Dex.prefs('noanim') && !Dex.prefs('nogif') && spriteData.gen >= 5) {
@@ -780,6 +810,15 @@ export const Dex = new class implements ModdedDex {
 			spriteData.w *= 1.5;
 			spriteData.h *= 1.5;
 			spriteData.y += -11;
+		}
+		// taken from dh2
+		if (window.BattlePokemonSprites) {
+			if (!window.ModSprites[modSpriteId] && !window.BattlePokemonSprites[modSpriteId] && pokemon !== 'substitute') {
+				spriteData = Dex.getSpriteData('substitute', spriteData.isFrontSprite, {
+					gen: options.gen,
+					mod: options.mod,
+				});
+			}
 		}
 
 		return spriteData;
@@ -860,7 +899,7 @@ export const Dex = new class implements ModdedDex {
 			}
 		}
 		// taken from dh2
-		/*if (mod && window.ModConfig[mod].spriteGen) gen = window.ModConfig[mod].spriteGen;
+		if (mod && window.ModConfig[mod].spriteGen) gen = window.ModConfig[mod].spriteGen;
 		mod = this.getSpriteMod(mod, id, 'front', species.exists !== false);
 		if (mod) {
 			return {
@@ -870,7 +909,7 @@ export const Dex = new class implements ModdedDex {
 				x: 10,
 				y: 5,
 			};
-		}*/
+		}
 		if (species.exists === false) return { spriteDir: 'sprites/gen5', spriteid: '0', x: 10, y: 5 };
 		if (Dex.afdMode) {
 			return {
