@@ -229,9 +229,6 @@ export const Dex = new class implements ModdedDex {
 
 	pokeballs: string[] | null = null;
 
-	//TODO we might want to move this to something like data/petmods
-	readonly modResourcePrefix = 'https://raw.githubusercontent.com/scoopapa/dh2/master/data/mods/';
-
 	/*resourcePrefix = (() => {
 		let prefix = '';
 		if (window.document?.location?.protocol !== 'http:') prefix = 'https:';
@@ -565,23 +562,6 @@ export const Dex = new class implements ModdedDex {
 		}
 		return false;
 	}
-	// from dh2
-	// getSpriteMod is used to find the correct mod folder for the sprite url to use
-	// id is the name of the pokemon, type, or item. folder refers to "front", or "back-shiny" etc. overrideStandard is false for custom elements and true for canon elements
-	getSpriteMod(optionsMod: string, spriteId: string, filepath: string, overrideStandard: boolean = false) {
-		if (!window.ModSprites[spriteId]) return '';
-		if ((!optionsMod || !window.ModSprites[spriteId][optionsMod]) && !overrideStandard) { // for custom elements only, it will use sprites from another mod if the mod provided doesn't have one
-			for (const modName in window.ModSprites[spriteId]) {
-				if (window.ModSprites[spriteId][modName].includes(filepath)) return modName;
-				if (window.ModSprites[spriteId][modName].includes('ani' + filepath)) return modName;
-			}
-		}
-		if (optionsMod && window.ModSprites[spriteId][optionsMod]) {		
-			if (window.ModSprites[spriteId][optionsMod].includes('ani' + filepath)) return optionsMod;
-			if (window.ModSprites[spriteId][optionsMod].includes(filepath)) return optionsMod;
-		}
-		return ''; // must be a real Pokemon or not have custom sprite data
-	}
 
 	loadSpriteData(gen: 'xy' | 'bw') {
 		if (this.loadedSpriteData[gen]) return;
@@ -603,10 +583,8 @@ export const Dex = new class implements ModdedDex {
 		noScale?: boolean,
 		mod?: string,
 		dynamax?: boolean,
-	} = { gen: 6, mod: ''}) {
+	} = { gen: 6 }) {
 		const mechanicsGen = options.gen || 6;
-		// dh2
-		if (options.mod && window.ModConfig[options.mod].spriteGen) mechanicsGen = window.ModConfig[options.mod].spriteGen;
 		let isDynamax = !!options.dynamax;
 		if (pokemon instanceof Pokemon) {
 			if (pokemon.volatiles.transform) {
@@ -625,19 +603,6 @@ export const Dex = new class implements ModdedDex {
 				}
 			}
 			pokemon = pokemon.getSpeciesForme() + (isGigantamax ? '-Gmax' : '');
-		}
-		// taken from dh2
-		const modSpecies = Dex.species.get(pokemon);
-		let resourcePrefix = Dex.resourcePrefix;
-		let spriteDir = 'sprites/';
-		let hasCustomSprite = false;
-		let modSpriteId = toID(modSpecies.spriteid);		
-		options.mod = this.getSpriteMod(options.mod, modSpriteId, isFront ? 'front' : 'back', modSpecies.exists);
-		if (options.mod) {
-			resourcePrefix = Dex.modResourcePrefix;
-			spriteDir = `${options.mod}/sprites/`;
-			hasCustomSprite = true;
-			if (this.getSpriteMod(options.mod, modSpriteId, (isFront ? 'front' : 'back') + '-shiny', modSpecies.exists) === '') options.shiny = false;
 		}
 		const species = Dex.species.get(pokemon);
 		// Gmax sprites are already extremely large, so we don't need to double.
@@ -685,13 +650,6 @@ export const Dex = new class implements ModdedDex {
 		let miscData = null;
 		let speciesid = species.id;
 		if (species.isTotem) speciesid = toID(name);
-		// taken from dh2
-		if (baseDir === '' && window.BattlePokemonSprites) {
-			animationData = BattlePokemonSprites[speciesid];
-		}
-		if (baseDir === 'gen5' && window.BattlePokemonSpritesBW) {
-			animationData = BattlePokemonSpritesBW[speciesid];
-		}
 		if (window.BattlePokemonSprites) miscData = BattlePokemonSprites[speciesid];
 		if (!miscData && window.BattlePokemonSpritesBW) miscData = BattlePokemonSpritesBW[speciesid];
 		if (!miscData) miscData = {};
@@ -761,14 +719,6 @@ export const Dex = new class implements ModdedDex {
 			spriteData.cryurl = `sprites/${options.mod}/audio/${toID(species.baseSpecies)}`;
 			spriteData.cryurl += '.mp3';
 		}
-		// taken from dh2
-		let hasCustomAnim = false;
-		if (hasCustomSprite && window.ModSprites[modSpriteId][options.mod].includes('ani' + facing)){
-			hasCustomAnim = true;
-			animationData[facing] = {};
-			animationData[facing].w = 192;
-			animationData[facing].h = 192;
-		}
 
 		let animatedSprite = false;
 		if (!Dex.prefs('noanim') && !Dex.prefs('nogif') && spriteData.gen >= 5) {
@@ -831,15 +781,6 @@ export const Dex = new class implements ModdedDex {
 			spriteData.h *= 1.5;
 			spriteData.y += -11;
 		}
-		// taken from dh2
-		if (window.BattlePokemonSprites) {
-			if (!window.ModSprites[modSpriteId] && !window.BattlePokemonSprites[modSpriteId] && pokemon !== 'substitute') {
-				spriteData = Dex.getSpriteData('substitute', spriteData.isFrontSprite, {
-					gen: options.gen,
-					mod: options.mod,
-				});
-			}
-		}
 
 		return spriteData;
 	}
@@ -871,7 +812,7 @@ export const Dex = new class implements ModdedDex {
 		return num;
 	}
 
-	getPokemonIcon(pokemon: string | Pokemon | ServerPokemon | Dex.PokemonSet | null, facingLeft?: boolean, mod: string = '') {
+	getPokemonIcon(pokemon: string | Pokemon | ServerPokemon | Dex.PokemonSet | null, facingLeft?: boolean) {
 		if (pokemon === 'pokeball') {
 			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -0px 4px`;
 		} else if (pokemon === 'pokeball-statused') {
@@ -899,13 +840,10 @@ export const Dex = new class implements ModdedDex {
 		let left = (num % 12) * 40;
 		let fainted = ((pokemon as Pokemon | ServerPokemon)?.fainted ?
 			`;opacity:.3;filter:grayscale(100%) brightness(.5)` : ``);
-		// taken from dh2
-		mod = this.getSpriteMod(mod, id, 'icons', species.exists !== false);
-		if (mod) return `background:transparent url(${this.modResourcePrefix}${mod}/sprites/icons/${id}.png) no-repeat scroll -0px -0px${fainted}`;
 		return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-sheet.png?v20) no-repeat scroll -${left}px -${top}px${fainted}`;
 	}
 
-	getTeambuilderSpriteData(pokemon: any, dex: ModdedDex = Dex, mod: string = ''): TeambuilderSpriteData {
+	getTeambuilderSpriteData(pokemon: any, dex: ModdedDex = Dex): TeambuilderSpriteData {
 		let gen = dex.gen;
 		let id = toID(pokemon.species || pokemon);
 		let species = Dex.species.get(id);
@@ -917,18 +855,6 @@ export const Dex = new class implements ModdedDex {
 			if (pokemon.species && !spriteid) {
 				spriteid = species.spriteid || id;
 			}
-		}
-		// taken from dh2
-		if (mod && window.ModConfig[mod].spriteGen) gen = window.ModConfig[mod].spriteGen;
-		mod = this.getSpriteMod(mod, id, 'front', species.exists !== false);
-		if (mod) {
-			return {
-				spriteDir: `${mod}/sprites/front`,
-				spriteid,
-				shiny: (this.getSpriteMod(mod, id, 'front-shiny', species.exists !== false) !== null && pokemon.shiny),
-				x: 10,
-				y: 5,
-			};
 		}
 		if (species.exists === false) return { spriteDir: 'sprites/gen5', spriteid: '0', x: 10, y: 5 };
 		if (Dex.afdMode) {

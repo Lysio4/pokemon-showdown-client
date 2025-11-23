@@ -758,13 +758,6 @@
 			this.curTeam.iconCache = '!';
 			this.curTeam.gen = this.getGen(this.curTeam.format);
 			this.curTeam.dex = Dex.forGen(this.curTeam.gen);
-			// taken from dh2
-			var ClientMods = ModConfig;
-			for (var modid in (ClientMods)) {
-				for (var formatid in ClientMods[modid].formats) {
-					if (formatid === this.curTeam.format) this.curTeam.mod = modid;
-				}
-			}
 			if (this.curTeam.format.includes('letsgo')) {
 				this.curTeam.dex = Dex.mod('gen7letsgo');
 			}
@@ -1641,16 +1634,6 @@
 			}
 			if (this.curTeam.format.includes('gen9agoldenexperience')) {
 				this.curTeam.dex = Dex.mod('gen9agoldenexperience');
-			}
-			// taken from dh2
-			var ClientMods = ModConfig;
-			for (var modid in (ClientMods)) {
-				for (var formatid in ClientMods[modid].formats) {
-					if (formatid === this.curTeam.format) this.curTeam.mod = modid;
-				}
-			}
-			if (this.curTeam.mod) {
-				this.curTeam.dex = Dex.mod(this.curTeam.mod);
 			}
 			this.save();
 			if (this.curTeam.gen === 5 && !Dex.loadedSpriteData['bw']) Dex.loadSpriteData('bw');
@@ -3741,44 +3724,11 @@
 			this.room = data.room;
 			this.curSet = data.curSet;
 			this.chartIndex = data.index;
-			// dh2
-			const mod = (this.room.curTeam && this.room.curTeam.mod) || ""; 
 			var dex = this.room.curTeam.dex;
 			var species = dex.species.get(this.curSet.species);
 			var baseid = toID(species.baseSpecies);
 			var forms = [baseid].concat(species.cosmeticFormes.map(toID));
 			var maxSpriteSize = 96;
-			// taken from dh2
-			let modSprite = Dex.getSpriteMod(mod, baseid, 'front', species.exists !== false)
-				|| Dex.getSpriteMod(mod, species.id, 'front', species.exists !== false);
-			let resourcePrefix;
-			let d;
-			if (modSprite) {
-				resourcePrefix = Dex.modResourcePrefix + modSprite + '/';
-				d = "";
-			}  else {
-				resourcePrefix = Dex.resourcePrefix;
-				d = "-";
-			}
-
-			var spriteDir = resourcePrefix + 'sprites/';
-			var spriteSize = 96;
-			var spriteDim = 'width: 96px; height: 96px;';
-
-			var gen = Math.max(this.room.curTeam.gen, species.gen);
-			var dir;
-			if (modSprite) { 
-				dir = "front";
-			} else {
-				if (Dex.prefs('bwgfx')) dir = 'gen5';
-				else if (Dex.prefs('nopastgens') || gen > 5) dir = 'dex';
-				else dir = 'gen' + gen;
-			}
-			var spriteDir = resourcePrefix + 'sprites/' + dir;
-			if (dir === 'dex') {
-				spriteSize = 120;
-				spriteDim = 'width: 120px; height: 120px;';
-			}
 
 			var buf = '';
 			buf += '<p>Pick a variant or <button name="close" class="button">Cancel</button></p>';
