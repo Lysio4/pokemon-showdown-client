@@ -860,7 +860,7 @@ export const Dex = new class implements ModdedDex {
 			}
 		}
 		// taken from dh2
-		if (mod && window.ModConfig[mod].spriteGen) gen = window.ModConfig[mod].spriteGen;
+		/*if (mod && window.ModConfig[mod].spriteGen) gen = window.ModConfig[mod].spriteGen;
 		mod = this.getSpriteMod(mod, id, 'front', species.exists !== false);
 		if (mod) {
 			return {
@@ -870,7 +870,7 @@ export const Dex = new class implements ModdedDex {
 				x: 10,
 				y: 5,
 			};
-		}
+		}*/
 		if (species.exists === false) return { spriteDir: 'sprites/gen5', spriteid: '0', x: 10, y: 5 };
 		if (Dex.afdMode) {
 			return {
