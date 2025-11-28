@@ -1141,11 +1141,11 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		} else if (format === 'ou') tierSet = tierSet.slice(slices.OU);
 		else if (format === 'uubl') tierSet = tierSet.slice(slices.UUBL);
 		else if (format === 'uu' || format.includes('uu')) tierSet = tierSet.slice(slices.UU);
-		else if (format === 'ru') tierSet = tierSet.slice(slices.RU || slices.UU);
-		else if (format === 'nu') tierSet = tierSet.slice(slices.NU || slices.RU || slices.UU);
-		else if (format === 'pu') tierSet = tierSet.slice(slices.PU || slices.NU);
+		else if (format === 'ru' || format.includes('ru')) tierSet = tierSet.slice(slices.RU || slices.UU);
+		else if (format === 'nu' || format.includes('nu')) tierSet = tierSet.slice(slices.NU || slices.RU || slices.UU);
+		else if (format === 'pu' || format.includes('pu')) tierSet = tierSet.slice(slices.PU || slices.NU);
 		else if (format === 'zu' && dex.gen === 5) tierSet = tierSet.slice(slices.PU || slices.NU);
-		else if (format === 'zu') tierSet = tierSet.slice(slices.ZU || slices.PU || slices.NU);
+		else if (format === 'zu' || format.includes('zu')) tierSet = tierSet.slice(slices.ZU || slices.PU || slices.NU);
 		else if (
 			format === 'lc' || format === 'lcuu' || format.startsWith('lc') || (format !== 'caplc' && format.endsWith('lc'))
 		) tierSet = tierSet.slice(slices.LC);
@@ -1169,14 +1169,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			tierSet = tierSet.slice(slices.Regular);
 		// AGE + Touhoumons
 		} else if (format === 'agoldenexperience' || format.includes('golden')) {
-			tierSet = tierSet.slice(0, slices.OU);
-			// tierSet = tierSet.slice(slices.OU, slices.AG || slices.Uber).concat(tierSet.slice(slices.UU));
+			tierSet = tierSet.slice(slices.OU);
 		}
-		/*else if (format === 'agoldenexperienceuu' || format.includes('agoldenexperienceuu')) tierSet = tierSet.slice(slices.UU);
-		else if (format === 'agoldenexperienceru' || format.includes('agoldenexperienceru')) tierSet = tierSet.slice(slices.RU);
-		else if (format === 'agoldenexperiencenu' || format.includes('agoldenexperiencenu')) tierSet = tierSet.slice(slices.NU);
-		else if (format === 'agoldenexperiencepu' || format.includes('agoldenexperiencepu')) tierSet = tierSet.slice(slices.PU);*/
-		// else if (format === 'toho' || format.includes('toho') || format === 'touhoumons' || format.includes('touhoumons')) {
 		else if (format === 'touhoumons') {
 			tierSet = tierSet.slice(slices.Toho, slices.AG);
 		} else if (format === 'touhoumonsdoubles' || format.includes('touhoumonsdoubles')) {
