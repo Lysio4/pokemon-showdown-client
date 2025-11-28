@@ -1138,7 +1138,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 						!['gougingfire', 'ironboulder', 'ironcrown', 'ragingbolt'].includes(id);
 				});
 			}
-		} else if (format === 'ou' || (format.includes('golden') && !format.includes('uu') && !format.includes('ru') && !format.includes('nu') && !format.includes('pu') && !format.includes('zu'))) tierSet = tierSet.slice(slices.OU);
+		} else if (format === 'ou' || (format.includes('golden') && !format.includes('uu') && !format.includes('ru') && !format.includes('nu') && !format.includes('pu') && !format.includes('zu'))) tierSet = tierSet.slice(slices.UUBL);
 		else if (format === 'uubl') tierSet = tierSet.slice(slices.UUBL);
 		else if (format === 'uu' || format.includes('uu')) tierSet = tierSet.slice(slices.UU);
 		else if (format === 'ru' || format.includes('ru')) tierSet = tierSet.slice(slices.RU || slices.UU);
