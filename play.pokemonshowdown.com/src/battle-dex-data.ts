@@ -460,6 +460,16 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	ogerponhearthflametera: 1032 + 242,
 	ogerponcornerstonetera: 1032 + 243,
 	toxtricitylowkeygmax: 1320 + 69,
+	// Custom
+	castformmega: 351,
+	toxtricitymega: 1320 + 69,
+	toxtricitylowkeymega: 1320 + 69,
+	slowbrogalarmega: 1032 + 197,
+	typhlosionhisuimega: 1032 + 210,
+	zoroarkhisuimega: 1032 + 216,
+	machampmega: 1320 + 54,
+	centiskorchmegax: 1320 + 70,
+	centiskorchmegay: 1320 + 70,
 
 	// Mega/G-Max
 	venusaurmega: 1320 + 0,

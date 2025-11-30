@@ -767,7 +767,7 @@
 			if (this.curTeam.format.includes('legends')) {
 				this.curTeam.dex = Dex.mod('gen9legendsou');
 			}
-			if (this.curTeam.format.includes('touhou')) {
+			if (this.curTeam.format.includes('touhou') || this.curTeam.format.includes('toho')) {
 				this.curTeam.dex = Dex.mod('gen9toho');
 			}
 			if (this.curTeam.format.includes('gen9agoldenexperience')) {
@@ -1629,7 +1629,7 @@
 			if (this.curTeam.format.includes('legends')) {
 				this.curTeam.dex = Dex.mod('gen9legendsou');
 			}
-			if (this.curTeam.format.includes('toho')) {
+			if (this.curTeam.format.includes('touhou') || this.curTeam.format.includes('toho')) {
 				this.curTeam.dex = Dex.mod('gen9toho');
 			}
 			if (this.curTeam.format.includes('gen9agoldenexperience')) {
@@ -3505,7 +3505,7 @@
 				} else if (move.category === 'Physical' && !move.damage && !move.ohko &&
 					!['foulplay', 'endeavor', 'counter', 'bodypress', 'seismictoss', 'bide', 'metalburst', 'superfang'].includes(move.id) && !(this.curTeam.gen < 8 && move.id === 'rapidspin')) {
 					minAtk = false;
-				} else if (['metronome', 'assist', 'copycat', 'mefirst', 'photongeyser', 'shellsidearm', 'terablast'].includes(move.id) || (this.curTeam.gen === 5 && move.id === 'naturepower')) {
+				} else if (['metronome', 'assist', 'copycat', 'mefirst', 'photongeyser', 'shellsidearm', 'terablast', 'dimensionalbleeding', 'braveblade', 'monkeybusiness'].includes(move.id) || (this.curTeam.gen === 5 && move.id === 'naturepower')) {
 					minAtk = false;
 				}
 				if (minSpe === false && moveName === 'Gyro Ball') {
