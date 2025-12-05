@@ -577,7 +577,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' | 'nfe' |
 		'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'agoldenexperience' | 'toho' | 'touhoumons' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'agoldenexperience' | 'agoldenexperiencedoubles' | 'touhoumons' | null = null;
 	isDoubles = false;
 
 	/**
@@ -714,12 +714,16 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (!format) format = 'ou' as ID;
 		}
 		if (format.includes('agoldenexperience') || format.includes('golden')) {
-			this.formatType = 'agoldenexperience';
+			if (format.includes('doubles')) {
+				this.formatType = 'agoldenexperiencedoubles';
+				this.isDoubles = true;
+			} else {
+				this.formatType = 'agoldenexperience';
+			}
 			this.dex = Dex.mod('gen9agoldenexperience' as ID);
 			format = format.slice(9) as ID;
-			this.isDoubles = format.includes('doubles');
 		}
-		if (format.includes('touhoumons') || format.includes('toho')) {
+		if (format.includes('touhoumons')) {
 			this.formatType = 'gen9toho';
 			this.dex = Dex.mod('gen9toho' as ID);
 			this.isDoubles = format.includes('doubles');
@@ -821,7 +825,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (this.formatType === 'rs') table = table['gen3rs'];
 		if (this.formatType === 'legendsza') table = table['gen9legendsou'];
 		if (this.formatType === 'agoldenexperience') table = table['gen9agoldenexperience'];
-		if (this.formatType === 'toho') table = table['gen9toho'];
+		if (this.formatType === 'touhoumons') table = table['gen9toho'];
 		if (speciesid in table.learnsets) return speciesid;
 		const species = this.dex.species.get(speciesid);
 		if (!species.exists) return '' as ID;
@@ -873,7 +877,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.format.startsWith('battlespot') ||
 			this.format.startsWith('battlestadium') ||
 			this.format.startsWith('battlefestival') ||
-			(this.dex.gen === 9 && this.formatType !== 'natdex' && this.formatType !== 'legendsza' && this.formatType !== 'agoldenexperience' && this.formatType !== 'toho' && this.formatType !== 'touhoumons')
+			(this.dex.gen === 9 && this.formatType !== 'natdex' && this.formatType !== 'legendsza' && this.formatType !== 'agoldenexperience' && this.formatType !== 'agoldenexperiencedoubles' && this.formatType !== 'toho' && this.formatType !== 'touhoumons')
 		) {
 			if (gen === 9) {
 				genChar = 'a';
@@ -933,7 +937,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'stadium' ? `gen${gen}stadium${gen > 1 ? gen : ''}` :
 			this.formatType === 'legendsza' ? `gen9legendsou` :
 			this.formatType === 'agoldenexperience' ? `gen9agoldenexperience` :
-			this.formatType === 'toho' ? `gen9toho` :
+			this.formatType === 'agoldenexperiencedoubles' ? `gen9agoldenexperiencedoubles` :
 			this.formatType === 'touhoumons' ? `gen9toho` :
 			`gen${gen}`;
 		if (table?.[tableKey]) {
@@ -1096,7 +1100,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			table = table[`gen9legendsou`];
 		} else if (this.formatType === 'agoldenexperience') {
 			table = table[`gen9agoldenexperience`];
-		} else if (this.formatType === 'toho' | this.formatType === 'touhoumons') {
+		} else if (this.formatType === 'touhoumons') {
 			table = table[`gen9toho`];
 		}
 
@@ -1160,7 +1164,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			tierSet = tierSet.slice(slices.AG || slices.Uber);
 		} else if (format === 'monotype' || format.startsWith('monothreat')) tierSet = tierSet.slice(slices.Uber);
 		else if (format === 'doublesubers') tierSet = tierSet.slice(slices.DUber);
-		else if (format === 'doublesou' && dex.gen > 4) tierSet = tierSet.slice(slices.DOU);
+		else if ((format === 'doublesou' || format.includes('doubles') && !format.includes('ubers') && !format.includes('uu') && !format.includes('nu')) && dex.gen > 4) tierSet = tierSet.slice(slices.DOU);
+		else if (format === 'agoldenexperiencedoubles') tierSet = tierSet.slice(slices.DOU);
 		else if (format === 'doublesuu') tierSet = tierSet.slice(slices.DUU);
 		else if (format === 'doublesnu') tierSet = tierSet.slice(slices.DNU || slices.DUU);
 		else if (this.formatType?.startsWith('bdsp') || this.formatType === 'letsgo' || this.formatType === 'stadium') {
@@ -1168,8 +1173,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		} else if (this.formatType === 'rs') {
 			tierSet = tierSet.slice(slices.Regular);
 		// AGE + Touhoumons
-		} else if (format === 'agoldenexperience' || format.includes('golden')) {
-			tierSet = tierSet.slice(slices.OU);
+		} else if (format === 'agoldenexperience' || format.includes('agoldenexperience')) {
+			tierSet = tierSet.slice(slices.UUBL);
 		}
 		else if (format === 'touhoumons') {
 			tierSet = tierSet.slice(slices.Toho, slices.AG);
