@@ -770,7 +770,7 @@
 			if (this.curTeam.format.includes('touhou') || this.curTeam.format.includes('toho')) {
 				this.curTeam.dex = Dex.mod('gen9toho');
 			}
-			if (this.curTeam.format.includes('gen9agoldenexperience')) {
+			if (this.curTeam.format.includes('gen9agoldenexperience') || this.curTeam.format.includes('agoldenexperience') || this.curTeam.format.includes('age')) {
 				this.curTeam.dex = Dex.mod('gen9agoldenexperience');
 			}
 			Storage.activeSetList = this.curSetList = Storage.unpackTeam(this.curTeam.team);
@@ -1632,7 +1632,7 @@
 			if (this.curTeam.format.includes('touhou') || this.curTeam.format.includes('toho')) {
 				this.curTeam.dex = Dex.mod('gen9toho');
 			}
-			if (this.curTeam.format.includes('gen9agoldenexperience')) {
+			if (this.curTeam.format.includes('gen9agoldenexperience') || this.curTeam.format.includes('agoldenexperience') || this.curTeam.format.includes('age')) {
 				this.curTeam.dex = Dex.mod('gen9agoldenexperience');
 			}
 			this.save();
@@ -2286,6 +2286,10 @@
 				smogdexid += '/' + format;
 			} else if (format === 'agoldenexperience') {
 				smogdexid += '/nationaldex';
+			} else if (format === 'agoldenexperienceuu') {
+				smogdexid += '/nationaldexuu';
+			} else if (format === 'agoldenexperienceru') {
+				smogdexid += '/nationaldexru';
 			} else if (format === 'balancedhackmons') {
 				smogdexid += '/bh';
 			} else if (format === 'anythinggoes') {
