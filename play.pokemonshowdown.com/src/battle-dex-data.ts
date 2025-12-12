@@ -474,6 +474,8 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	scizorgalarmega: 1320 + 17,
 	isaapple: 1320 + 66,
 	badapple: 1320 + 67,
+	venusaurmegay: 1320 + 77,
+	blastoisemegax: 1320 + 78,
 
 	// Mega/G-Max
 	venusaurmega: 1320 + 0,
