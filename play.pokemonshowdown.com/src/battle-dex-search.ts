@@ -1174,7 +1174,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			tierSet = tierSet.slice(slices.Regular);
 		// AGE + Touhoumons
 		} else if (format === 'gen9agoldenexperience' || format.includes('agoldenexperience')) {
-			tierSet = tierSet.slice(slices.UUBL);
+			tierSet = tierSet.slice(slices.OU);
 		}
 		else if (format === 'touhoumons') {
 			tierSet = tierSet.slice(slices.Toho, slices.AG);
@@ -1183,8 +1183,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		} else if (!isDoublesOrBS) {
 			tierSet = [
 				...tierSet.slice(slices.OU, slices.UU),
-				...tierSet.slice(slices.AG, slices.Uber),
-				...tierSet.slice(slices.Uber, slices.OU),
+				//...tierSet.slice(slices.AG, slices.Uber),
+				//...tierSet.slice(slices.Uber, slices.OU),
 				...tierSet.slice(slices.UU),
 			];
 		} else {
