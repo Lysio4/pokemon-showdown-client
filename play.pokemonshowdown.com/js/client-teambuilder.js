@@ -2284,7 +2284,7 @@
 				smogdexid += '/doubles';
 			} else if (format === 'ou' || format === 'uu' || format === 'ru' || format === 'nu' || format === 'pu' || format === 'lc' || format === 'monotype' || format === 'mixandmega' || format === 'nfe' || format === 'nationaldex' || format === 'stabmons' || format === '1v1' || format === 'almostanyability') {
 				smogdexid += '/' + format;
-			} else if (format === 'agoldenexperience') {
+			} else if (format === 'agoldenexperienceou') {
 				smogdexid += '/nationaldex';
 			} else if (format === 'agoldenexperienceuu') {
 				smogdexid += '/nationaldexuu';

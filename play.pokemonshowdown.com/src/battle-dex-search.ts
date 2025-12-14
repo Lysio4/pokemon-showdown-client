@@ -1151,7 +1151,6 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		else if (format === 'zu' && dex.gen === 5) tierSet = tierSet.slice(slices.PU || slices.NU);
 		else if (format === 'zu' || format.includes('zu')) tierSet = tierSet.slice(slices.ZU || slices.PU || slices.NU);
 		else if (format === 'uber' || format.includes('uber')) tierSet = tierSet.slice(slices.Uber);
-		else if (format === 'mixandmega' || format.includes('mixandmega')) tierSet = tierSet.slice(slices.Uber);
 		else if (format === 'balancedhackmons' || format.includes('balancedhackmons')) tierSet = tierSet.slice(slices.AG || slices.Uber);
 		else if (
 			format === 'lc' || format === 'lcuu' || format.startsWith('lc') || (format !== 'caplc' && format.endsWith('lc'))
@@ -1177,7 +1176,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			tierSet = tierSet.slice(slices.Regular);
 		// AGE + Touhoumons
 		} else if (format === 'gen9agoldenexperience' || format.includes('agoldenexperience')) {
-			tierSet = tierSet.slice(slices.OU);
+			tierSet = tierSet.slice(slices.UUBL);
 		}
 		else if (format === 'touhoumons') {
 			tierSet = tierSet.slice(slices.Toho, slices.AG);
