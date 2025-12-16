@@ -477,6 +477,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	venusaurmegay: 1320 + 77,
 	blastoisemegax: 1320 + 78,
 	butterfreemega: 1320 + 51,
+	lycanrocbloodmoon: 1032 + 143,
 
 	// Mega/G-Max
 	venusaurmega: 1320 + 0,
@@ -601,6 +602,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	//golurkmega: 1320 + 119,
 	//meowsticmmega: 1320 + 120,
 	//meowsticfmega: 1320 + 121,
+	meowsticfmega: 1032 + 115, // temporary
 	//crabominablemega: 1320 + 122,
 	//golisopodmega: 1320 + 123,
 	//magearnamega: 1320 + 124,
