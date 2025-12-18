@@ -1569,13 +1569,14 @@ export class BattleTooltips {
 
 		let pokemonTypes = pokemon.getTypeList(serverPokemon);
 		value.reset();
-		if (move.id === 'revelationdance') {
+		if (move.id === 'revelationdance' || move.id ==='seasonpass') {
 			moveType = pokemonTypes[0];
 		}
 		// Moves that require an item to change their type.
 		let item = this.battle.dex.items.get(value.itemName);
 		if (move.id === 'multiattack' && item.onMemory) {
 			if (value.itemModify(0)) moveType = item.onMemory;
+			moveType = pokemonTypes[0];
 		}
 		if (move.id === 'judgment' && item.onPlate && !item.zMoveType) {
 			if (value.itemModify(0)) moveType = item.onPlate;
