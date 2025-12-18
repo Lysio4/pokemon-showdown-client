@@ -478,6 +478,9 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	blastoisemegax: 1320 + 78,
 	butterfreemega: 1320 + 51,
 	lycanrocbloodmoon: 1032 + 143,
+	sawsbuckautumnmega: 1032 + 61,
+	sawsbucksummermega: 1032 + 62,
+	sawsbuckwintermega: 1032 + 63,
 
 	// Mega/G-Max
 	venusaurmega: 1320 + 0,
@@ -594,8 +597,10 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	raichumegay: 1320 + 111,
 	chimechomega: 1320 + 112,
 	//absolmegaz: 1320 + 113,
+	absolmegaz: 1320 + 34, // temporary
 	//staraptormega: 1320 + 114,
 	//garchompmegaz: 1320 + 115,
+	garchompmegaz: 1320 + 44, // temporary
 	lucariomegaz: 1320 + 116,
 	//heatranmega: 1320 + 117,
 	darkraimega: 1320 + 118,
