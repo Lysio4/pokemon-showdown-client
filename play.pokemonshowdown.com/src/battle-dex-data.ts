@@ -612,6 +612,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	//golisopodmega: 1320 + 123,
 	//magearnamega: 1320 + 124,
 	//magearnaoriginalmega: 1320 + 125,
+	magearnaoriginal: 1032 + 152, // temporary
 	//zeraoramega: 1320 + 126,
 	//scovillainmega: 1320 + 121,
 	//glimmoramega: 1320 + 122,
