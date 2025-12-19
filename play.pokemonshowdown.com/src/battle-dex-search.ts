@@ -1142,7 +1142,11 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 						!['gougingfire', 'ironboulder', 'ironcrown', 'ragingbolt'].includes(id);
 				});
 			}
-		} else if (format === 'ou' || format.includes('ou')) tierSet = tierSet.slice(slices.OU);
+		} else if (format === 'touhoumons') {
+			tierSet = tierSet.slice(slices.Toho, slices.AG);
+		} else if (format === 'touhoumonsdoubles' || format.includes('touhoumonsdoubles')) {
+			tierSet = tierSet.slice(slices.Toho, slices.AG);
+		} else if (format === 'ou' || (format.includes('ou') && !format.includes('touhoumons'))) tierSet = tierSet.slice(slices.OU);
 		else if (format === 'uubl') tierSet = tierSet.slice(slices.UUBL);
 		else if (format === 'uu' || format.includes('uu')) tierSet = tierSet.slice(slices.UU);
 		else if (format === 'ru' || format.includes('ru')) tierSet = tierSet.slice(slices.RU || slices.UU);
@@ -1174,14 +1178,6 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			tierSet = tierSet.slice(slices.Uber);
 		} else if (this.formatType === 'rs') {
 			tierSet = tierSet.slice(slices.Regular);
-		// AGE + Touhoumons
-		} else if (format === 'gen9agoldenexperience' || format.includes('agoldenexperience')) {
-			tierSet = tierSet.slice(slices.OU);
-		}
-		else if (format === 'touhoumons') {
-			tierSet = tierSet.slice(slices.Toho, slices.AG);
-		} else if (format === 'touhoumonsdoubles' || format.includes('touhoumonsdoubles')) {
-			tierSet = tierSet.slice(slices.Toho, slices.AG);
 		} else if (!isDoublesOrBS) {
 			tierSet = [
 				...tierSet.slice(slices.OU, slices.UU),
