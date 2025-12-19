@@ -1145,7 +1145,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		} else if (format === 'touhoumons') {
 			tierSet = tierSet.slice(slices.Toho, slices.AG);
 		} else if (format === 'touhoumonsdoubles' || format.includes('touhoumonsdoubles')) {
-			tierSet = tierSet.slice(slices.Toho, slices.AG);
+			tierSet = tierSet.slice(slices.DToho, slices.DUber);
 		} else if (format === 'ou' || (format.includes('ou') && !format.includes('touhoumons'))) tierSet = tierSet.slice(slices.OU);
 		else if (format === 'uubl') tierSet = tierSet.slice(slices.UUBL);
 		else if (format === 'uu' || format.includes('uu')) tierSet = tierSet.slice(slices.UU);
