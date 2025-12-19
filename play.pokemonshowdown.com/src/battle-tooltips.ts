@@ -1662,7 +1662,7 @@ export class BattleTooltips {
 
 		// Other abilities that change the move type.
 		const noTypeOverride = [
-			'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball',
+			'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball', 'seasonpass',
 		];
 		const allowTypeOverride = !noTypeOverride.includes(move.id) && (move.id !== 'terablast' || !pokemon.terastallized);
 		if (allowTypeOverride) {
@@ -1681,6 +1681,7 @@ export class BattleTooltips {
 					if (value.abilityModify(0, 'Galvanize')) moveType = 'Electric';
 					if (value.abilityModify(0, 'Pixilate')) moveType = 'Fairy';
 					if (value.abilityModify(0, 'Refrigerate')) moveType = 'Ice';
+					if (value.abilityModify(0, 'Ignite')) moveType = 'Fire';
 				}
 				if (value.abilityModify(0, 'Normalize')) moveType = 'Normal';
 			}
@@ -1692,6 +1693,9 @@ export class BattleTooltips {
 			).flags['sound'];
 			if (isSound && value.abilityModify(0, 'Liquid Voice')) {
 				moveType = 'Water';
+			}
+			if (isSound && value.abilityModify(0, 'Desert Song')) {
+				moveType = 'Ground';
 			}
 		}
 
