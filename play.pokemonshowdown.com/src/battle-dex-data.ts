@@ -460,27 +460,6 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	ogerponhearthflametera: 1032 + 242,
 	ogerponcornerstonetera: 1032 + 243,
 	toxtricitylowkeygmax: 1320 + 69,
-	// Custom
-	castformmega: 351,
-	toxtricitymega: 1320 + 69,
-	toxtricitylowkeymega: 1320 + 69,
-	slowbrogalarmega: 1032 + 197,
-	typhlosionhisuimega: 1032 + 210,
-	zoroarkhisuimega: 1032 + 216,
-	machampmega: 1320 + 54,
-	centiskorchmegax: 1320 + 70,
-	centiskorchmegay: 1320 + 70,
-	centiskorchmegaz: 1320 + 70,
-	scizorgalarmega: 1320 + 17,
-	isaapple: 1320 + 66,
-	badapple: 1320 + 67,
-	venusaurmegay: 1320 + 77,
-	blastoisemegax: 1320 + 78,
-	butterfreemega: 1320 + 51,
-	lycanrocbloodmoon: 1032 + 143,
-	sawsbuckautumnmega: 1032 + 61,
-	sawsbucksummermega: 1032 + 62,
-	sawsbuckwintermega: 1032 + 63,
 
 	// Mega/G-Max
 	venusaurmega: 1320 + 0,
@@ -702,6 +681,30 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	draggalong: 1548 + 77,
 	ramnarok: 1548 + 78,
 	ramnarokradiant: 1548 + 79,
+
+	// Custom
+	
+	castformmega: 351,
+	toxtricitymega: 1320 + 69,
+	toxtricitylowkeymega: 1320 + 69,
+	slowbrogalarmega: 1032 + 197,
+	typhlosionhisuimega: 1032 + 210,
+	zoroarkhisuimega: 1032 + 216,
+	machampmega: 1320 + 54,
+	centiskorchmegax: 1320 + 70,
+	centiskorchmegay: 1320 + 70,
+	centiskorchmegaz: 1320 + 70,
+	scizorgalarmega: 1320 + 17,
+	isaapple: 1320 + 66,
+	badapple: 1320 + 67,
+	venusaurmegay: 1320 + 77,
+	blastoisemegax: 1320 + 78,
+	butterfreemega: 1320 + 51,
+	lycanrocbloodmoon: 1032 + 143,
+	sawsbuckautumnmega: 1032 + 61,
+	sawsbucksummermega: 1032 + 62,
+	sawsbuckwintermega: 1032 + 63,
+	gengarmegaz: 1320 + 55,
 };
 
 export const BattlePokemonIconIndexesLeft: { [id: string]: number } = {
