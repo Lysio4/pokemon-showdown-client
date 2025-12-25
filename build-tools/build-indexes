@@ -493,7 +493,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (ageDoubles.exists && Dex.formats.getRuleTable(ageDoubles).isBannedSpecies(species)) {
 					ageDoublesBans[species.id] = 1;
 				}
-				console.log(ageDoublesBans);
+				console.log(ageDoubles);
 			}
 			if (genNum >= 8) {
 				const ndDoubles = Dex.formats.get(gen + 'nationaldexdoubles');
