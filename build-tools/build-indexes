@@ -469,7 +469,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (species.forme) {
 				if (
 					[
-						'Aegislash', 'Castform', 'Cherrim', 'Cramorant', 'Eiscue', 'Meloetta', 'Mimikyu', 'Minior', 'Morpeko', 'Ramnarok', 'Wishiwashi',
+						'Aegislash', /*'Castform', 'Cherrim', 'Cramorant',*/ 'Eiscue', 'Meloetta', 'Mimikyu', 'Minior', 'Morpeko', 'Ramnarok', 'Wishiwashi',
 					].includes(species.baseSpecies) || species.forme.includes('Totem') || species.forme.includes('Zen') ||
 					(species.baseSpecies === 'Ogerpon' && species.forme.includes('Tera')) || species.isCosmeticForme
 				) {
@@ -493,6 +493,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (ageDoubles.exists && Dex.formats.getRuleTable(ageDoubles).isBannedSpecies(species)) {
 					ageDoublesBans[species.id] = 1;
 				}
+				console.log(ageDoublesBans);
 			}
 			if (genNum >= 8) {
 				const ndDoubles = Dex.formats.get(gen + 'nationaldexdoubles');
