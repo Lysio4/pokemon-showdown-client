@@ -542,7 +542,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				BattleTeambuilderTable['gen' + genNum + 'natdex'].thirtyfivePokes = thirtyfivePokes;
 			}
 			console.log(ndDoublesBans);
-			console.log("------------------------------------------------------------------");
+			console.log("----------------------------------8--------------------------------");
 			console.log(BattleTeambuilderTable['gen' + genNum + 'natdex'].ndDoublesBans);
 		} else if (isMetBattle) {
 			BattleTeambuilderTable[gen + 'metronome'] = {};
