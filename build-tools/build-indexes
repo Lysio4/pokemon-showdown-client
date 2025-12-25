@@ -541,9 +541,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isNatDex && genNum === 9) {
 				BattleTeambuilderTable['gen' + genNum + 'natdex'].thirtyfivePokes = thirtyfivePokes;
 			}
-			console.log(ndDoublesBans);
-			console.log("----------------------------------8--------------------------------");
-			console.log(BattleTeambuilderTable['gen' + genNum + 'natdex'].ndDoublesBans);
 		} else if (isMetBattle) {
 			BattleTeambuilderTable[gen + 'metronome'] = {};
 			BattleTeambuilderTable[gen + 'metronome'].tiers = tiers;
@@ -608,9 +605,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].ageDoublesBans = ageDoublesBans;
-			console.log(ageDoublesBans);
-			console.log("------------------------------------------------------------------");
-			console.log(BattleTeambuilderTable['gen9agoldenexperience'].ageDoublesBans);
+			BattleTeambuilderTable['gen9agoldenexperience'].ndDoublesBans = ndDoublesBans;
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
