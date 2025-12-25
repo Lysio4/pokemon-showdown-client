@@ -457,7 +457,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (species.tier === 'Toho') {
 					return species.tier;
 				}
-				if (isDoubles && genNum > 4) {
+				if (isDoubles && genNum > 4 && !isAGE) {
 					return species.doublesTier;
 				}
 				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411)) {
@@ -467,12 +467,12 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			})();
 			overrideTier[species.id] = speciesTier;
 			if (species.forme) {
-				if (
+				if ((
 					[
-						'Aegislash', /*'Castform', 'Cherrim', 'Cramorant',*/ 'Eiscue', 'Meloetta', 'Mimikyu', 'Minior', 'Morpeko', 'Ramnarok', 'Wishiwashi',
+						'Aegislash', 'Castform', /*'Cherrim',*/ 'Cramorant', 'Eiscue', /*'Meloetta',*/ 'Mimikyu', 'Minior', 'Morpeko', 'Ramnarok', 'Wishiwashi',
 					].includes(species.baseSpecies) || species.forme.includes('Totem') || species.forme.includes('Zen') ||
 					(species.baseSpecies === 'Ogerpon' && species.forme.includes('Tera')) || species.isCosmeticForme
-				) {
+				) && !species.forme.includes('Mega')) {
 					continue;
 				}
 			}
@@ -493,7 +493,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (ageDoubles.exists && Dex.formats.getRuleTable(ageDoubles).isBannedSpecies(species)) {
 					ageDoublesBans[species.id] = 1;
 				}
-				console.log(ageDoubles);
 			}
 			if (genNum >= 8) {
 				const ndDoubles = Dex.formats.get(gen + 'nationaldexdoubles');
