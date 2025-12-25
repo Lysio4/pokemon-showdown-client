@@ -1203,7 +1203,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 				return true;
 			});
 		}
-		if (format === 'doubles' && (this.formatType === 'agoldenexperience' || this.formatType === 'agoldenexperiencedoubles') && table.ageDoublesBans) {
+		if (format === 'doubles' && this.formatType.includes('agoldenexperience') && table.ageDoublesBans) {
 			tierSet = tierSet.filter(([type, id]) => {
 				if (id in table.ageDoublesBans) return false;
 				return true;
