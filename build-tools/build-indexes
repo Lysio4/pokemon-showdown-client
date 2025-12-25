@@ -605,6 +605,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].ageDoublesBans = ageDoublesBans;
+			console.log(ageDoublesBans);
+			console.log("------------------------------------------------------------------");
+			console.log(BattleTeambuilderTable['gen9agoldenexperience'].ageDoublesBans);
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
