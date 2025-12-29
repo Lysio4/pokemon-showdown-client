@@ -119,7 +119,7 @@ function requireNoCache(pathSpec) {
 				name = (compoundTable.get(baseid) || species.baseSpecies) + ' ' + species.forme;
 			}
 		}
-		if (name.endsWith(' Mega-X') || name.endsWith(' Mega-Y')) {
+		if (name.endsWith(' Mega-X') || name.endsWith(' Mega-Y') || name.endsWith(' Mega-Z')) {
 			index.push('mega' + toID(name.slice(0, -7) + name.slice(-1)) + ' ' + type + ' ' + id + ' 0');
 			index.push('m' + toID(name.slice(0, -7) + name.slice(-1)) + ' ' + type + ' ' + id + ' 0');
 			index.push('mega' + toID(name.slice(-1)) + ' ' + type + ' ' + id + ' ' + toID(name.slice(0, -7)).length);
@@ -672,15 +672,15 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			else if (isRS) {
 				return ["Regular", "NFE", "LC", "Uber"];
 			}
-			else if (isDoubles && genNum > 4) {
+			else if (isDoubles && genNum > 4 && !isAGEDoubles) {
 				return ["DToho", "DUber", "(DUber)", "DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
 			}
 			else if (gen === 'gen4') {
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
-			/*else if (isAGE) {
-				return ["OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "NFE", "LC"];
-			}*/
+			else if (isAGEDoubles) {
+				return ["DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
+			}
 			else if (is2hu) {
 				return ["Toho"];
 			}
