@@ -287,9 +287,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	const LC = GENS.map(num => num + 0.7);
 	const STADIUM = [2.04, 1.04];
 	const NATDEX = [9.1, 8.1];
+	const AGETIER = [9.99, 9.97];
 	const TOUHOUTIER = [9.98];
 	const OTHER = [
-		9.99, 9.9, 9.6, 9.411, 9.41, 9.401, 9.4, 9.33, 9.2, -9.4, -9.401,
+		9.9, 9.6, 9.411, 9.41, 9.401, 9.4, 9.33, 9.2, -9.4, -9.401,
 		8.6, 8.4, 8.2, 8.1, -8.4, -8.6,
 		7.1,
 		5.1,
@@ -297,7 +298,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	];
 
 	// process.stdout.write("\n  ");
-	for (const genIdent of [...TOUHOUTIER,...GENS, ...DOUBLES, ...VGC, ...NFE, ...STADIUM, ...OTHER, ...NATDEX, ...LC]) {
+	for (const genIdent of [...TOUHOUTIER, ...AGETIER, ...GENS, ...DOUBLES, ...VGC, ...NFE, ...STADIUM, ...OTHER, ...NATDEX, ...LC]) {
 		const isLetsGo = (genIdent === 7.1);
 		const isBDSP = (genIdent === 8.6 || genIdent === -8.6);
 		const isMetBattle = ('' + genIdent).endsWith('.2');
@@ -532,6 +533,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		}));
 
 		const tiers = [];
+		const doublesTiers = [];
 		const items = [];
 		const formatSlices = {};
 
@@ -605,6 +607,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		} else if (isAGE) {
 			BattleTeambuilderTable['gen9agoldenexperience'] = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
+			BattleTeambuilderTable['gen9agoldenexperience'].doublesTiers = doublesTiers;
 			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
@@ -613,6 +616,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		} else if (isAGEDoubles) {
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].doublesTiers = doublesTiers;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
