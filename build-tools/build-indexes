@@ -610,7 +610,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].ageDoublesBans = ageDoublesBans;
-			BattleTeambuilderTable['gen9agoldenexperience'].ndDoublesBans = ndDoublesBans;
+		} else if (isAGEDoubles) {
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].formatSlices = formatSlices;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].learnsets = {};
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].ageDoublesBans = ageDoublesBans;
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
