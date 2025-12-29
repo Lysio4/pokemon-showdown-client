@@ -318,8 +318,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const isRS = genIdent === 3.1;
 		// custom formats
 		const isAGE = genIdent === 9.99;
-		const isAGEDoubles = genIdent === 9.98;
-		const is2hu = genIdent === 9.97;
+		const isAGEDoubles = genIdent === 9.97;
+		const is2hu = genIdent === 9.98;
 		const gen = (() => {
 			let genStr = 'gen' + genNum;
 			if (isSSDLC1) genStr += 'dlc1';
