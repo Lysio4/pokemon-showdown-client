@@ -457,7 +457,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (species.tier === 'Toho') {
 					return species.tier;
 				}
-				if (isDoubles && genNum > 4) {
+				if (isDoubles && isAGE) {
+					return species.doublesTier;
+				}
+				if (isDoubles && genNum > 4 && !isAGE) {
 					return species.doublesTier;
 				}
 				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411)) {
