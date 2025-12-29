@@ -318,7 +318,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const isRS = genIdent === 3.1;
 		// custom formats
 		const isAGE = genIdent === 9.99;
-		const is2hu = genIdent === 9.98;
+		const isAGEDoubles = genIdent === 9.98;
+		const is2hu = genIdent === 9.97;
 		const gen = (() => {
 			let genStr = 'gen' + genNum;
 			if (isSSDLC1) genStr += 'dlc1';
@@ -333,6 +334,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isRS) genStr += 'rs';
 			// custom mods
 			if (isAGE) genStr += 'agoldenexperience';
+			if (isAGEDoubles) genStr += 'agoldenexperiencedoubles';
 			if (is2hu) genStr += 'toho';
 			return genStr;
 		})();
@@ -457,10 +459,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (species.tier === 'Toho') {
 					return species.tier;
 				}
-				if (isDoubles && isAGE) {
+				if (isDoubles && genNum > 4) {
 					return species.doublesTier;
 				}
-				if (isDoubles && genNum > 4 && !isAGE) {
+				if (isAGEDoubles) {
 					return species.doublesTier;
 				}
 				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411)) {
