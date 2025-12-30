@@ -693,6 +693,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	gengarmegaz: 1320 + 55,
 	typhlosionhisuimega: 1032 + 210,
 	scizorgalarmega: 1320 + 17,
+	castformsunny: 351,
 	zoroarkhisuimega: 1032 + 216,
 	sawsbuckautumnmega: 1032 + 61,
 	sawsbucksummermega: 1032 + 62,
