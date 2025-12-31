@@ -698,6 +698,8 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	sawsbuckautumnmega: 1032 + 61,
 	sawsbucksummermega: 1032 + 62,
 	sawsbuckwintermega: 1032 + 63,
+	cramorantgulpingmega: 1032 + 180,
+	cramorantgorgingmega: 1032 + 181,
 	toxtricitymega: 1320 + 69,
 	toxtricitylowkeymega: 1320 + 69,
 	centiskorchmegax: 1320 + 70,
