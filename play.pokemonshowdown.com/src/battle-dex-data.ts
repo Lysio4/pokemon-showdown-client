@@ -740,6 +740,8 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 
 	// forms
 	lycanrocbloodmoon: 1032 + 143,
+	baskiron: 229,
+	baskironmega: 1320 + 19,
 
 	// paradoxes
 	whitewhale: 321,
