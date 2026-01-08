@@ -782,6 +782,13 @@ export class BattleTooltips {
 			if (move.flags.wind) {
 				text += `<p class="movetag">&#x2713; Wind <small>(activates Wind Power and Wind Rider)</small></p>`;
 			}
+			// AGE special
+			if (move.flags.kick && ability === 'striker') {
+				text += `<p class="movetag">&#x2713; Kick <small>(boosted by Striker)</small></p>`;
+			}
+			if (move.flags.bullet && ability === 'deadlyblasts') {
+				text += `<p class="movetag">&#x2713; Bullet-like <small>(boosted by Deadly Blasts)</small></p>`;
+			}
 			// RBY healing move glitch
 			if (this.battle.gen === 1 && !toID(this.battle.tier).includes('stadium') &&
 				['recover', 'softboiled', 'rest'].includes(move.id)) {
@@ -2143,6 +2150,14 @@ export class BattleTooltips {
 		if (move.flags['slicing']) {
 			value.abilityModify(1.5, "Sharpness");
 		}
+		// AGE
+		if (move.flags['kick']) {
+			value.abilityModify(1.2, 'Striker');
+		}
+		if (move.flags['bullet']) {
+			value.abilityModify(1.2, 'Deadly Blasts');
+		}
+
 		for (let i = 1; i <= 5 && i <= pokemon.side.faintCounter; i++) {
 			if (pokemon.volatiles[`fallen${i}`]) {
 				value.abilityModify(1 + 0.1 * i, "Supreme Overlord");
