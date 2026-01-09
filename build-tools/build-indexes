@@ -499,11 +499,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					if (!metagameBans['nationaldex35pokes']) metagameBans['nationaldex35pokes'] = {};
 					metagameBans['nationaldex35pokes'][species.id] = 1;
 				}
-				const ageDoubles = Dex.formats.get(gen + 'agoldenexperiencedoublesou');
+				/*const ageDoubles = Dex.formats.get(gen + 'agoldenexperiencedoublesou');
 				if (ageDoubles.exists && Dex.formats.getRuleTable(ageDoubles).isBannedSpecies(species)) {
 					if (!metagameBans['agoldenexperiencedoublesou']) metagameBans['agoldenexperiencedoublesou'] = {};
 					metagameBans['agoldenexperiencedoublesou'][species.id] = 1;
-				}
+				}*/
 			}
 			if (genNum >= 8) {
 				for (const meta of ['nationaldexdoubles', 'nationaldexmonotype']) {
