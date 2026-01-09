@@ -577,7 +577,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' | 'nfe' |
 		'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'agoldenexperience' | 'agoldenexperiencedoublesou' | 'touhoumons' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'agoldenexperience' | 'touhoumons' | null = null;
 	isDoubles = false;
 
 	/**
@@ -933,7 +933,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'stadium' ? `gen${gen}stadium${gen > 1 ? gen : ''}` :
 			this.formatType === 'legendsza' ? `gen9legendsou` :
 			this.formatType === 'agoldenexperience' ? `gen9agoldenexperience` :
-			this.formatType === 'agoldenexperiencedoublesou' ? `gen9agoldenexperiencedoublesou` :
 			this.formatType === 'touhoumons' ? `gen9toho` :
 			`gen${gen}`;
 		if (table?.[tableKey]) {
@@ -1109,7 +1108,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		}
 		let tierSet: SearchRow[] = table.tierSet;
 		let slices: { [k: string]: number } = table.formatSlices;
-		if (format === 'ubers' || format === 'uber' || format === 'ubersuu' || format === 'nationaldexdoubles' || format === 'agoldenexperiencedoublesou') {
+		if (format === 'ubers' || format === 'uber' || format === 'ubersuu' || format === 'nationaldexdoubles') {
 			tierSet = tierSet.slice(slices.Uber);
 		} else if (isVGCOrBS || (isHackmons && dex.gen === 9 && !this.formatType)) {
 			if (format.endsWith('series13') || format.endsWith('regj') || isHackmons) {
