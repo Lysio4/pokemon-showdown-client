@@ -714,14 +714,10 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (!format) format = 'ou' as ID;
 		}
 		if (format.includes('agoldenexperience') || format.includes('golden')) {
-			if (format.includes('doubles')) {
-				this.formatType = 'agoldenexperiencedoubles';
-				this.isDoubles = true;
-			} else {
-				this.formatType = 'agoldenexperience';
-			}
+			this.formatType = 'agoldenexperience';
 			this.dex = Dex.mod('gen9agoldenexperience' as ID);
 			format = format.slice(9) as ID;
+			this.isDoubles = format.includes('doubles');
 		}
 		if (format.includes('touhoumons')) {
 			this.formatType = 'gen9toho';
@@ -1098,9 +1094,9 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			table = table[`gen${dex.gen}stadium${dex.gen > 1 ? dex.gen : ''}`];
 		} else if (this.formatType === 'legendsza') {
 			table = table[`gen9legendsou`];
-		} else if (this.formatType === 'agoldenexperience') {
+		} else if (this.formatType === 'agoldenexperience' || this.formatType.includes('agoldenexperience')) {
 			table = table[`gen9agoldenexperience`];
-		} else if (this.formatType === 'touhoumons') {
+		} else if (this.formatType === 'touhoumons' || this.formatType.includes('touhoumons')) {
 			table = table[`gen9toho`];
 		}
 
@@ -1170,7 +1166,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			tierSet = tierSet.slice(slices.AG || slices.Uber);
 		} else if (format === 'monotype' || format.startsWith('monothreat')) tierSet = tierSet.slice(slices.Uber);
 		else if (format === 'doublesubers') tierSet = tierSet.slice(slices.DUber);
-		else if (format === 'doublesou' && dex.gen > 4) tierSet = tierSet.slice(slices.DOU);
+		else if ((format === 'doublesou' || (format.includes('doublesou')) && dex.gen > 4) tierSet = tierSet.slice(slices.DOU);
 		else if (format === 'doublesuu') tierSet = tierSet.slice(slices.DUU);
 		else if (format === 'doublesnu') tierSet = tierSet.slice(slices.DNU || slices.DUU);
 		else if (this.formatType?.startsWith('bdsp') || this.formatType === 'letsgo' || this.formatType === 'stadium') {
@@ -1193,6 +1189,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		}
 		const customBanlists = [
 			'ubersuu', 'almostanyability', 'balancedhackmons', 'godlygift', 'mixandmega', 'sharedpower', 'stabmons',
+			// AGE
+			'agoldenexperiencedoubles', 'agoldenexperienceubersuu', 'agoldenexperiencealmostanyability', 'agoldenexperiencebalancedhackmons', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega', 'agoldenexperiencesharedpower', 'agoldenexperiencestabmons',
 		];
 		if (customBanlists.includes(format) && table.metagameBans?.[format]) {
 			tierSet = tierSet.filter(([type, id]) => {
