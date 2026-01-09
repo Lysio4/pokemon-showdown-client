@@ -319,7 +319,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		const isRS = genIdent === 3.1;
 		// custom formats
 		const isAGE = genIdent === 9.99;
-		const isAGEDoubles = genIdent === 9.97;
 		const is2hu = genIdent === 9.98;
 		const gen = (() => {
 			let genStr = 'gen' + genNum;
@@ -335,7 +334,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isRS) genStr += 'rs';
 			// custom mods
 			if (isAGE) genStr += 'agoldenexperience';
-			if (isAGEDoubles) genStr += 'agoldenexperiencedoubles';
 			if (is2hu) genStr += 'toho';
 			return genStr;
 		})();
@@ -459,7 +457,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (isDoubles && genNum > 4) {
 					return species.doublesTier;
 				}
-				if (isAGEDoubles) {
+				if (isAGE && isDoubles) {
 					return species.doublesTier;
 				}
 				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411)) {
@@ -486,7 +484,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				for (const meta of [
 					'ubersuu', 'almostanyability', 'balancedhackmons', 'godlygift', 'mixandmega', 'sharedpower', 'stabmons',
 					// AGE
-					'agoldenexperienceubersuu', 'agoldenexperiencealmostanyability', 'agoldenexperiencebalancedhackmons', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega', 'agoldenexperiencesharedpower', 'agoldenexperiencestabmons',
+					'agoldenexperienceubersuu', 'almostanyabilityagoldenexperience', 'balancedhackmonsagoldenexperience', 'godlygiftagoldenexperience', 'mixandmegaagoldenexperience', 'sharedpoweragoldenexperience', 'stabmonsagoldenexperience',
 				]) {
 					const format = Dex.formats.get(gen + meta);
 					if (format.exists && Dex.formats.getRuleTable(format).isBannedSpecies(species)) {
@@ -499,10 +497,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					if (!metagameBans['nationaldex35pokes']) metagameBans['nationaldex35pokes'] = {};
 					metagameBans['nationaldex35pokes'][species.id] = 1;
 				}
-				const ageDoubles = Dex.formats.get(gen + 'agoldenexperiencedoubles');
+				const ageDoubles = Dex.formats.get(gen + 'agoldenexperiencedoublesou');
 				if (ageDoubles.exists && Dex.formats.getRuleTable(ageDoubles).isBannedSpecies(species)) {
-					if (!metagameBans['agoldenexperiencedoubles']) metagameBans['agoldenexperiencedoubles'] = {};
-					metagameBans['agoldenexperiencedoubles'][species.id] = 1;
+					if (!metagameBans['agoldenexperiencedoublesou']) metagameBans['agoldenexperiencedoublesou'] = {};
+					metagameBans['agoldenexperiencedoublesou'][species.id] = 1;
 				}
 			}
 			if (genNum >= 8) {
@@ -618,16 +616,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
-			BattleTeambuilderTable['gen9agoldenexperience'].metagameBans = metagameBans;
-		} else if (isAGEDoubles) {
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].doublesTiers = doublesTiers;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].formatSlices = formatSlices;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].learnsets = {};
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].metagameBans = metagameBans;
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
@@ -674,7 +662,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isVGC || isGen9BH) {
 				return ["Mythical", "Restricted Legendary", "Regular", "NFE", "LC"];
 			}
-			if (isAGEDoubles) {
+			if (isAGE && isDoubles) {
 				return ["DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
 			}
 			if (is2hu) {
@@ -691,7 +679,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			}
 			return [
 					"CAP", "CAP NFE", "CAP LC", "Toho", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
-				];
+			];
 		})();
 		for (const tier of tierOrder) {
 			if (tier in {
