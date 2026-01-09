@@ -674,26 +674,24 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isVGC || isGen9BH) {
 				return ["Mythical", "Restricted Legendary", "Regular", "NFE", "LC"];
 			}
-			else if (isRS) {
-				return ["Regular", "NFE", "LC", "Uber"];
-			}
-			else if (isDoubles && genNum > 4 && !isAGEDoubles) {
-				return ["DToho", "DUber", "(DUber)", "DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
-			}
-			else if (gen === 'gen4') {
-				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
-			}
-			else if (isAGEDoubles) {
+			if (isAGEDoubles) {
 				return ["DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
 			}
-			else if (is2hu) {
+			if (is2hu) {
 				return ["Toho"];
 			}
-			else {
-				return [
-					"CAP", "CAP NFE", "CAP LC", "Toho", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
-				];
+			if (isRS) {
+				return ["Regular", "NFE", "LC", "Uber"];
 			}
+			if (isDoubles && genNum > 4) {
+				return ["DUber", "(DUber)", "DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
+			}
+			if (gen === 'gen4') {
+				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
+			}
+			return [
+				"CAP", "CAP NFE", "CAP LC", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
+			];
 		})();
 		for (const tier of tierOrder) {
 			if (tier in {
@@ -724,6 +722,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (!formatSlices['UU']) formatSlices['UU'] = formatSlices['New'];
 			if (!formatSlices['RU']) formatSlices['RU'] = formatSlices['New'];
 		} else {
+			if (!formatSlices['DToho']) formatSlices['DToho'] = formatSlices['New'];
 			if (!formatSlices['DOU']) formatSlices['DOU'] = formatSlices['New'];
 			if (!formatSlices['DUU']) formatSlices['DUU'] = formatSlices['New'];
 		}
