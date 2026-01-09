@@ -1190,7 +1190,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		const customBanlists = [
 			'ubersuu', 'almostanyability', 'balancedhackmons', 'godlygift', 'mixandmega', 'sharedpower', 'stabmons',
 			// AGE
-			'agoldenexperiencedoublesou', 'agoldenexperienceubersuu', 'almostanyabilityagoldenexperience', 'balancedhackmonsagoldenexperience', 'godlygiftagoldenexperience', 'mixandmegaagoldenexperience', 'sharedpoweragoldenexperience', 'stabmonsagoldenexperience',
+			'agoldenexperiencedoublesou', 'almostanyabilityagoldenexperience', 'balancedhackmonsagoldenexperience', 'godlygiftagoldenexperience', 'mixandmegaagoldenexperience', 'stabmonsagoldenexperience',
 		];
 		if (customBanlists.includes(format) && table.metagameBans?.[format]) {
 			tierSet = tierSet.filter(([type, id]) => {
