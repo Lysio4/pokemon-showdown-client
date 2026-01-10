@@ -407,7 +407,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (isVGC) {
 					if (species.isNonstandard && species.isNonstandard !== 'Gigantamax') return 'Illegal';
 					if (baseSpecies.tags.includes('Mythical')) return 'Mythical';
-					if (baseSpecies.tags.includes('Restricted Legendary')) return 'Restricted Legendary';
+					if (baseSpecies.tags.includes('Restricted Legendary')) return 'Restricted';
 					if (species.tier === 'NFE') return 'NFE';
 					if (species.tier === 'LC') return 'LC';
 					return 'Regular';
@@ -445,7 +445,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					}
 					if (species.isNonstandard && ['LGPE', 'CAP', 'Future'].includes(species.isNonstandard)) return 'Illegal';
 					return species.tags.includes('Mythical') ? 'Mythical' :
-						species.tags.includes('Restricted Legendary') ? 'Restricted Legendary' :
+						species.tags.includes('Restricted Legendary') ? 'Restricted' :
 						species.nfe ? (species.prevo ? 'NFE' : 'LC') : 'Regular';
 				}
 				if (species.tier === 'CAP' || species.tier === 'CAP NFE' || species.tier === 'CAP LC') {
@@ -480,15 +480,43 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (!tierTable[speciesTier]) tierTable[speciesTier] = [];
 			tierTable[speciesTier].push(id);
 
-			if (genNum === 9) {
+			if (genNum >= 6) {
 				for (const meta of [
-					'ubersuu', 'almostanyability', 'balancedhackmons', 'godlygift', 'mixandmega', 'sharedpower', 'stabmons',
+					'1v1', '2v2doubles', 'lcuu', 'freeforall', 'ubersuu', 'almostanyability', 'balancedhackmons', 'godlygift', 'mixandmega', 'sharedpower', 'stabmons',
+					'12switch', '350cup', 'alphabetcup', 'badnboosted', 'battlefields', 'biomechmons', 'camomons', 'categoryswap',
+					'convergence', 'crossevolution', 'ferventimpersonation', 'foresighters', 'formemons', 'fortemons', 'franticfusions',
+					'fullpotential', 'inheritance', 'inverse', 'natureswap', 'partnersincrime', 'passiveaggressive', 'pokebilities',
+					'pokemoves', 'relayrace', 'revelationmons', 'sharingiscaring', 'teradonation', 'teraoverride', 'thecardgame',
+					'thelosersgame', 'trademarked', 'triples', 'typesplit', 'voltturnmayhem', 'nationaldexubersuu', 'nationaldex1v1',
+					'nationaldexaaa', 'nationaldexbh', 'nationaldexgodlygift', 'nationaldexstabmons', 'tiershift',
 					// AGE
 					'agoldenexperienceubersuu', 'almostanyabilityagoldenexperience', 'balancedhackmonsagoldenexperience', 'godlygiftagoldenexperience', 'mixandmegaagoldenexperience', 'sharedpoweragoldenexperience', 'stabmonsagoldenexperience',
 				]) {
 					const format = Dex.formats.get(gen + meta);
 					if (format.exists && Dex.formats.getRuleTable(format).isBannedSpecies(species)) {
 						if (!metagameBans[meta]) metagameBans[meta] = {};
+						if (Dex.formats.getRuleTable(format).has('megarayquazaclause')) {
+							metagameBans[meta]['megarayquazaclause'] = 1;
+						}
+						if (species.requiredItems && species.requiredItems.length) {
+							for (const itemName of species.requiredItems) {
+								const item = Dex.items.get(itemName);
+								if (item.itemUser && item.itemUser.includes(species.name) &&
+									Dex.formats.getRuleTable(format).isBanned('item:' + item.id)) {
+									metagameBans[meta][species.id] = 1;
+								}
+								if (item.megaStone && Object.values(item.megaStone).includes(species.name) &&
+									Dex.formats.getRuleTable(format).isBanned('item:' + item.id)) {
+									metagameBans[meta][species.id] = 1;
+								}
+							}
+						}
+						if (species.requiredAbility) {
+							const ability = Dex.items.get(species.requiredAbility);
+							if (Dex.formats.getRuleTable(format).isBanned('ability:' + ability.id)) {
+								metagameBans[meta][species.id] = 1;
+							}
+						}
 						metagameBans[meta][species.id] = 1;
 					}
 				}
@@ -565,6 +593,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable[gen + 'lc'] = {};
 			BattleTeambuilderTable[gen + 'lc'].tiers = tiers;
 			BattleTeambuilderTable[gen + 'lc'].overrideTier = overrideTier;
+			BattleTeambuilderTable[gen + 'lc'].metagameBans = metagameBans;
 			BattleTeambuilderTable[gen + 'lc'].formatSlices = formatSlices;
 		} else if (isLetsGo) {
 			BattleTeambuilderTable['gen7letsgo'] = {};
@@ -589,6 +618,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable[gen + 'doubles'].tiers = tiers;
 			BattleTeambuilderTable[gen + 'doubles'].items = items;
 			BattleTeambuilderTable[gen + 'doubles'].overrideTier = overrideTier;
+			BattleTeambuilderTable[gen + 'doubles'].metagameBans = metagameBans;
 			BattleTeambuilderTable[gen + 'doubles'].formatSlices = formatSlices;
 		} else if (isGen9BH) {
 			BattleTeambuilderTable['bh'] = {};
@@ -660,7 +690,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 
 		const tierOrder = (() => {
 			if (isVGC || isGen9BH) {
-				return ["Mythical", "Restricted Legendary", "Regular", "NFE", "LC"];
+				return ["Mythical", "Restricted", "Regular", "NFE", "LC"];
 			}
 			if (isAGE && isDoubles) {
 				return ["DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
@@ -684,7 +714,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		for (const tier of tierOrder) {
 			if (tier in {
 				OU: 1, UUBL: 1, AG: 1, Uber: 1, UU: 1, RU: 1, NU: 1, PU: 1, ZU: 1, NFE: 1, LC: 1, "Toho": 1, DOU: 1, DUU: 1,
-				"(DUU)": 1, "DToho": 1, New: 1, Legal: 1, Regular: 1, "Restricted Legendary": 1, "CAP LC": 1,
+				"(DUU)": 1, "DToho": 1, New: 1, Legal: 1, Regular: 1, Restricted: 1, "CAP LC": 1,
 			}) {
 				let usedTier = tier;
 				if (usedTier === "(DUU)") usedTier = "DNU";
