@@ -1197,16 +1197,20 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			'thelosersgame', 'trademarked', 'triples', 'typesplit', 'voltturnmayhem', 'nationaldexubersuu', 'nationaldex1v1',
 			'nationaldexaaa', 'nationaldexbh', 'nationaldexgodlygift', 'nationaldexstabmons', 'tiershift',
 			// AGE
-			'agoldenexperiencedoublesou', 'almostanyabilityagoldenexperience', 'balancedhackmonsagoldenexperience', 'godlygiftagoldenexperience', 'mixandmegaagoldenexperience', 'stabmonsagoldenexperience',
+			'agoldenexperiencedoublesou', 'agoldenexperiencealmostanyability', 'agoldenexperiencebalancedhackmons', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
+			'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
 		];
 		if (dex.gen >= 6) {
 			if (
 				(customBanlists.includes(format) && table.metagameBans?.[format]) ||
 				(this.formatType === 'natdex' && customBanlists.includes('nationaldex' + format) &&
-					table.metagameBans?.['nationaldex' + format])) {
+					table.metagameBans?.['nationaldex' + format]) ||
+				(this.formatType === 'agoldenexperience' && customBanlists.includes('agoldenexperience' + format) &&
+					table.metagameBans?.['agoldenexperience' + format])) {
 				tierSet = tierSet.filter(([type, id]) => {
 					if (id in table.metagameBans[format]) return false;
 					if (this.formatType === 'natdex' && id in table.metagameBans['nationaldex' + format]) return false;
+					if (this.formatType === 'agoldenexperience' && id in table.metagameBans['agoldenexperience' + format]) return false;
 					if (!this.formatType && dex.gen === 9 &&
 						'miraidon' in table.metagameBans[format] &&
 						'calyrexshadow' in table.metagameBans[format] &&
@@ -1224,7 +1228,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 					return true;
 				});
 			}
-			if ((format === 'doubles' || format === 'monotype') && this.formatType === 'natdex' && table.metagameBans?.[format]) {
+			if ((format === 'doubles' || format === 'monotype') && (this.formatType === 'natdex' || this.formatType === 'agoldenexperience') && table.metagameBans?.[format]) {
 				tierSet = tierSet.filter(([type, id]) => {
 					if (id in table.metagameBans[format]) return false;
 					if ('miraidon' in table.metagameBans[format] && 'calyrexshadow' in table.metagameBans[format] &&
@@ -1232,12 +1236,6 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 					return true;
 				});
 			}
-		}
-		if (format === 'doubles' && this.formatType.includes('agoldenexperience') && table.metagameBans?.ageDoubles) {
-			tierSet = tierSet.filter(([type, id]) => {
-				if (id in table.metagameBans.ageDoubles) return false;
-				return true;
-			});
 		}
 		if (format === '35pokes' && table.metagameBans?.nationaldex35pokes) {
 			tierSet = tierSet.filter(([type, id]) => {
