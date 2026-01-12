@@ -747,8 +747,6 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	// paradoxes
 	whitewhale: 321,
 	irondrill: 530,
-	coalkaiju: 1320 + 65,
-	ironbike: 673,
 	purerainbow: 250,
 	irondart: 1032 + 71,
 };
