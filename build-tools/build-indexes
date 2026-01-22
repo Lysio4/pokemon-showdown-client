@@ -488,7 +488,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					'aaa', 'bh', // natdex abbreviations
 					'tiershift',
 					// AGE
-					'gen9agoldenexperiencedoublesou', 'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 
+					'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 
 					'gen9agoldenexperiencemixandmega', 'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 				]) {
 					const format = Dex.formats.get(`${gen}${isNatDex ? 'nationaldex' : ''}${meta}`);
