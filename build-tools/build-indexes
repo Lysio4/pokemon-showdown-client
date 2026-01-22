@@ -704,16 +704,17 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isRS) {
 				return ["Regular", "NFE", "LC", "Uber"];
 			}
-			if (isDoubles && genNum > 4 && !isAGE) {
+			if (isDoubles && genNum > 4) {
 				return ["DUber", "(DUber)", "DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
 			}
 			if (gen === 'gen4') {
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
 			return [
-					"CAP", "CAP NFE", "CAP LC", "Toho", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
+				"CAP", "CAP NFE", "CAP LC", "Toho", "AG", "Uber", "(Uber)", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",
 			];
 		})();
+
 		for (const tier of tierOrder) {
 			if (tier in {
 				OU: 1, UUBL: 1, AG: 1, Uber: 1, UU: 1, RU: 1, NU: 1, PU: 1, ZU: 1, NFE: 1, LC: 1, "Toho": 1, DOU: 1, DUU: 1,
@@ -738,12 +739,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			tiers.push(...tierTable[tier]);
 		}
 		if (!isDoubles) {
-			if (!formatSlices['Toho']) formatSlices['Toho'] = formatSlices['New'];
 			if (!formatSlices['OU']) formatSlices['OU'] = formatSlices['New'];
 			if (!formatSlices['UU']) formatSlices['UU'] = formatSlices['New'];
 			if (!formatSlices['RU']) formatSlices['RU'] = formatSlices['New'];
 		} else {
-			if (!formatSlices['DToho']) formatSlices['DToho'] = formatSlices['New'];
 			if (!formatSlices['DOU']) formatSlices['DOU'] = formatSlices['New'];
 			if (!formatSlices['DUU']) formatSlices['DUU'] = formatSlices['New'];
 		}
