@@ -1143,7 +1143,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			tierSet = tierSet.slice(slices.DToho, slices.DUber);
 		} else if (format === 'agoldenexperiencedoublesou') {
 			tierSet = tierSet.slice(slices.DOU);
-		} else if (format === 'ou' || (format.includes('ou') && !format.includes('touhoumons'))) tierSet = tierSet.slice(slices.OU);
+		} else if (format === 'ou' || (format.includes('ou') && !format.includes('touhoumons') && !format.includes('doubles'))) tierSet = tierSet.slice(slices.OU);
 		else if (format === 'uubl') tierSet = tierSet.slice(slices.UUBL);
 		else if (format === 'uu' || format.includes('uu')) tierSet = tierSet.slice(slices.UU);
 		else if (format === 'ru' || format.includes('ru')) tierSet = tierSet.slice(slices.RU || slices.UU);
