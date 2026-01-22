@@ -491,7 +491,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					'aaa', 'bh', // natdex abbreviations
 					'tiershift',
 					// AGE
-					'agoldenexperienceubersuu', 'almostanyabilityagoldenexperience', 'balancedhackmonsagoldenexperience', 'godlygiftagoldenexperience', 'mixandmegaagoldenexperience', 'sharedpoweragoldenexperience', 'stabmonsagoldenexperience',
+					'gen9agoldenexperiencedoublesou', 'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 
+					'gen9agoldenexperiencemixandmega', 'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 				]) {
 					const format = Dex.formats.get(`${gen}${isNatDex ? 'nationaldex' : ''}${meta}`);
 					if (!format.exists) continue;
@@ -706,9 +707,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isRS) {
 				return ["Regular", "NFE", "LC", "Uber"];
 			}
-			if (isDoubles && genNum > 4) {
+			/*if (isDoubles && genNum > 4) {
 				return ["DUber", "(DUber)", "DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
-			}
+			}*/
 			if (gen === 'gen4') {
 				return ["CAP", "CAP NFE", "CAP LC", "AG", "Uber", "OU", "(OU)", "UUBL", "UU", "NUBL", "NU", "NFE", "LC"];
 			}
