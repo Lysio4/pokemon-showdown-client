@@ -1198,8 +1198,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			'aaa', 'bh', // natdex abbreviations
 			'tiershift',
 			// AGE
-			'agoldenexperiencedoublesou', 'agoldenexperiencealmostanyability', 'agoldenexperiencebalancedhackmons', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
-			'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
+			'gen9agoldenexperiencedoublesou', 'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
+			'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 		];
 		if (dex.gen >= 6) {
 			if (customBanlists.includes(format) && table.metagameBans?.[format]) {
