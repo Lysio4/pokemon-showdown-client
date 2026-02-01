@@ -733,6 +733,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	truelewoodo: 185,
 	mediyumi: 1320 + 28,
 	spyarn: 918,
+	croaxitoad: 454,
 	gevauyena: 262,
 	arsief: 828,
 	draggoyle: 621,
