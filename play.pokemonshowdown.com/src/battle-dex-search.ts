@@ -1193,8 +1193,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			'convergence', 'crossevolution', 'categoryswap', 'ferventimpersonation', 'foresighters', 'formemons', 'fortemons', 'franticfusions',
 			'fullpotential', 'inheritance', 'inverse', 'natureswap', 'partnersincrime', 'passiveaggressive', 'pokebilities',
 			'pokemoves', 'relayrace', 'revelationmons', 'sharingiscaring', 'teradonation', 'teraoverride', 'thecardgame',
-			'thelosersgame', 'trademarked', 'triples', 'typesplit', 'voltturnmayhem',
-			'aaa', 'bh', // natdex abbreviations
+			'thelosersgame', 'trademarked', 'triples', 'typesplit', 'voltturnmayhem', 'flipped', 'monotype', 'stabmonsmixandmega',
+			'aaa', 'bh', 'doubles', // natdex abbreviations
 			'tiershift',
 			// AGE
 			'gen9agoldenexperiencedoublesou', 'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
