@@ -1661,7 +1661,6 @@ export class BattleTooltips {
 			case 'Ogerpon-Cornerstone': case 'Ogerpon-Cornerstone-Tera':
 				moveType = 'Rock';
 				break;
-			}
 			case 'Ogerpon-Mega':
 				moveType = 'Psychic';
 				break;
