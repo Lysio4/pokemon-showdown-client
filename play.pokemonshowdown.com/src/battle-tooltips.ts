@@ -1662,6 +1662,10 @@ export class BattleTooltips {
 				moveType = 'Rock';
 				break;
 			}
+			case 'Ogerpon-Mega':
+				moveType = 'Psychic';
+				break;
+			}
 		}
 
 		// Other abilities that change the move type.
