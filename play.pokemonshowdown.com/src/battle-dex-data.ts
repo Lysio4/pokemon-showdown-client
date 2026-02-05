@@ -598,6 +598,8 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	//tatsugiricurlymega: 1320 + 123,
 	//tatsugiridroopymega: 1320 + 124,
 	//tatsugiristretchymega: 1320 + 125,
+	tatsugiridroopymega: 1032 + 231, // temporary
+	tatsugiristretchymega: 1032 + 232, // temporary
 	//baxcaliburmega: 1320 + 126,
 
 	// CAP
