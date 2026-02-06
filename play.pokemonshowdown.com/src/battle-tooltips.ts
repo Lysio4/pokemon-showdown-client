@@ -786,6 +786,9 @@ export class BattleTooltips {
 			if (move.flags.kick && ability === 'striker') {
 				text += `<p class="movetag">&#x2713; Kick <small>(boosted by Striker)</small></p>`;
 			}
+			if (move.flags.drill && ability === 'mightyhorn') {
+				text += `<p class="movetag">&#x2713; Kick <small>(boosted by Striker)</small></p>`;
+			}
 			// RBY healing move glitch
 			if (this.battle.gen === 1 && !toID(this.battle.tier).includes('stadium') &&
 				['recover', 'softboiled', 'rest'].includes(move.id)) {
@@ -1830,6 +1833,9 @@ export class BattleTooltips {
 		} else if (value.tryAbility('Compound Eyes')) {
 			accuracyModifiers.push(5325);
 			value.abilityModify(1.3, "Compound Eyes");
+		} else if (value.tryAbility('Mighty Horn') && move.flags['drill']) {
+			accuracyModifiers.push(5325);
+			value.abilityModify(1.3, "Mighty Horn");
 		}
 
 		if (value.tryItem('Wide Lens')) {
@@ -2152,7 +2158,10 @@ export class BattleTooltips {
 		}
 		// AGE
 		if (move.flags['kick']) {
-			value.abilityModify(1.2, 'Striker');
+			value.abilityModify(1.2, "Striker");
+		}
+		if (move.flags['drill']) {
+			value.abilityModify(1.3, "Mighty Horn");
 		}
 
 		for (let i = 1; i <= 5 && i <= pokemon.side.faintCounter; i++) {

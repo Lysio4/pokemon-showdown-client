@@ -742,6 +742,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	draggoyle: 621,
 	draggoyleactive: 621,
 	remobault: 223,
+	seatsya: 119,
 
 	// forms
 	lycanrocbloodmoon: 1032 + 143,
