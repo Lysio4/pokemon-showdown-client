@@ -599,6 +599,7 @@ export class BattleTooltips {
 						break;
 					case 'hail':
 					case 'snowscape':
+					case 'everlastingwinter':
 						zMove = this.battle.dex.moves.get(BattleTooltips.zMoveTable['Ice']);
 						break;
 					}
@@ -1612,6 +1613,7 @@ export class BattleTooltips {
 				break;
 			case 'hail':
 			case 'snowscape':
+			case 'everlastingwinter':
 				moveType = 'Ice';
 				break;
 			}
