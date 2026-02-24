@@ -1139,6 +1139,14 @@ export class BattleTooltips {
 			}
 		}
 
+		// AGE
+		if (item === 'amuletcoin') {
+			if (speciesName === 'Meowth' || speciesName === 'Persian') {
+				if (speciesName === 'Meowth' || speciesName === 'Persian') stats.atk *= 2;
+				if (speciesName === 'Meowth-Alola' || speciesName === 'Persian-Alola') stats.spa *= 2;
+			}
+		}
+
 		// check abilities other than Guts and Quick Feet
 		// check items other than light ball, thick club, metal/quick powder
 		if (this.battle.gen <= 2) {
@@ -1156,6 +1164,11 @@ export class BattleTooltips {
 		if (ability === 'purepower' || ability === 'hugepower') {
 			stats.atk *= 2;
 		}
+		// AGE
+		if (ability === 'lightpower') {
+			stats.spa *= 2;
+		}
+		// end of AGE
 		if (ability === 'hustle' || (ability === 'gorillatactics' && !clientPokemon?.volatiles['dynamax'])) {
 			stats.atk = Math.floor(stats.atk * 1.5);
 		}
@@ -1169,7 +1182,7 @@ export class BattleTooltips {
 			if (ability === 'sandrush' && weather === 'sandstorm') {
 				speedModifiers.push(2);
 			}
-			if (ability === 'slushrush' && (weather === 'hail' || weather === 'snowscape')) {
+			if (ability === 'slushrush' && (weather === 'hail' || weather === 'snowscape' || weather === 'everlastingwinter')) {
 				speedModifiers.push(2);
 			}
 			if (item !== 'utilityumbrella') {
