@@ -1142,8 +1142,8 @@ export class BattleTooltips {
 		// AGE
 		if (item === 'amuletcoin') {
 			if (speciesName === 'Meowth' || speciesName === 'Persian') {
-				if (speciesName === 'Meowth' || speciesName === 'Persian') stats.atk *= 2;
-				if (speciesName === 'Meowth-Alola' || speciesName === 'Persian-Alola') stats.spa *= 2;
+				if (species.forme !== 'Alola' && species.forme !== 'Galar') stats.atk *= 2;
+				if (species.forme === 'Alola') stats.spa *= 2;
 			}
 		}
 
