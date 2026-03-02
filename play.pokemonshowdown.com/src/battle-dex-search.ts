@@ -1024,7 +1024,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		const format = this.format;
 		if (!format) return this.getDefaultResults();
 		const isVGCOrBS = format.startsWith('battlespot') || format.startsWith('bss') ||
-			format.startsWith('battlestadium') || format.startsWith('vgc');
+			format.startsWith('battlestadium') || format.startsWith('vgc') || format === '4v4doublesuu';
 		const isHackmons = format.includes('hackmons') || format.endsWith('bh');
 		let isDoublesOrBS = isVGCOrBS || this.formatType?.includes('doubles');
 		const dex = this.dex;
@@ -1195,7 +1195,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			'pokemoves', 'relayrace', 'revelationmons', 'sharingiscaring', 'teradonation', 'teraoverride', 'thecardgame',
 			'thelosersgame', 'trademarked', 'triples', 'typesplit', 'voltturnmayhem', 'flipped', 'monotype', 'stabmonsmixandmega',
 			'aaa', 'bh', 'doubles', // natdex abbreviations
-			'tiershift',
+			'tiershift', 'linked', '4v4doublesuu',
 			// AGE
 			'gen9agoldenexperiencedoublesou', 'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
 			'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
