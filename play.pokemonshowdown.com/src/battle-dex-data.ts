@@ -692,7 +692,6 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	butterfreemega: 1320 + 51,
 	machampmega: 1320 + 54,
 	slowbrogalarmega: 1032 + 197,
-	gengarmegaz: 1320 + 55,
 	typhlosionhisuimega: 1032 + 210,
 	scizorgalarmega: 1320 + 17,
 	castformmega: 351,
@@ -707,7 +706,6 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	toxtricitylowkeymega: 1320 + 69,
 	centiskorchmegax: 1320 + 70,
 	centiskorchmegay: 1320 + 70,
-	centiskorchmegaz: 1320 + 70,
 
 	// regular evolutions	
 	glowtaire: 313,
