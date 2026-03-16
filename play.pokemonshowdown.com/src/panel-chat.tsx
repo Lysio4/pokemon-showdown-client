@@ -147,7 +147,8 @@ export class ChatRoom extends PSRoom {
 				if (toID(fromUser) === PS.user.userid) break;
 				const message = args[args[0] === 'c:' ? 3 : 2];
 				const noNotify = this.log?.parseChatMessage(message, name, args[1])?.[2];
-				if (!noNotify) {
+				const isIgnored = PS.prefs.ignore?.[toID(fromUser)];
+				if (!noNotify && !isIgnored) {
 					let textContent = message;
 					if (/^\/(log|raw|html|uhtml|uhtmlchange) /.test(message)) {
 						textContent = message.split(' ').slice(1).join(' ')
@@ -501,6 +502,10 @@ export class ChatRoom extends PSRoom {
 			}
 			if (isNaN(turnNum)) {
 				this.errorReply(`Invalid turn number: ${target}`);
+				return;
+			}
+			if (this.battle.hardcoreMode) {
+				this.errorReply(`Turn navigation is disabled in hardcore mode.`);
 				return;
 			}
 			this.battle.seekTurn(turnNum);
@@ -929,6 +934,7 @@ export class ChatTextEntry extends preact.Component<{
 	}
 	handleKey(ev: KeyboardEvent) {
 		const cmdKey = ((ev.metaKey ? 1 : 0) + (ev.ctrlKey ? 1 : 0) === 1) && !ev.altKey && !ev.shiftKey;
+		const altKey = ev.altKey;
 		// const anyModifier = ev.ctrlKey || ev.altKey || ev.metaKey || ev.shiftKey;
 		if (ev.keyCode === 13 && !ev.shiftKey) { // Enter key
 			return this.submit();
@@ -960,7 +966,7 @@ export class ChatTextEntry extends preact.Component<{
 		// 	const newValue = `/pm ${PS.user.lastPM}, `;
 		// 	this.setValue(newValue, newValue.length);
 		// 	return true;
-		} else if (ev.shiftKey && ev.keyCode === 37) {
+		} else if (ev.shiftKey && ev.keyCode === 37 && !altKey) {
 			if (PS.prefs.onepanel === 'vertical' || this.getValue().length > 0) return;
 			const curLoc = PS.room.location;
 			let newLoc = curLoc;
@@ -997,7 +1003,7 @@ export class ChatTextEntry extends preact.Component<{
 				PS.update();
 			}
 			return true;
-		} else if (ev.shiftKey && ev.keyCode === 39) {
+		} else if (ev.shiftKey && ev.keyCode === 39 && !altKey) {
 			if (PS.prefs.onepanel === 'vertical' || this.getValue().length > 0) return;
 			const curLoc = PS.room.location;
 			let newLoc = curLoc;
@@ -1313,11 +1319,14 @@ class ChatPanel extends PSRoomPanel<ChatRoom> {
 		const challengeSent = room.teamSent && !room.challenged;
 		const challengeTo = room.challenging ? <div class="challenge outgoing">
 			<p>Waiting for {room.pmTarget}...</p>
-			<TeamForm format={room.challenging.formatName} teamFormat={room.challenging.teamFormat} onSubmit={null}>
+			<TeamForm
+				format={room.challenging.formatName} teamFormat={room.challenging.teamFormat}
+				onSubmit={null} selectType="challenge"
+			>
 				<button data-cmd="/cancelchallenge" class="button">Cancel</button>
 			</TeamForm>
 		</div> : room.challengeMenuOpen ? <div class="challenge outgoing">
-			<TeamForm onSubmit={this.makeChallenge} defaultFormat={defaultFormat}>
+			<TeamForm onSubmit={this.makeChallenge} defaultFormat={defaultFormat} selectType="challenge">
 				{challengeSent && <button class="button" disabled>
 					Challenging...
 				</button>}
@@ -1333,7 +1342,10 @@ class ChatPanel extends PSRoomPanel<ChatRoom> {
 
 		const challengeFrom = room.challenged ? <div class="challenge">
 			{!!room.challenged.message && <p>{room.challenged.message}</p>}
-			<TeamForm format={room.challenged.formatName} teamFormat={room.challenged.teamFormat} onSubmit={this.acceptChallenge}>
+			<TeamForm
+				format={room.challenged.formatName} teamFormat={room.challenged.teamFormat}
+				onSubmit={this.acceptChallenge} selectType="challenge"
+			>
 				{room.teamSent && <button class="button" disabled>
 					Accepting...
 				</button>}
