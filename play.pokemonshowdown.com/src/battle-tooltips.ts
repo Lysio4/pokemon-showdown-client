@@ -599,7 +599,7 @@ export class BattleTooltips {
 						break;
 					case 'hail':
 					case 'snowscape':
-					case 'everlastingwinter':
+					case 'eternalwinter':
 						zMove = this.battle.dex.moves.get(BattleTooltips.zMoveTable['Ice']);
 						break;
 					}
@@ -1186,13 +1186,13 @@ export class BattleTooltips {
 			if (this.battle.gen >= 4 && this.pokemonHasType(pokemon, 'Rock') && weather === 'sandstorm') {
 				stats.spd = Math.floor(stats.spd * 1.5);
 			}
-			if (this.pokemonHasType(pokemon, 'Ice') && (weather === 'snowscape' || weather === 'everlastingwinter')) {
+			if (this.pokemonHasType(pokemon, 'Ice') && (weather === 'snowscape' || weather === 'eternalwinter')) {
 				stats.def = Math.floor(stats.def * 1.5);
 			}
 			if (ability === 'sandrush' && weather === 'sandstorm') {
 				speedModifiers.push(2);
 			}
-			if (ability === 'slushrush' && (weather === 'hail' || weather === 'snowscape' || weather === 'everlastingwinter')) {
+			if (ability === 'slushrush' && (weather === 'hail' || weather === 'snowscape' || weather === 'eternalwinter')) {
 				speedModifiers.push(2);
 			}
 			if (item !== 'utilityumbrella') {
@@ -1641,7 +1641,7 @@ export class BattleTooltips {
 					break;
 				case 'hail':
 				case 'snowscape':
-				case 'everlastingwinter':
+				case 'eternalwinter':
 					moveType = 'Ice';
 					break;
 				}
@@ -1813,7 +1813,7 @@ export class BattleTooltips {
 		if (move.id === 'blizzard' && this.battle.gen >= 4) {
 			value.weatherModify(0, 'Hail');
 			value.weatherModify(0, 'Snowscape');
-			value.weatherModify(0, 'Everlasting Winter');
+			value.weatherModify(0, 'Eternal Winter');
 		}
 		if (['hurricane', 'thunder', 'bleakwindstorm', 'wildboltstorm', 'sandsearstorm'].includes(move.id)) {
 			value.weatherModify(0, 'Rain Dance');
