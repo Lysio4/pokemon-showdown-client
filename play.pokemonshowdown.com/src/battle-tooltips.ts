@@ -2055,6 +2055,7 @@ export class BattleTooltips {
 			}
 		}
 		if (move.id === 'weatherball') {
+			value.abilityModify(2, "Mega Sol");
 			if (this.battle.weather !== 'deltastream') {
 				value.weatherModify(2);
 			}
@@ -2223,8 +2224,8 @@ export class BattleTooltips {
 		) {
 			if (move.type === 'Normal') {
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Aerilate");
-				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Dragonize");
-				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Galvanize");
+				value.abilityModify(1.2, "Dragonize");
+				value.abilityModify(1.2, "Galvanize");
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Pixilate");
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Refrigerate");
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Ignite");
