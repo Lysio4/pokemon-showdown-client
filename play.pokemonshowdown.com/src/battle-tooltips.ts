@@ -1604,7 +1604,7 @@ export class BattleTooltips {
 
 		let pokemonTypes = pokemon.getTypeList(serverPokemon);
 		value.reset();
-		if (move.id === 'revelationdance' || move.id ==='seasonpass' || move.id ==='colorfulhit') {
+		if (move.id === 'revelationdance' || move.id ==='seasonpass' || move.id ==='colorfulhit' || move.id ==='monkeybusiness' ) {
 			moveType = pokemonTypes[0];
 		}
 		// Moves that require an item to change their type.
@@ -1697,15 +1697,12 @@ export class BattleTooltips {
 			case 'Ogerpon-Cornerstone': case 'Ogerpon-Cornerstone-Tera':
 				moveType = 'Rock';
 				break;
-			case 'Ogerpon-Mega':
-				moveType = 'Psychic';
-				break;
 			}
 		}
 
 		// Other abilities that change the move type.
 		const noTypeOverride = [
-			'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball', 'seasonpass', 'colorfulhit', 
+			'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball', 'seasonpass', 'colorfulhit', 'monkeybusiness'
 		];
 		const allowTypeOverride = !noTypeOverride.includes(move.id) && (move.id !== 'terablast' || !pokemon.terastallized);
 		if (allowTypeOverride) {
