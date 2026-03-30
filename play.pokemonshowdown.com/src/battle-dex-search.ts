@@ -1206,7 +1206,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			'aaa', 'bh', 'doubles', // natdex abbreviations
 			'tiershift', 'linked', '4v4doublesuu',
 			// AGE
-			'gen9agoldenexperiencedoubles', 'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
+			'gen9agoldenexperiencedoubles', 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
 			'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 		];
 		if (dex.gen >= 6) {
@@ -1230,7 +1230,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 					return true;
 				});
 			}
-			if ((format === 'doubles' || format === 'monotype') && (this.formatType === 'natdex' || this.formatType === 'agoldenexperience') && table.metagameBans?.[format]) {
+			// if ((format === 'doubles' || format === 'monotype') && (this.formatType === 'natdex' || this.formatType === 'agoldenexperience') && table.metagameBans?.[format]) {
+			if ((format.includes('doubles') || format.includes('monotype')) && (this.formatType.includes('natdex') || this.formatType.includes('agoldenexperience')) && table.metagameBans?.[format]) {
 				tierSet = tierSet.filter(([type, id]) => {
 					if (id in table.metagameBans[format]) return false;
 					if ('miraidon' in table.metagameBans[format] && 'calyrexshadow' in table.metagameBans[format] &&
