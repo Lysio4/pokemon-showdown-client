@@ -585,7 +585,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' | 'nfe' |
 		'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'agoldenexperience' | 'agoldenexperiencedoubles' | 'touhoumons' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'agoldenexperience' | 'touhoumons' | null = null;
 	isDoubles = false;
 
 	/**
@@ -616,7 +616,19 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		} else if (!format) {
 			this.dex = Dex;
 		}
-
+		// custom
+		if (format.includes('agoldenexperience')) {
+			this.formatType = 'agoldenexperience';
+			this.dex = Dex.mod('gen9agoldenexperience' as ID);
+			format = format.slice(9) as ID;
+			this.isDoubles = format.includes('doubles');
+		}
+		if (format.includes('touhoumons')) {
+			this.formatType = 'gen9toho';
+			this.dex = Dex.mod('gen9toho' as ID);
+			this.isDoubles = format.includes('doubles');
+		}
+		// end of custom
 		if (format.startsWith('dlc1') && this.dex.gen === 8) {
 			if (format.includes('doubles')) {
 				this.formatType = 'ssdlc1doubles';
@@ -719,17 +731,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.dex = Dex.mod('gen9legendsou' as ID);
 			format = format.slice(9) as ID;
 			if (!format) format = 'ou' as ID;
-		}
-		if (format.includes('agoldenexperience')) {
-			this.formatType = 'agoldenexperience';
-			this.dex = Dex.mod('gen9agoldenexperience' as ID);
-			format = format.slice(9) as ID;
-			this.isDoubles = format.includes('doubles');
-		}
-		if (format.includes('touhoumons')) {
-			this.formatType = 'gen9toho';
-			this.dex = Dex.mod('gen9toho' as ID);
-			this.isDoubles = format.includes('doubles');
 		}
 		this.format = format;
 
@@ -940,7 +941,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'stadium' ? `gen${gen}stadium${gen > 1 ? gen : ''}` :
 			this.formatType === 'legendsza' ? `gen9legendsou` :
 			this.formatType === 'agoldenexperience' ? `gen9agoldenexperience` :
-			this.formatType === 'agoldenexperiencedoubles' ? `gen9agoldenexperiencedoublesou` :
+			this.formatType === 'agoldenexperiencedoubles' ? `gen9agoldenexperiencedoubles` :
 			this.formatType === 'touhoumons' ? `gen9toho` :
 			`gen${gen}`;
 		if (table?.[tableKey]) {
@@ -1116,7 +1117,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		}
 		let tierSet: SearchRow[] = table.tierSet;
 		let slices: { [k: string]: number } = table.formatSlices;
-		if (format === 'ubers' || format === 'uber' || format === 'ubersuu' || format === 'nationaldexdoubles' || format === 'agoldenexperiencedoublesou') {
+		if (format === 'ubers' || format === 'uber' || format === 'ubersuu' || format === 'nationaldexdoubles' || format === 'agoldenexperiencedoubles') {
 			tierSet = tierSet.slice(slices.Uber);
 		} else if (isVGCOrBS || (isHackmons && dex.gen === 9 && !this.formatType)) {
 			if (format.endsWith('series13') || format.endsWith('regj') || isHackmons) {
@@ -1205,7 +1206,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			'aaa', 'bh', 'doubles', // natdex abbreviations
 			'tiershift', 'linked', '4v4doublesuu',
 			// AGE
-			'gen9agoldenexperiencedoublesou', 'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
+			'gen9agoldenexperiencedoubles', 'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
 			'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 		];
 		if (dex.gen >= 6) {
