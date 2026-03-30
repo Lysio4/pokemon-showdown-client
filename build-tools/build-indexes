@@ -488,8 +488,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					'aaa', 'bh', 'doubles', // natdex abbreviations
 					'tiershift', 'linked',
 					// AGE
-					'gen9agoldenexperiencealmostanyability', 'gen9agoldenexperiencebalancedhackmons', 'gen9agoldenexperiencegodlygift', 
-					'gen9agoldenexperiencemixandmega', 'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
+					'agoldenexperiencedoubles', 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
+					'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
 				])) {
 					const format = Dex.formats.get(`${gen}${isNatDex ? 'nationaldex' : ''}${meta}`);
 					if (!format.exists) continue;
@@ -528,10 +528,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					if (!metagameBans['nationaldex35pokes']) metagameBans['nationaldex35pokes'] = {};
 					metagameBans['nationaldex35pokes'][species.id] = 1;
 				}
-				const ageDoubles = Dex.formats.get(gen + 'agoldenexperiencedoublesou');
+				const ageDoubles = Dex.formats.get(gen + 'agoldenexperiencedoubles');
 				if (ageDoubles.exists && Dex.formats.getRuleTable(ageDoubles).isBannedSpecies(species)) {
-					if (!metagameBans['agoldenexperiencedoublesou']) metagameBans['agoldenexperiencedoublesou'] = {};
-					metagameBans['agoldenexperiencedoublesou'][species.id] = 1;
+					if (!metagameBans['agoldenexperiencedoubles']) metagameBans['agoldenexperiencedoubles'] = {};
+					metagameBans['agoldenexperiencedoubles'][species.id] = 1;
 				}
 			}
 			if (genNum >= 5) {

@@ -1206,8 +1206,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			'aaa', 'bh', 'doubles', // natdex abbreviations
 			'tiershift', 'linked', '4v4doublesuu',
 			// AGE
-			'gen9agoldenexperiencedoubles', 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
-			'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
+			'agoldenexperiencedoubles', 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
+			'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
 		];
 		if (dex.gen >= 6) {
 			if (customBanlists.includes(format) && table.metagameBans?.[format]) {
@@ -1269,7 +1269,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		}
 
 		// Filter out Gmax Pokemon from standard tier selection
-		if (!(/^(battlestadium|vgc|doublesubers)/g.test(format) || (format === 'doubles' && this.formatType === 'natdex'))) {
+		if (!(/^(battlestadium|vgc|doublesubers)/g.test(format) || (format === 'doubles' && (this.formatType === 'natdex' || this.formatType === 'agoldenexperience')))) {
 			tierSet = tierSet.filter(([type, id]) => {
 				if (type === 'header' && id === 'DUber by technicality') return false;
 				if (type === 'header' && id === 'Uber by technicality') return false;
