@@ -585,7 +585,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' | 'nfe' |
 		'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'agoldenexperience' | 'touhoumons' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'champoin' | 'agoldenexperience' | 'touhoumons' | null = null;
 	isDoubles = false;
 
 	/**
@@ -616,7 +616,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		} else if (!format) {
 			this.dex = Dex;
 		}
-		// custom
 		if (format.includes('agoldenexperience')) {
 			this.formatType = 'agoldenexperience';
 			this.dex = Dex.mod('gen9agoldenexperience' as ID);
@@ -629,6 +628,11 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.isDoubles = format.includes('doubles');
 		}
 		// end of custom
+		if (format.startsWith('champoins')) {
+			this.formatType = 'champoin';
+			format = format.slice(9) as ID;
+		}
+
 		if (format.startsWith('dlc1') && this.dex.gen === 8) {
 			if (format.includes('doubles')) {
 				this.formatType = 'ssdlc1doubles';
@@ -940,6 +944,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'natdex' ? `gen${gen}natdex` :
 			this.formatType === 'stadium' ? `gen${gen}stadium${gen > 1 ? gen : ''}` :
 			this.formatType === 'legendsza' ? `gen9legendsou` :
+			this.formatType === 'champoin' ? `champoin` :
 			this.formatType === 'agoldenexperience' ? `gen9agoldenexperience` :
 			this.formatType === 'agoldenexperiencedoubles' ? `gen9agoldenexperiencedoubles` :
 			this.formatType === 'touhoumons' ? `gen9toho` :
@@ -1041,6 +1046,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		let table = BattleTeambuilderTable;
 		if ((format.endsWith('cap') || format.endsWith('caplc')) && dex.gen < 9) {
 			table = table[`gen${dex.gen}`];
+		} else if (this.formatType === 'champoin') {
+			table = table[`champoin`];
 		} else if (isVGCOrBS) {
 			table = table[`gen${dex.gen}vgc`];
 		} else if (dex.gen === 9 && isHackmons && !this.formatType) {
