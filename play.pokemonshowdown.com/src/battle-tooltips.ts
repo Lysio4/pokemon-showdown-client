@@ -1836,6 +1836,11 @@ export class BattleTooltips {
 		if (attackType === 'Fire' && abilityid === 'primordialsea' && !strict) return 0;
 		if (attackType === 'Water' && abilityid === 'desolateland' && !strict) return 0;
 
+		// custom
+		if (attackType === 'Fairy' && abilityid === 'disilllusioned') return 0;
+		if (attackType === 'Bug' && abilityid === 'insectivorous') return 0;
+		// end of custom
+
 		let factor = 1;
 		if ((attackType === 'Fire' || attackType === 'Ice') && abilityid === 'thickfat') factor *= 0.5;
 		if (attackType === 'Fire' && abilityid === 'waterbubble') factor *= 0.5;
@@ -1845,6 +1850,11 @@ export class BattleTooltips {
 		if ((attackType === 'Electric' || attackType === 'Rock' || attackType === 'Ice') && abilityid === 'deltastream') {
 			factor *= 0.5;
 		}
+
+		// custom
+		if ((attackType === 'Ghost' || attackType === 'Dark') && abilityid === 'nightlight') factor *= 0.5;
+		if (attackType === 'Fire' && abilityid === 'hydrophilic') factor *= 0.5;
+		// end of custom
 		return factor;
 	}
 	getMoveEffectiveness(
