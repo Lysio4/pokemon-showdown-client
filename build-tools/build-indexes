@@ -290,7 +290,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	const AGETIER = [9.99, 9.97];
 	const TOUHOUTIER = [9.98];
 	const OTHER = [
-		9.9, 9.6, 9.411, 9.41, 9.401, 9.4, 9.33, 9.2, -9.4, -9.401, 9.67,
+		9.9, 9.6, 9.411, 9.41, 9.401, 9.4, 9.33, 9.2, -9.4, -9.401,
 		8.6, 8.4, 8.2, 8.1, -8.4, -8.6,
 		7.1,
 		5.1,
@@ -299,7 +299,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 
 	// process.stdout.write("\n  ");
 	for (const genIdent of [...TOUHOUTIER, ...AGETIER, ...GENS, ...DOUBLES, ...VGC, ...NFE, ...STADIUM, ...OTHER, ...NATDEX, ...LC]) {
-		const champoin = genIdent === 9.67;
 		const isLetsGo = (genIdent === 7.1);
 		const isBDSP = (genIdent === 8.6 || genIdent === -8.6);
 		const isMetBattle = ('' + genIdent).endsWith('.2');
@@ -463,13 +462,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411)) {
 					return species.natDexTier;
 				}
-				if (champoin) {
-					if (species.isMega && species.gen === 6 && !species.requiredMove &&
-						!baseSpecies.isNonstandard && baseSpecies.tier !== 'Uber') return 'OU';
-					if (species.isMega && ['Meganium', 'Feraligatr', 'Emboar', 'Froslass', 'Dragonite',
-						'Delphox', 'Chesnaught', 'Greninja'].includes(species.baseSpecies)) return 'OU';
-					return species.tier;
-				}
 				return species.tier;
 			})();
 			overrideTier[species.id] = speciesTier;
@@ -496,7 +488,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					'pokemoves', 'relayrace', 'revelationmons', 'sharingiscaring', 'teradonation', 'teraoverride', 'thecardgame',
 					'thelosersgame', 'trademarked', 'triples', 'typesplit', 'voltturnmayhem', 'flipped', 'monotype',
 					'aaa', 'bh', 'doubles', // natdex abbreviations
-					'tiershift', 'linked',
+					'tiershift', 'linked', 'pokebilitiesaaa',
 					// AGE
 					'agoldenexperiencedoubles', 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
 					'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
@@ -638,20 +630,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9legendsou'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9legendsou'].items = items;
 			BattleTeambuilderTable['gen9legendsou'].learnsets = {};
-		} else if (champoin) {
-			BattleTeambuilderTable['champoin'] = {};
-			BattleTeambuilderTable['champoin'].tiers = tiers;
-			BattleTeambuilderTable['champoin'].items = items;
-			BattleTeambuilderTable['champoin'].overrideTier = overrideTier;
-			BattleTeambuilderTable['champoin'].formatSlices = formatSlices;
-		} else if (isAGE && !isDoubles) {
+		} else if (isAGE) {
 			BattleTeambuilderTable['gen9agoldenexperience'] = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
 			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
-		} else if (is2hu && !isDoubles) {
+		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
 			BattleTeambuilderTable['gen9toho'].overrideTier = overrideTier;
