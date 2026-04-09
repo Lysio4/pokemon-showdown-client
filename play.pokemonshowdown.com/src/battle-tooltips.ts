@@ -1202,6 +1202,11 @@ export class BattleTooltips {
 		if (ability === 'lightpower') {
 			stats.spa *= 2;
 		}
+		if (ability === 'hardrock') {
+			stats.atk *= 1.5;
+			stats.def *= 2;
+			stats.spd *= 0.5;
+		}
 		// end of AGE
 		if (ability === 'hustle' || (ability === 'gorillatactics' && !clientPokemon?.volatiles['dynamax'])) {
 			stats.atk = Math.floor(stats.atk * 1.5);
@@ -1217,6 +1222,9 @@ export class BattleTooltips {
 				speedModifiers.push(2);
 			}
 			if (ability === 'slushrush' && (weather === 'hail' || weather === 'snowscape' || weather === 'eternalwinter')) {
+				speedModifiers.push(2);
+			}
+			if (ability === 'convectioncurrent' && this.battle.hasPseudoWeather('Gravity')) {
 				speedModifiers.push(2);
 			}
 			if (item !== 'utilityumbrella') {
