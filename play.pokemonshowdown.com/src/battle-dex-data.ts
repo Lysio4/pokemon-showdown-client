@@ -722,8 +722,6 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	meltic: 614,
 	sithbull: 210,
 	mayatu: 178,
-	isaapple: 1320 + 66,
-	badapple: 1320 + 67,
 	adnocagem: 24,
 	truelewoodo: 185,
 	mediyumi: 1320 + 28,

@@ -1180,6 +1180,11 @@ export class BattleTooltips {
 				stats.spa *= 2;
 			}
 		}
+		if (item === 'tartapple') {
+			if (speciesName === 'flapple') {
+				stats.spe *= 1.5;
+			}
+		}
 
 		// check abilities other than Guts and Quick Feet
 		// check items other than light ball, thick club, metal/quick powder

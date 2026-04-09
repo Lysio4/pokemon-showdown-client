@@ -872,6 +872,8 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			case 'bananapeel':
 			case 'anticamulet':
 			case 'amuletcoin':
+			case 'tartapple':
+			case 'sweetapple':
 				specificItems.push(id);
 				break;
 			// Fling-only
