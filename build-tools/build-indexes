@@ -634,11 +634,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 		} else if (isNDChampions) {
 			BattleTeambuilderTable['nationaldexchampions'] = {};
-			BattleTeambuilderTable['nationaldexchampions'].learnsets = {};
 			BattleTeambuilderTable['nationaldexchampions'].tiers = tiers;
-			BattleTeambuilderTable['nationaldexchampions'].items = items;
 			BattleTeambuilderTable['nationaldexchampions'].overrideTier = overrideTier;
 			BattleTeambuilderTable['nationaldexchampions'].formatSlices = formatSlices;
+			BattleTeambuilderTable['nationaldexchampions'].items = items;
+			BattleTeambuilderTable['nationaldexchampions'].learnsets = {};
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
