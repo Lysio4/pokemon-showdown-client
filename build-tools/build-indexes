@@ -341,6 +341,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isAGE) genStr += 'agoldenexperience';
 			if (is2hu) genStr += 'toho';
 			if (isNDChampions) genStr = 'nationaldexchampions';
+			if (isNDChampions) console.log("ABSOLUTE CINEMA");
 			return genStr;
 		})();
 		// process.stdout.write("" + gen + (isDoubles ? " doubles" : "") + "... ");
