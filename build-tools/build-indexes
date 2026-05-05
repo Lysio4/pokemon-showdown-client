@@ -290,6 +290,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	const AGETIER = [9.99, 9.97];
 	const TOUHOUTIER = [9.98];
 	const OTHER = [
+		9.675,
 		9.9, 9.67, 9.6, 9.411, 9.41, 9.401, 9.4, 9.33, 9.2, -9.4, -9.401,
 		8.6, 8.4, 8.2, -8.4, -8.6,
 		7.1,
@@ -341,7 +342,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isAGE) genStr += 'agoldenexperience';
 			if (is2hu) genStr += 'toho';
 			if (isNDChampions) genStr = 'nationaldexchampions';
-			if (isNDChampions) console.log("ABSOLUTE CINEMA");
 			return genStr;
 		})();
 		// process.stdout.write("" + gen + (isDoubles ? " doubles" : "") + "... ");
@@ -1317,7 +1317,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		}
 	}
 	const NDChampionsLearnsets = Dex.mod('nationaldexchampions').data.Learnsets;
-	console.log(BattleTeambuilderTable['nationaldexchampions']);
 	for (const id in NDChampionsLearnsets) {
 		const learnset = NDChampionsLearnsets[id].learnset;
 		if (!learnset) continue;
