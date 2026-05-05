@@ -1316,7 +1316,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		}
 	}
 	const NDChampionsLearnsets = Dex.mod('nationaldexchampions').data.Learnsets;
-	console.log(NDChampionsLearnsets);
+	console.log(BattleTeambuilderTable['nationaldexchampions']);
 	for (const id in NDChampionsLearnsets) {
 		const learnset = NDChampionsLearnsets[id].learnset;
 		if (!learnset) continue;
