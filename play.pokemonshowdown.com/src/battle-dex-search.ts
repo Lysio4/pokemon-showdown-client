@@ -585,7 +585,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'frlg' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' |
 		'nfe' | 'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'champions' | 'agoldenexperience' | 'touhoumons' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'legendsza' | 'champions' | 'agoldenexperience' | 'touhoumons' | 'nationaldexchampions' | null = null;
 	isDoubles = false;
 
 	/**
@@ -665,7 +665,13 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			format = format.slice(7) as ID;
 			if (!format) format = 'ou' as ID;
 		}
-		if (format.includes('champions')) {
+		if (format.includes('champions') && !format.includes('nationaldexchampions')) {
+			this.formatType = 'champions';
+			this.dex = Dex.mod('champions' as ID);
+			format = format.slice(9) as ID;
+			if (format !== 'ou') format = 'ubers' as ID;
+		}
+		if (format.includes('nationaldexchampions')) {
 			this.formatType = 'champions';
 			this.dex = Dex.mod('champions' as ID);
 			format = format.slice(9) as ID;
@@ -710,7 +716,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType = 'letsgo';
 			this.dex = Dex.mod('gen7letsgo' as ID);
 		}
-		if (format.includes('nationaldex') || format.startsWith('nd') || format.includes('natdex')) {
+		if ((format.includes('nationaldex') || format.startsWith('nd') || format.includes('natdex')) && !format.includes('champions')) {
 			format = (format.startsWith('nd') ? format.slice(2) :
 				format.includes('natdex') ? format.slice(6) : format.slice(11)) as ID;
 			this.formatType = 'natdex';
@@ -843,6 +849,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (this.formatType === 'champions') table = table['champions'];
 		if (this.formatType === 'agoldenexperience') table = table['gen9agoldenexperience'];
 		if (this.formatType === 'touhoumons') table = table['gen9toho'];
+		if (this.formatType === 'nationaldexchampions') table = table['nationaldexchampions'];
 		if (speciesid in table.learnsets) return speciesid;
 		const species = this.dex.species.get(speciesid);
 		if (!species.exists) return '' as ID;
@@ -918,6 +925,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (this.formatType === 'champions') table = table['champions'];
 			if (this.formatType === 'agoldenexperience') table = table['gen9agoldenexperience'];
 			if (this.formatType === 'toho') table = table['gen9toho'];
+			if (this.formatType === 'nationaldexchampions') table = table['nationaldexchampions'];
 			let learnset = table.learnsets[learnsetid];
 			const eggMovesOnly = this.eggMovesOnly(learnsetid, speciesid);
 			if (learnset && (moveid in learnset) && (!this.format.startsWith('tradebacks') ? learnset[moveid].includes(genChar) :
@@ -958,8 +966,8 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'legendsza' ? `gen9legendsou` :
 			this.formatType === 'champions' ? `champions` :
 			this.formatType === 'agoldenexperience' ? `gen9agoldenexperience` :
-			this.formatType === 'agoldenexperiencedoubles' ? `gen9agoldenexperiencedoubles` :
 			this.formatType === 'touhoumons' ? `gen9toho` :
+			this.formatType === 'nationaldexchampions' ? `nationaldexchampions` :
 			`gen${gen}`;
 		if (table?.[tableKey]) {
 			table = table[tableKey];
@@ -1459,6 +1467,8 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 			table = table[`gen9agoldenexperience`];
 		} else if (this.formatType === 'toho') {
 			table = table[`gen9toho`];
+		} else if (this.formatType === 'nationaldexchampions') {
+			table = table[`nationaldexchampions`];
 		} else if (this.dex.gen < 9) {
 			table = table[`gen${this.dex.gen}`];
 		}
@@ -1850,6 +1860,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 		if (this.formatType === 'champions') lsetTable = lsetTable['champions'];
 		if (this.formatType === 'agoldenexperience') lsetTable = lsetTable['gen9agoldenexperience'];
 		if (this.formatType === 'touhoumons') lsetTable = lsetTable['gen9toho'];
+		if (this.formatType === 'nationaldexchampions') lsetTable = lsetTable['nationaldexchampions'];
 		if (this.formatType?.startsWith('ssdlc1')) lsetTable = lsetTable['gen8dlc1'];
 		if (this.formatType?.startsWith('predlc')) lsetTable = lsetTable['gen9predlc'];
 		if (this.formatType?.startsWith('svdlc1')) lsetTable = lsetTable['gen9dlc1'];

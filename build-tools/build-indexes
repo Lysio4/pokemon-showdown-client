@@ -322,6 +322,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		// custom formats
 		const isAGE = genIdent === 9.99;
 		const is2hu = genIdent === 9.98;
+		const isNDChampions = genIdent === 9.675;
 		const gen = (() => {
 			let genStr = 'gen' + genNum;
 			if (isSSDLC1) genStr += 'dlc1';
@@ -339,6 +340,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			// custom mods
 			if (isAGE) genStr += 'agoldenexperience';
 			if (is2hu) genStr += 'toho';
+			if (isNDChampions) genStr = 'nationaldexchampions';
 			return genStr;
 		})();
 		// process.stdout.write("" + gen + (isDoubles ? " doubles" : "") + "... ");
@@ -630,6 +632,13 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
+		} else if (isNDChampions) {
+			BattleTeambuilderTable['nationaldexchampions'] = {};
+			BattleTeambuilderTable['nationaldexchampions'].learnsets = {};
+			BattleTeambuilderTable['nationaldexchampions'].tiers = tiers;
+			BattleTeambuilderTable['nationaldexchampions'].items = items;
+			BattleTeambuilderTable['nationaldexchampions'].overrideTier = overrideTier;
+			BattleTeambuilderTable['nationaldexchampions'].formatSlices = formatSlices;
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
@@ -1306,6 +1315,17 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			}
 		}
 	}
+	const NDChampionsLearnsets = Dex.mod('nationaldexchampions').data.Learnsets;
+	for (const id in ChampionsLearnsets) {
+		const species = Dex.mod('nationaldexchampions').species.get(id);
+		if (species.isNonstandard) continue;
+		const learnset = ChampionsLearnsets[id].learnset;
+		if (!learnset) continue;
+		BattleTeambuilderTable['nationaldexchampions'].learnsets[id] = {};
+		for (const moveid in learnset) {
+			BattleTeambuilderTable['nationaldexchampions'].learnsets[id][moveid] = '9a';
+		}
+	}
 	// AGE test
 	const AGELearnsets = Dex.mod('gen9agoldenexperience').data.Learnsets;
 	for (const id in AGELearnsets) {
@@ -1499,7 +1519,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	//
 
 	for (const mod of [
-		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'champions', 'gen9agoldenexperience', 'gen9toho'
+		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'champions', 'gen9agoldenexperience', 'gen9toho', 'nationaldexchampions',
 	]) {
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;

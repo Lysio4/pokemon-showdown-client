@@ -33,8 +33,11 @@
 				if (this.curTeam.format.includes('legends')) {
 					this.curTeam.dex = Dex.mod('gen9legendsou');
 				}
-				if (this.curTeam.format.includes('champions')) {
+				if (this.curTeam.format.includes('champions') && !this.curTeam.format.includes('nationaldexchampions')) {
 					this.curTeam.dex = Dex.mod('champions');
+				}
+				if (this.curTeam.format.includes('nationaldexchampions')) {
+					this.curTeam.dex = Dex.mod('nationaldexchampions');
 				}
 				if (this.curTeam.format.includes('toho')) {
 					this.curTeam.dex = Dex.mod('gen9toho');
@@ -770,8 +773,11 @@
 			if (this.curTeam.format.includes('legends')) {
 				this.curTeam.dex = Dex.mod('gen9legendsou');
 			}
-			if (this.curTeam.format.includes('champions')) {
+			if (this.curTeam.format.includes('champions') && !this.curTeam.format.includes('nationaldexchampions')) {
 				this.curTeam.dex = Dex.mod('champions');
+			}
+			if (this.curTeam.format.includes('nationaldexchampions')) {
+				this.curTeam.dex = Dex.mod('nationaldexchampions');
 			}
 			if (this.curTeam.format.includes('touhou') || this.curTeam.format.includes('toho')) {
 				this.curTeam.dex = Dex.mod('gen9toho');
@@ -1306,7 +1312,8 @@
 			var baseFormat = this.curTeam.format;
 			if (baseFormat.substr(-5) === 'draft') baseFormat = baseFormat.substr(0, baseFormat.length - 5);
 			var species = this.curTeam.dex.species.get(set.species);
-			var isChampions = baseFormat.includes('champions');
+			var isChampions = baseFormat.includes('champions') && !baseFormat.includes('nationaldexchampions');
+			var isNDChampions = baseFormat.includes('nationaldexchampions');
 			var isLetsGo = baseFormat.includes('letsgo');
 			var isBDSP = baseFormat.includes('bdsp');
 			var isNatDex = baseFormat.includes('nationaldex') || baseFormat.includes('natdex');
