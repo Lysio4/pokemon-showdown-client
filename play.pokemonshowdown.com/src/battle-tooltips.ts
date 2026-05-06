@@ -1542,7 +1542,7 @@ export class BattleTooltips {
 			move = this.battle.dex.moves.get(moveName);
 			maxpp = (move.pp === 1 || move.noPPBoosts ? move.pp : move.pp * 8 / 5);
 			if (this.battle.gen < 3) maxpp = Math.min(61, maxpp);
-			if (this.battle.tier.includes('Champions') && !this.battle.tier.includes('nationaldexchampions') && !this.battle.tier.includes('national')) {
+			if (this.battle.tier.includes('Champions') && !this.battle.tier.includes('ndexchamps') && !this.battle.tier.includes('national')) {
 				let pp = move.pp > 20 ? 20 : move.pp;
 				maxpp = (pp === 1 || move.noPPBoosts) ? pp : (pp / 5 + 1) * 4;
 			}
@@ -1620,7 +1620,7 @@ export class BattleTooltips {
 			max = tr(tr(tr((2 * baseSpe + maxIv) * level / 100 + 5) * maxNature) * tr((70 / 255 / 10 + 1) * 100) / 100);
 			if (tier.includes('No Restrictions')) max += 200;
 			else if (tier.includes('Random')) max += 20;
-		} else if (tier.includes('Champions') && !tier.includes('nationaldexchampions') && !tier.includes('national')) {
+		} else if (tier.includes('Champions') && !tier.includes('ndexchamps') && !tier.includes('national')) {
 			min = tr(minNature * (baseSpe + 20));
 			max = tr(maxNature * (baseSpe + 32 + 20));
 		} else {
@@ -2935,7 +2935,7 @@ export class BattleStatGuesser {
 			this.formatid.includes('metronomebattle') ||
 			this.formatid.endsWith('norestrictions')
 		);
-		this.useStatPoints = this.formatid.includes('champions') && !this.formatid.includes('nationaldexchampions');
+		this.useStatPoints = this.formatid.includes('champions') && !this.formatid.includes('ndexchamps');
 		this.supportsEVs = !this.formatid.includes('letsgo') && !this.useStatPoints;
 		this.supportsAVs = !this.supportsEVs && this.formatid.endsWith('norestrictions');
 	}
@@ -3540,7 +3540,7 @@ export function BattleStatOptimizer(set: Dex.PokemonSet, formatid: ID) {
 		((formatid.endsWith('hackmons') || formatid.endsWith('bh')) && dex.gen !== 6) ||
 		formatid.includes('metronomebattle') || formatid.endsWith('norestrictions')
 	);
-	const useStatPoints = formatid.includes('champions') && !formatid.includes('nationaldexchampions');
+	const useStatPoints = formatid.includes('champions') && !formatid.includes('ndexchamps');
 	const supportsEVs = !formatid.includes('letsgo') && !useStatPoints;
 	if (!(useStatPoints || supportsEVs) || ignoreEVLimits) return null;
 

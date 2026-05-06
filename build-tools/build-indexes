@@ -341,7 +341,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			// custom mods
 			if (isAGE) genStr += 'agoldenexperience';
 			if (is2hu) genStr += 'toho';
-			if (isNDChampions) genStr = 'nationaldexchampions';
+			if (isNDChampions) genStr = 'ndexchamps';
 			return genStr;
 		})();
 		// process.stdout.write("" + gen + (isDoubles ? " doubles" : "") + "... ");
@@ -634,12 +634,12 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 		} else if (isNDChampions) {
-			BattleTeambuilderTable['nationaldexchampions'] = {};
-			BattleTeambuilderTable['nationaldexchampions'].tiers = tiers;
-			BattleTeambuilderTable['nationaldexchampions'].overrideTier = overrideTier;
-			BattleTeambuilderTable['nationaldexchampions'].formatSlices = formatSlices;
-			BattleTeambuilderTable['nationaldexchampions'].items = items;
-			BattleTeambuilderTable['nationaldexchampions'].learnsets = {};
+			BattleTeambuilderTable['ndexchamps'] = {};
+			BattleTeambuilderTable['ndexchamps'].tiers = tiers;
+			BattleTeambuilderTable['ndexchamps'].overrideTier = overrideTier;
+			BattleTeambuilderTable['ndexchamps'].formatSlices = formatSlices;
+			BattleTeambuilderTable['ndexchamps'].items = items;
+			BattleTeambuilderTable['ndexchamps'].learnsets = {};
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
@@ -1316,11 +1316,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			}
 		}
 	}
-	const NDChampionsLearnsets = Dex.mod('nationaldexchampions').data.Learnsets;
+	const NDChampionsLearnsets = Dex.mod('ndexchamps').data.Learnsets;
 	for (const id in NDChampionsLearnsets) {
 		const learnset = NDChampionsLearnsets[id].learnset;
 		if (!learnset) continue;
-		BattleTeambuilderTable['nationaldexchampions'].learnsets[id] = {};
+		BattleTeambuilderTable['ndexchamps'].learnsets[id] = {};
 		for (const moveid in learnset) {
 			const gens = learnset[moveid].map(x => Number(x[0]));
 			const minGen = Math.min(...gens);
@@ -1345,20 +1345,20 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					...gens.filter(gen => gen > 4)
 				);
 				legalGens += '0123456789'.slice(minUpperGen);
-				BattleTeambuilderTable['nationaldexchampions'].learnsets[id][moveid] = legalGens;
+				BattleTeambuilderTable['ndexchamps'].learnsets[id][moveid] = legalGens;
 			} else {
-				BattleTeambuilderTable['nationaldexchampions'].learnsets[id][moveid] = '0123456789'.slice(minGen);
+				BattleTeambuilderTable['ndexchamps'].learnsets[id][moveid] = '0123456789'.slice(minGen);
 			}
 
-			if (gens.indexOf(6) >= 0) BattleTeambuilderTable['nationaldexchampions'].learnsets[id][moveid] += 'p';
+			if (gens.indexOf(6) >= 0) BattleTeambuilderTable['ndexchamps'].learnsets[id][moveid] += 'p';
 			if (gens.indexOf(7) >= 0 && learnset[moveid].some(x => x[0] === '7' && x !== '7V')) {
-				BattleTeambuilderTable['nationaldexchampions'].learnsets[id][moveid] += 'q';
+				BattleTeambuilderTable['ndexchamps'].learnsets[id][moveid] += 'q';
 			}
 			if (gens.indexOf(8) >= 0 && learnset[moveid].some(x => x[0] === '8' && x !== '8V')) {
-				BattleTeambuilderTable['nationaldexchampions'].learnsets[id][moveid] += 'g';
+				BattleTeambuilderTable['ndexchamps'].learnsets[id][moveid] += 'g';
 			}
 			if (gens.indexOf(9) >= 0 && learnset[moveid].some(x => x[0] === '9' && x !== '9V')) {
-				BattleTeambuilderTable['nationaldexchampions'].learnsets[id][moveid] += 'a';
+				BattleTeambuilderTable['ndexchamps'].learnsets[id][moveid] += 'a';
 			}
 		}
 	}
@@ -1555,7 +1555,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	//
 
 	for (const mod of [
-		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'champions', 'gen9agoldenexperience', 'gen9toho', 'nationaldexchampions',
+		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'gen9legendsou', 'champions', 'gen9agoldenexperience', 'gen9toho', 'ndexchamps',
 	]) {
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;
