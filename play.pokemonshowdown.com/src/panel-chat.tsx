@@ -734,11 +734,6 @@ export class ChatRoom extends PSRoom {
 	}
 
 	handleJoinLeave(action: 'join' | 'leave', name: string, silent: boolean) {
-		if (action === 'join') {
-			this.addUser(name);
-		} else if (action === 'leave') {
-			this.removeUser(name);
-		}
 		const showjoins = PS.prefs.showjoins?.[PS.server.id];
 		if (!(showjoins?.[this.id] ?? showjoins?.['global'] ?? !silent)) return;
 
@@ -1449,7 +1444,7 @@ class ChatPanel extends PSRoomPanel<ChatRoom> {
 			</TeamForm>
 		</div> : null;
 
-		return <PSPanelWrapper room={room} focusClick fullSize>
+		return <PSPanelWrapper room={room} focusClick noScroll fullSize>
 			<ChatLog
 				class={`chat-log${tinyLayout ? '' : ' hasuserlist'}`} room={this.props.room}
 				left={tinyLayout ? 0 : 146} top={room.tour?.info.isActive ? 30 : 0}
