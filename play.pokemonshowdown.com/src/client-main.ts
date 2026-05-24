@@ -97,14 +97,11 @@ class PSPrefs extends PSStreamModel<string | null> {
 	nopastgens: boolean | null = null;
 
 	/* Chat Preferences */
-	blockPMs: boolean | null = null;
-	blockChallenges: boolean | null = null;
 	inchatpm: boolean | null = null;
 	noselfhighlight: boolean | null = null;
 	temporarynotifications: boolean | null = null;
 	leavePopupRoom: boolean | null = null;
 	refreshprompt: boolean | null = null;
-	language = 'english';
 	chatformatting: Record<string, boolean> = {
 		hidegreentext: false,
 		hideme: false,
@@ -164,6 +161,13 @@ class PSPrefs extends PSStreamModel<string | null> {
 	highlights: Record<string, string[]> | null = null;
 	logtimes: { [serverid: ID]: { [roomid: RoomID]: number } } | null = null;
 
+	avatar: string | null = null;
+	serversettings: {
+		blockPMs?: boolean | string,
+		blockChallenges?: boolean,
+		language?: string,
+	} = {};
+
 	// PREFS END HERE
 
 	storageEngine: 'localStorage' | 'iframeLocalStorage' | '' = '';
@@ -209,7 +213,10 @@ class PSPrefs extends PSStreamModel<string | null> {
 		for (const key in PSPrefsDefaults) {
 			if (key in newPrefs) (this as any)[key] = (newPrefs as any)[key];
 		}
+
 		this.setAFD();
+		this.setShowDebug();
+
 		this.update(null);
 		if (!noSave) this.save();
 	}
@@ -232,6 +239,11 @@ class PSPrefs extends PSStreamModel<string | null> {
 			showjoins[Config.server.id] = serverShowjoins;
 			newPrefs['showjoins'] = showjoins;
 		}
+
+		// incorrect storage of serversettings
+		delete newPrefs['blockPMs'];
+		delete newPrefs['blockChallenges'];
+		delete newPrefs['language'];
 
 		const isChrome64 = navigator.userAgent.includes(' Chrome/64.');
 		if (newPrefs['nogif'] !== undefined) {
@@ -286,6 +298,18 @@ class PSPrefs extends PSStreamModel<string | null> {
 			} else {
 				(BattleText as any) = BattleTextNotAFD;
 			}
+		}
+	}
+	setShowDebug(mode = this.showdebug) {
+		const css = mode ? `.debug {display: block;}` : `.debug {display: none;}`;
+		let style = document.querySelector('style[id=debugstyle]');
+		if (style) {
+			style.innerHTML = css;
+		} else {
+			style = document.createElement('style');
+			style.id = "debugstyle";
+			style.innerHTML = css;
+			document.querySelector('head')?.append(style);
 		}
 	}
 	doAutojoin() {
@@ -884,7 +908,7 @@ class PSServer {
  * Rooms
  *********************************************************************/
 
-type PSRoomLocation = 'left' | 'right' | 'popup' | 'mini-window' | 'modal-popup' | 'semimodal-popup';
+type PSRoomLocation = 'left' | 'right' | 'popup' | 'mini-window' | 'modal-popup';
 
 export interface RoomOptions {
 	id: RoomID;
@@ -961,6 +985,11 @@ export class PSRoom extends PSStreamModel<Args | null> implements RoomOptions {
 	isPlaceholder = false;
 	readonly classType: string = '';
 	location: PSRoomLocation = 'left';
+	/**
+	 * Whether a modal popup is closable by clicking on the
+	 * background or pressing Esc. It is, of course, still closable
+	 * through other methods.
+	 */
 	closable = true;
 	/**
 	 * Whether the room is connected to the server. This is _eager_,
@@ -1016,7 +1045,7 @@ export class PSRoom extends PSStreamModel<Args | null> implements RoomOptions {
 		if (options.location) this.location = options.location;
 		if (options.parentElem) this.parentElem = options.parentElem;
 		if (options.parentRoomid) this.parentRoomid = options.parentRoomid;
-		if (this.location !== 'popup' && this.location !== 'semimodal-popup') this.parentElem = null;
+		if (this.location !== 'popup' && this.location !== 'modal-popup') this.parentElem = null;
 		if (options.rightPopup) this.rightPopup = true;
 		if (options.connected) this.connected = options.connected;
 		if (options.backlog) this.backlog = options.backlog;
@@ -1313,6 +1342,7 @@ export class PSRoom extends PSStreamModel<Args | null> implements RoomOptions {
 			if (/[^a-z0-9-]/.test(target)) target = toID(target);
 			const avatar = window.BattleAvatarNumbers?.[target] || target;
 			PS.user.avatar = avatar;
+			PS.prefs.set('avatar', avatar || null);
 			if (this.type !== 'chat' && this.type !== 'battle') {
 				PS.send(`/avatar ${avatar}`);
 			} else {
@@ -1413,30 +1443,12 @@ export class PSRoom extends PSStreamModel<Args | null> implements RoomOptions {
 		'showdebug'() {
 			PS.prefs.set('showdebug', true);
 			this.add('||Debug battle messages: ON');
-			let onCSS = '.debug {display: block;}';
-			let style = document.querySelector('style[id=debugstyle]');
-			if (style) {
-				style.innerHTML = onCSS;
-			} else {
-				style = document.createElement('style');
-				style.id = "debugstyle";
-				style.innerHTML = onCSS;
-				document.querySelector('head')?.append(style);
-			}
+			PS.prefs.setShowDebug(true);
 		},
 		'hidedebug'() {
-			PS.prefs.set('showdebug', true);
+			PS.prefs.set('showdebug', false);
 			this.add('||Debug battle messages: OFF');
-			let onCSS = '.debug {display: none;}';
-			let style = document.querySelector('style[id=debugstyle]');
-			if (style) {
-				style.innerHTML = onCSS;
-			} else {
-				style = document.createElement('style');
-				style.id = "debugstyle";
-				style.innerHTML = onCSS;
-				document.querySelector('head')?.append(style);
-			}
+			PS.prefs.setShowDebug(false);
 		},
 		'showbattles'() {
 			PS.prefs.set('showbattles', true);
@@ -1601,6 +1613,7 @@ export class PSRoom extends PSStreamModel<Args | null> implements RoomOptions {
 				this.add('||/challenge [user], [format] - Challenge the user [user] to a battle in the specified [format].');
 				this.add('||/challenge [user], [format] @@@ [rules] - Challenge the user [user] to a battle with custom rules.');
 				this.add('||[rules] can be a comma-separated list of: [added rule], ![removed rule], -[banned thing], *[restricted thing], +[unbanned/unrestricted thing]');
+				this.add('||If used in the DMs of a user, no [user] parameter can be used and it will challenge that user.');
 				this.add('||/battlerules - Detailed information on what can go in [rules].');
 				return;
 			case 'accept':
@@ -1639,8 +1652,9 @@ export class PSRoom extends PSStreamModel<Args | null> implements RoomOptions {
 				return;
 			case 'showjoins':
 			case 'hidejoins':
-				this.add('||/showjoins [room] - Receive users\' join/leave messages. Optionally for only specified room.');
-				this.add('||/hidejoins [room] - Ignore users\' join/leave messages. Optionally for only specified room.');
+				this.add('||/showjoins [room] - Receive users\' join/leave messages.');
+				this.add('||/hidejoins [room] - Ignore users\' join/leave messages.');
+				this.add('||If no [room] is provided, changes the global setting.');
 				return;
 			case 'showbattles':
 			case 'hidebattles':
@@ -1684,8 +1698,9 @@ export class PSRoom extends PSStreamModel<Args | null> implements RoomOptions {
 			case 'ranking':
 			case 'rating':
 			case 'ladder':
-				this.add('||/rating - Get your own rating.');
-				this.add('||/rating [username] - Get user [username]\'s rating.');
+				this.add('||/rank [user] - Shows all ladder ranks for the given [user].');
+				this.add('||/rank [user], [format] - Shows the rank of [user] in the given [format].');
+				this.add('||If no user is given, it defaults to the user of the command.');
 				return;
 			case 'afd':
 				this.add('||/afd full - Enable all April Fools\' Day jokes.');
@@ -1820,39 +1835,39 @@ export const PS = new class extends PSModel {
 		"user-*": "*popup",
 		"viewuser-*": "*popup",
 		"volume": "*popup",
-		"options": "*semimodal-popup",
+		"options": "*modal-popup",
 		"*": "*right",
 		"battle-*": "*",
 		"battles": "*right",
-		"teamdropdown": "*semimodal-popup",
-		"formatdropdown": "*semimodal-popup",
+		"teamdropdown": "*modal-popup",
+		"formatdropdown": "*modal-popup",
 		"team-*": "*",
 		"ladder": "*",
 		"ladder-*": "*",
 		"view-*": "*",
-		"login": "*semimodal-popup",
+		"login": "*modal-popup",
 		"help-*": "*right",
-		"tourpopout": "*semimodal-popup",
+		"tourpopout": "*modal-popup",
 		"groupchat-*": "*right",
 		"users": "*popup",
 		"useroptions-*": "*popup",
-		"userlist": "*semimodal-popup",
-		"avatars": "*semimodal-popup",
-		"changepassword": "*semimodal-popup",
-		"register": "*semimodal-popup",
-		"forfeitbattle": "*semimodal-popup",
-		"replaceplayer": "*semimodal-popup",
-		"changebackground": "*semimodal-popup",
-		"confirmleaveroom": "*semimodal-popup",
-		"chatformatting": "*semimodal-popup",
-		"popup-*": "*semimodal-popup",
-		"roomtablist": "*semimodal-popup",
-		"battleoptions": "*semimodal-popup",
-		"battletimer": "*semimodal-popup",
+		"userlist": "*modal-popup",
+		"avatars": "*modal-popup",
+		"changepassword": "*modal-popup",
+		"register": "*modal-popup",
+		"forfeitbattle": "*modal-popup",
+		"replaceplayer": "*modal-popup",
+		"changebackground": "*modal-popup",
+		"confirmleaveroom": "*modal-popup",
+		"chatformatting": "*modal-popup",
+		"popup-*": "*modal-popup",
+		"roomtablist": "*modal-popup",
+		"battleoptions": "*modal-popup",
+		"battletimer": "*modal-popup",
 		"rules-*": "*modal-popup",
 		"resources": "*",
 		"game-*": "*",
-		"teamstorage-*": "*semimodal-popup",
+		"teamstorage-*": "*modal-popup",
 		"viewteam-*": "*",
 	});
 	/** List of rooms on the left side of the top tabbar */
@@ -2128,6 +2143,9 @@ export const PS = new class extends PSModel {
 						// (the server sometimes sends a popup error message and a new room at the same time)
 						autoclosePopups: false,
 					});
+					if (room && type === 'battle') {
+						(room as BattleRoom).rejoining = msg.includes('\n|start\n');
+					}
 				} else {
 					room.type = type;
 					this.updateRoomTypes();
@@ -2175,6 +2193,17 @@ export const PS = new class extends PSModel {
 			} case 'nametaken': {
 				PS.join('login' as RoomID, { args: { error: `Someone is already using the name ${args[1]}.` } });
 				break;
+			} case 'chat': case 'c': {
+				if (args[1] === '~' && (args[2] + ' ').startsWith('/warn ')) {
+					PS.join(`rules-warn` as RoomID, {
+						args: {
+							type: 'warn',
+							message: args[2].slice(6).trim() || undefined,
+						},
+						parentElem: null,
+					});
+					continue;
+				}
 			}
 
 			}
@@ -2490,6 +2519,10 @@ export const PS = new class extends PSModel {
 			}
 		}
 		if (options.id.startsWith('battle-') && PS.prefs.rightpanelbattles) options.location = 'right';
+		if (options.id.startsWith('help-')) {
+			options.location = 'right';
+			options.type = 'chat';
+		}
 		options.parentRoomid ??= this.getRoom(options.parentElem)?.id;
 		const parentRoom = options.parentRoomid ? this.rooms[options.parentRoomid] : null;
 		let preexistingRoom = this.rooms[options.id];
@@ -2580,7 +2613,7 @@ export const PS = new class extends PSModel {
 	}
 	isPopup(room: PSRoom | undefined | null) {
 		if (!room) return false;
-		return room.location === 'popup' || room.location === 'semimodal-popup' || room.location === 'modal-popup';
+		return room.location === 'popup' || room.location === 'modal-popup';
 	}
 	isNormalRoom(room: PSRoom | undefined | null) {
 		if (!room) return false;
@@ -2601,8 +2634,7 @@ export const PS = new class extends PSModel {
 			}
 			return;
 		}
-		const POPUPS = ['popup', 'semimodal-popup', 'modal-popup'];
-		if (this.isPopup(room) && POPUPS.includes(location)) {
+		if (this.isPopup(room) && (location === 'popup' || location === 'modal-popup')) {
 			room.location = location;
 			return;
 		}
@@ -2615,7 +2647,7 @@ export const PS = new class extends PSModel {
 				this.miniRoomList.splice(miniRoomIndex, 1);
 			}
 			if (this.room === room) this.room = this.panel;
-		} else if (POPUPS.includes(room.location)) {
+		} else if (room.location === 'popup' || room.location === 'modal-popup') {
 			const popupIndex = this.popups.indexOf(room.id);
 			if (popupIndex >= 0) {
 				this.popups.splice(popupIndex, 1);
@@ -2651,7 +2683,6 @@ export const PS = new class extends PSModel {
 			this.miniRoomList.splice(index ?? 0, 0, room.id);
 			break;
 		case 'popup':
-		case 'semimodal-popup':
 		case 'modal-popup':
 			// moving a room to a popup must move it to the topmost popup
 			this.popups.push(room.id);
