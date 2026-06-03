@@ -671,12 +671,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			format = format.slice(9) as ID;
 			if (format.startsWith('vgc') || format.startsWith('bss')) format = 'ubers' as ID;
 		}
-		if (format.includes('ndexchamps')) {
-			this.formatType = 'ndexchamps';
-			this.dex = Dex.mod('ndexchamps' as ID);
-			format = format.slice(9) as ID;
-			if (format !== 'ou') format = 'ubers' as ID;
-		}
 		if (format.startsWith('vgc')) {
 			this.formatType = 'doubles';
 			this.isDoubles = true;
@@ -716,7 +710,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType = 'letsgo';
 			this.dex = Dex.mod('gen7letsgo' as ID);
 		}
-		if ((format.includes('nationaldex') || format.startsWith('nd') || format.includes('natdex')) && !format.includes('champions')) {
+		if (format.includes('nationaldex') || format.startsWith('nd') || format.includes('natdex')) {
 			format = (format.startsWith('nd') ? format.slice(2) :
 				format.includes('natdex') ? format.slice(6) : format.slice(11)) as ID;
 			this.formatType = 'natdex';
@@ -842,7 +836,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (this.formatType === 'champions') table = table['champions'];
 		if (this.formatType === 'agoldenexperience') table = table['gen9agoldenexperience'];
 		if (this.formatType === 'touhoumons') table = table['gen9toho'];
-		if (this.formatType === 'ndexchamps') table = table['ndexchamps'];
 		if (speciesid in table.learnsets) return speciesid;
 		const species = this.dex.species.get(speciesid);
 		if (!species.exists) return '' as ID;
@@ -917,7 +910,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (this.formatType === 'champions') table = table['champions'];
 			if (this.formatType === 'agoldenexperience') table = table['gen9agoldenexperience'];
 			if (this.formatType === 'toho') table = table['gen9toho'];
-			if (this.formatType === 'ndexchamps') table = table['ndexchamps'];
 			let learnset = table.learnsets[learnsetid];
 			const eggMovesOnly = this.eggMovesOnly(learnsetid, speciesid);
 			if (learnset && (moveid in learnset) && (!this.format.startsWith('tradebacks') ? learnset[moveid].includes(genChar) :
@@ -958,7 +950,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'champions' ? `champions` :
 			this.formatType === 'agoldenexperience' ? `gen9agoldenexperience` :
 			this.formatType === 'touhoumons' ? `gen9toho` :
-			this.formatType === 'ndexchamps' ? `ndexchamps` :
 			`gen${gen}`;
 		if (table?.[tableKey]) {
 			table = table[tableKey];
@@ -1135,7 +1126,10 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		}
 		let tierSet: SearchRow[] = table.tierSet;
 		let slices: { [k: string]: number } = table.formatSlices;
-		if (format === 'ubers' || format === 'uber' || format === 'ubersuu' || format === '4v4doublesuu' || format === 'nationaldexdoubles' || format === 'agoldenexperiencedoubles') {
+		if (
+			format === 'ubers' || format === 'uber' || format === 'ubersuu' ||
+			format === '4v4doublesuu' || format === 'nationaldexdoubles' || format === 'agoldenexperiencedoubles'
+		) {
 			tierSet = tierSet.slice(slices.Uber);
 		} else if (isVGCOrBS || (isHackmons && dex.gen === 9 && !this.formatType)) {
 			if (format.endsWith('series13') || format.endsWith('regj') || isHackmons) {
