@@ -948,7 +948,7 @@ export class Side {
 		}
 		pokemon.statusData.toxicTurns = 0;
 		if (this.battle.gen === 5) pokemon.statusData.sleepTurns = 0;
-		if (this.battle.tier.includes('Champions')) {
+		if (this.battle.tier.includes('Champions') || this.battle.tier.includes('A Golden Experience') || this.battle.tier.includes('agoldenexperience')) {
 			pokemon.timesAttacked = 0;
 		}
 		this.lastPokemon = pokemon;
