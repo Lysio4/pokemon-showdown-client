@@ -1243,6 +1243,9 @@ export class BattleTooltips {
 					if (ability === 'orichalcumpulse') {
 						stats.atk = Math.floor(stats.atk * 1.3333);
 					}
+					if (ability === 'solarenergy') {
+						speedModifiers.push(1.5);
+					}
 					let allyActive = clientPokemon?.side.active;
 					if (allyActive) {
 						for (const ally of allyActive) {
@@ -1899,7 +1902,11 @@ export class BattleTooltips {
 
 		// custom
 		if ((attackType === 'Ghost' || attackType === 'Dark') && abilityid === 'nightlight') factor *= 0.5;
+		if ((attackType === 'Poison' || attackType === 'Bug' || attackType === 'Dark') && abilityid === 'snobbery') factor *= 0.5;
 		if (attackType === 'Fire' && abilityid === 'hydrophilic') factor *= 0.5;
+		if (attackType === 'Water' && abilityid === 'waterproof') return 0;
+		if (attackType === 'Electric' && abilityid === 'waterproof') return 0;
+		if (attackType === 'Fairy' && abilityid === 'disilllusioned') return 0;
 		// end of custom
 		return factor;
 	}
