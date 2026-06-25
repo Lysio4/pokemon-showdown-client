@@ -15,6 +15,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sourceMap from 'source-map';
 
+// note: this might create technical debt
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
+
 const VERBOSE = false;
 
 function outputFileSync(filePath, res, opts) {
