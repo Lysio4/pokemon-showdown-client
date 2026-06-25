@@ -27,7 +27,7 @@ import dexModule from '../caches/pokemon-showdown/dist/sim/dex.js';
 
 process.chdir(import.meta.dirname + '/..');
 
-const thisFile = 'build-tools/build-learnsets';
+const thisFile = 'build-tools/build-learnsets.mjs';
 const { Dex } = dexModule;
 const toID = Dex.toID;
 
