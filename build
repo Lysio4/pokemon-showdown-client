@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
 if (!require('assert').strict) {
 	console.error("We require Node.js version 10 or later; you're using " + process.version);
 	process.exit(1);
