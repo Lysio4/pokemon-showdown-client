@@ -11,7 +11,8 @@
 
 "use strict";
 
-import fs from 'node:fs';
+// import fs from 'node:fs';
+const fs = require('fs');
 
 import dexModule from '../caches/pokemon-showdown/dist/sim/dex.js';
 
