@@ -9,16 +9,6 @@
  *   post-commit, post-checkout, post-merge, post-rewrite
  */
 
-import fs from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
-
-// Simulation de __dirname pour les ES Modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-process.chdir(__dirname + '/..');
-
 "use strict";
 
 import fs from 'node:fs';
