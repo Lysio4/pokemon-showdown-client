@@ -1180,9 +1180,14 @@ export class BattleTooltips {
 				stats.spa *= 2;
 			}
 		}
-		if (item === 'tartapple') {
+		if (item === 'tartapple' && this.battle.tier.includes('A Golden Experience')) {
 			if (speciesName === 'flapple') {
 				stats.spe *= 1.5;
+			}
+		}
+		if (item === 'protector' && this.battle.tier.includes('A Golden Experience')) {
+			if (speciesName === 'Rhyperior') {
+				stats.spd *= 2;
 			}
 		}
 
