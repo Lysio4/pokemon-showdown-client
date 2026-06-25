@@ -1,6 +1,4 @@
 {
-  "type": "module",
-
   "name": "pokemon-showdown-client",
   "version": "0.11.2",
   "author": "Guangcong Luo <guangcongluo@gmail.com> (http://guangcongluo.com)",
