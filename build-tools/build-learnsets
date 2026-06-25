@@ -9,6 +9,16 @@
  *   post-commit, post-checkout, post-merge, post-rewrite
  */
 
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+
+// Simulation de __dirname pour les ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+process.chdir(__dirname + '/..');
+
 "use strict";
 
 import fs from 'node:fs';
@@ -17,7 +27,7 @@ import dexModule from '../caches/pokemon-showdown/dist/sim/dex.js';
 
 process.chdir(import.meta.dirname + '/..');
 
-const thisFile = 'build-tools/build-learnsets.mjs';
+const thisFile = 'build-tools/build-learnsets';
 const { Dex } = dexModule;
 const toID = Dex.toID;
 

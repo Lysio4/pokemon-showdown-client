@@ -35,7 +35,7 @@ var full = '';
 switch (process.argv[2] || '') {
 case 'full':
 	execSync(`node ./build-tools/build-indexes`, options);
-	execSync(`node ./build-tools/build-learnsets.mjs`, options);
+	execSync(`node ./build-tools/build-learnsets`, options);
 	execSync(`node ./build-tools/build-minidex`, options);
 	full = ' full';
 	break;
@@ -43,7 +43,7 @@ case 'indexes':
 	execSync(`node ./build-tools/build-indexes`, options);
 	break;
 case 'learnsets':
-	execSync(`node ./build-tools/build-learnsets.mjs`, options);
+	execSync(`node ./build-tools/build-learnsets`, options);
 	break;
 case 'minidex':
 case 'sprites':
