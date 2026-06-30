@@ -1174,12 +1174,6 @@ export class BattleTooltips {
 		}
 
 		// AGE
-		if (item === 'amuletcoin') {
-			if (speciesName === 'Meowth' || speciesName === 'Persian') {
-				stats.atk *= 2;
-				stats.spa *= 2;
-			}
-		}
 		if (item === 'tartapple' && this.battle.tier.includes('A Golden Experience')) {
 			if (speciesName === 'flapple') {
 				stats.spe *= 1.5;
