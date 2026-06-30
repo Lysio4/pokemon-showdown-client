@@ -715,6 +715,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	delistmas: 225,
 	jhex: 124,
 	leechuption: 219,
+	casbundle: 53,
 	raticket: 20,
 	piratcy: 1032 + 120,
 	parrotnair: 931,

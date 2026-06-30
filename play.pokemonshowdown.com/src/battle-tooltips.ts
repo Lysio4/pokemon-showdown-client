@@ -2365,7 +2365,7 @@ export class BattleTooltips {
 		if (move.id === 'magnitude') {
 			value.setRange(10, 150);
 		}
-		if (['venoshock', 'barbbarrage'].includes(move.id) && target) {
+		if (['venoshock', 'barbbarrage', 'poisonwhip'].includes(move.id) && target) {
 			if (['psn', 'tox'].includes(target.status)) {
 				value.modify(2, move.name + ' + Poison');
 			}
