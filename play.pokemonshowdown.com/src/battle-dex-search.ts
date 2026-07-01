@@ -1131,7 +1131,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		let slices: { [k: string]: number } = table.formatSlices;
 		if (
 			format === 'ubers' || format === 'uber' || format === 'ubersuu' ||
-			format === '4v4doublesuu' || format === 'nationaldexdoubles' || format === 'agoldenexperiencedoubles'
+			format === '4v4doublesuu' || format === 'nationaldexdoubles' || 
+			format === 'agoldenexperiencedoubles' || format === 'gen9agoldenexperiencedoubles'
 		) {
 			tierSet = tierSet.slice(slices.Uber);
 		} else if (isVGCOrBS || (isHackmons && dex.gen === 9 && !this.formatType)) {
@@ -1222,6 +1223,9 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			// AGE
 			'agoldenexperiencedoubles', 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
 			'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
+			// AGE
+			'gen9agoldenexperiencedoubles', 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
+			'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 		];
 		if (dex.gen >= 6) {
 			if (customBanlists.includes(format) && table.metagameBans?.[format]) {

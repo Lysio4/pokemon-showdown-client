@@ -287,7 +287,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	const NATDEX = [9.1, 8.1];
 	// 68 = natdex champs
 	const CHAMPIONS = [9.67, 9.68];
-	const AGETIER = [9.99, 9.97];
+	const AGETIER = [9.99, -9.99];
 	const TOUHOUTIER = [9.98];
 	const OTHER = [
 		9.9, 9.6, 9.411, 9.41, 9.401, 9.4, 9.33, 9.2, -9.4, -9.401,
@@ -495,6 +495,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					// AGE
 					'agoldenexperiencedoubles', 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
 					'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
+					// AGE
+					'gen9agoldenexperiencedoubles', 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
+					'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 				])) {
 					const format = Dex.formats.get(`${gen}${isNatDex ? 'nationaldex' : isChampions ? 'champions' : ''}${meta}`);
 					if (!format.exists) continue;
