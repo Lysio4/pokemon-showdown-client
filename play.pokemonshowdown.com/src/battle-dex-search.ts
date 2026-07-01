@@ -1134,7 +1134,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		if (
 			format === 'ubers' || format === 'uber' || format === 'ubersuu' ||
 			format === '4v4doublesuu' || format === 'nationaldexdoubles' || 
-			format === 'agoldenexperiencedoubles' || format === 'gen9agoldenexperiencedoubles'
+			// format === 'agoldenexperiencedoubles' || format === 'gen9agoldenexperiencedoubles'
 		) {
 			tierSet = tierSet.slice(slices.Uber);
 		} else if (isVGCOrBS || (isHackmons && dex.gen === 9 && !this.formatType)) {
@@ -1223,10 +1223,10 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			'aaa', 'bh', 'doubles', // natdex abbreviations
 			'tiershift', 'linked', '4v4doublesuu', 'pokebilitiesaaa',
 			// AGE
-			'agoldenexperiencedoubles', 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
+			/*'agoldenexperiencedoubles',*/ 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
 			'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
 			// AGE
-			'gen9agoldenexperiencedoubles', 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
+			/*'gen9agoldenexperiencedoubles',*/ 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
 			'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 		];
 		if (dex.gen >= 6) {
@@ -1458,6 +1458,8 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 			table = table[`natdexchampions`];
 		} else if (this.formatType === 'agoldenexperience') {
 			table = table[`gen9agoldenexperience`];
+		} else if (this.formatType === 'agoldenexperiencedoubles') {
+			table = table[`gen9agoldenexperiencedoubles`];
 		} else if (this.formatType === 'toho') {
 			table = table[`gen9toho`];
 		} else if (this.dex.gen < 9) {
