@@ -1116,6 +1116,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			table = table[`gen${dex.gen}stadium${dex.gen > 1 ? dex.gen : ''}`];
 		} else if (this.formatType === 'agoldenexperience' || this.formatType.includes('agoldenexperience')) {
 			table = table[`gen9agoldenexperience`];
+		} else if (this.formatType === 'agoldenexperiencedoubles' || this.formatType.includes('agoldenexperiencedoubles')) {
+			table = table[`gen9agoldenexperiencedoubles`];
 		} else if (this.formatType === 'touhoumons' || this.formatType.includes('touhoumons')) {
 			table = table[`gen9toho`];
 		}
