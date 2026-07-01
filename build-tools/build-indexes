@@ -613,7 +613,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable[gen + 'vgc'].tiers = tiers;
 			BattleTeambuilderTable[gen + 'vgc'].formatSlices = formatSlices;
 			if (genNum === 9) BattleTeambuilderTable[gen + 'vgc'].metagameBans = metagameBans;
-		} else if (isDoubles) {
+		} else if (isDoubles && !isAGE) {
 			BattleTeambuilderTable[gen + 'doubles'] = {};
 			BattleTeambuilderTable[gen + 'doubles'].tiers = tiers;
 			BattleTeambuilderTable[gen + 'doubles'].items = items;
@@ -631,13 +631,20 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9ssb'].tiers = tiers;
 			BattleTeambuilderTable['gen9ssb'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9ssb'].formatSlices = formatSlices;
-		} else if (isAGE) {
+		} else if (isAGE && !isDoubles) {
 			BattleTeambuilderTable['gen9agoldenexperience'] = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
 			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
+		} else if (isDoubles && isAGE) {
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].metagameBans = metagameBans;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].formatSlices = formatSlices;
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
