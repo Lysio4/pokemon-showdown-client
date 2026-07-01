@@ -455,7 +455,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (species.tier === 'Toho') {
 					return species.tier;
 				}
-				if (isDoubles && genNum > 4 && !isAGE) {
+				if (isDoubles && genNum > 4) {
 					return species.doublesTier;
 				}
 				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411)) {
@@ -634,15 +634,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		} else if (isAGE && !isDoubles) {
 			BattleTeambuilderTable['gen9agoldenexperience'] = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
-			console.log(BattleTeambuilderTable['gen9agoldenexperience'].tiers);
 			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 		} else if (isDoubles && isAGE) {
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].doublesTiers = doublesTiers;
-			console.log(BattleTeambuilderTable['gen9agoldenexperiencedoubles'].doublesTiers);
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].metagameBans = metagameBans;
