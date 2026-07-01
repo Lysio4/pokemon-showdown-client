@@ -1133,7 +1133,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		let slices: { [k: string]: number } = table.formatSlices;
 		if (
 			format === 'ubers' || format === 'uber' || format === 'ubersuu' ||
-			format === '4v4doublesuu' || format === 'nationaldexdoubles' || 
+			format === '4v4doublesuu' || format === 'nationaldexdoubles' //|| 
 			// format === 'agoldenexperiencedoubles' || format === 'gen9agoldenexperiencedoubles'
 		) {
 			tierSet = tierSet.slice(slices.Uber);
@@ -1448,8 +1448,8 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 			table = table['gen3frlg'];
 		} else if (this.formatType === 'natdex') {
 			table = table[`gen${this.dex.gen}natdex`];
-		} else if (this.formatType?.endsWith('doubles')) { // no natdex/bdsp doubles support
-			table = table[`gen${this.dex.gen}doubles`];
+		/*} else if (this.formatType?.endsWith('doubles')) { // no natdex/bdsp doubles support
+			table = table[`gen${this.dex.gen}doubles`];*/
 		} else if (this.formatType === 'metronome') {
 			table = table[`gen${this.dex.gen}metronome`];
 		} else if (this.formatType === 'champions') {
