@@ -641,6 +641,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		} else if (isDoubles && isAGE) {
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].doublesTiers = doublesTiers;
+			console.log(BattleTeambuilderTable['gen9agoldenexperiencedoubles'].doublesTiers);
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].metagameBans = metagameBans;
