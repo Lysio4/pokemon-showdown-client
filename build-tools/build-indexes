@@ -496,10 +496,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					'aaa', 'bh', 'doubles', // natdex abbreviations
 					'tiershift', 'linked', 'pokebilitiesaaa',
 					// AGE
-					'agoldenexperiencedoubles', 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
+					/*'agoldenexperiencedoubles',*/ 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
 					'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
 					// AGE
-					'gen9agoldenexperiencedoubles', 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
+					/*'gen9agoldenexperiencedoubles',*/ 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
 					'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 				])) {
 					const format = Dex.formats.get(`${gen}${isNatDex ? 'nationaldex' : isChampions ? 'champions' : ''}${meta}`);
@@ -539,11 +539,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					if (!metagameBans['nationaldex35pokes']) metagameBans['nationaldex35pokes'] = {};
 					metagameBans['nationaldex35pokes'][species.id] = 1;
 				}
-				const ageDoubles = Dex.formats.get(gen + 'agoldenexperiencedoubles');
+				/*const ageDoubles = Dex.formats.get(gen + 'agoldenexperiencedoubles');
 				if (ageDoubles.exists && Dex.formats.getRuleTable(ageDoubles).isBannedSpecies(species)) {
 					if (!metagameBans['agoldenexperiencedoubles']) metagameBans['agoldenexperiencedoubles'] = {};
 					metagameBans['agoldenexperiencedoubles'][species.id] = 1;
-				}
+				}*/
 			}
 		}
 

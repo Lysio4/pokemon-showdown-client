@@ -1456,10 +1456,10 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 			table = table[`champions`];
 		} else if (this.formatType === 'natdexchampions') {
 			table = table[`natdexchampions`];
-		} else if (this.formatType === 'agoldenexperience') {
-			table = table[`gen9agoldenexperience`];
 		} else if (this.formatType === 'agoldenexperiencedoubles') {
 			table = table[`gen9agoldenexperiencedoubles`];
+		} else if (this.formatType === 'agoldenexperience') {
+			table = table[`gen9agoldenexperience`];
 		} else if (this.formatType === 'toho') {
 			table = table[`gen9toho`];
 		} else if (this.dex.gen < 9) {
