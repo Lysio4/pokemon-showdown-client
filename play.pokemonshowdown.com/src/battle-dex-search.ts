@@ -585,7 +585,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'frlg' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' |
 		'nfe' | 'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'champions' | 'natdexchampions' | 'agoldenexperience' | 'touhoumons' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'champions' | 'natdexchampions' | 'agoldenexperience' | 'agoldenexperiencedoubles' | 'touhoumons' | null = null;
 	isDoubles = false;
 
 	/**
@@ -620,7 +620,12 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType = 'agoldenexperience';
 			this.dex = Dex.mod('gen9agoldenexperience' as ID);
 			format = format.slice(9) as ID;
-			this.isDoubles = format.includes('doubles');
+		}
+		if (format.includes('agoldenexperiencedoubles')) {
+			this.formatType = 'agoldenexperiencedoubles';
+			this.dex = Dex.mod('gen9agoldenexperience' as ID);
+			format = format.slice(9) as ID;
+			this.isDoubles = true;
 		}
 		if (format.includes('touhoumons')) {
 			this.formatType = 'gen9toho';
@@ -836,6 +841,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (this.formatType === 'champions') table = table['champions'];
 		if (this.formatType === 'natdexchampions') table = table['natdexchampions'];
 		if (this.formatType === 'agoldenexperience') table = table['gen9agoldenexperience'];
+		if (this.formatType === 'agoldenexperiencedoubles') table = table['gen9agoldenexperiencedoubles'];
 		if (this.formatType === 'touhoumons') table = table['gen9toho'];
 		if (speciesid in table.learnsets) return speciesid;
 		const species = this.dex.species.get(speciesid);
@@ -911,6 +917,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (this.formatType === 'champions') table = table['champions'];
 			if (this.formatType === 'natdexchampions') table = table['natdexchampions'];
 			if (this.formatType === 'agoldenexperience') table = table['gen9agoldenexperience'];
+			if (this.formatType === 'agoldenexperiencedoubles') table = table['gen9agoldenexperiencedoubles'];
 			if (this.formatType === 'toho') table = table['gen9toho'];
 			let learnset = table.learnsets[learnsetid];
 			const eggMovesOnly = this.eggMovesOnly(learnsetid, speciesid);
@@ -950,6 +957,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'champions' ? `champions` :
 			this.formatType === 'natdexchampions' ? `natdexchampions` :
 			this.formatType === 'agoldenexperience' ? `gen9agoldenexperience` :
+			this.formatType === 'agoldenexperiencedoubles' ? `gen9agoldenexperiencedoubles` :
 			this.formatType === 'touhoumons' ? `gen9toho` :
 			`gen${gen}`;
 		if (table?.[tableKey]) {
