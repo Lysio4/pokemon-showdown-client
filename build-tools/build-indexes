@@ -566,7 +566,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].metagameBans = metagameBans;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].formatSlices = formatSlices;
 		} else if (isAGE && isDoubles) {
-			console.log("THE AGE DOUBLES! THE AGE DOUBLES IS REAL");
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
@@ -690,6 +689,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["AG", "(AG)", "Uber", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",];
 			}
 			if (isAGE && isDoubles) {
+				console.log("WASSUP");
 				return ["DUber", "(DUber)", "DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
 			}
 			if (isVGC || isGen9BH) {
