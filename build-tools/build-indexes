@@ -1489,7 +1489,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	//
 
 	for (const mod of [
-		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'champions', 'gen9agoldenexperience', 'gen9agoldenexperiencedoubles', 'gen9toho',
+		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'champions', 'gen9agoldenexperience', 'gen9toho',
 	]) {
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;
