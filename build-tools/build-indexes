@@ -689,7 +689,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				return ["AG", "(AG)", "Uber", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",];
 			}
 			if (isAGE && isDoubles) {
-				console.log("WASSUP");
 				return ["DUber", "(DUber)", "DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
 			}
 			if (isVGC || isGen9BH) {
@@ -1491,7 +1490,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	//
 
 	for (const mod of [
-		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'champions', 'gen9agoldenexperience', 'gen9toho',
+		'gen3rs', 'gen3frlg', 'gen5bw1', 'gen7letsgo', 'gen8bdsp', 'gen9ssb', 'champions', 'gen9agoldenexperience', 'gen9agoldenexperiencedoubles', 'gen9toho',
 	]) {
 		const modDex = Dex.mod(mod);
 		const modData = modDex.data;
