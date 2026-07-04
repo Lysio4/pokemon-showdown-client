@@ -1212,6 +1212,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		else if (format === 'pu' || format.includes('pu')) tierSet = tierSet.slice(slices.PU);
 		else if (format === 'zu') tierSet = tierSet.slice(slices.ZU);
 		else if (format === 'uber' || format.includes('uber')) tierSet = tierSet.slice(slices.Uber);
+		else if (format === 'agoldenexperiencedoubles' || format.includes('agoldenexperiencedoubles') && dex.gen > 4) tierSet = tierSet.slice(slices.DOU, slices.LC);
 		else if (format === 'balancedhackmons' || format.includes('balancedhackmons')) tierSet = tierSet.slice(slices.AG || slices.Uber);
 		else if (
 			format === 'lc' || format === 'lcuu' || format.startsWith('lc') || (format !== 'caplc' && format.endsWith('lc'))
@@ -1227,11 +1228,9 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			tierSet = tierSet.slice(slices.AG || slices.Uber);
 		} else if (format === 'monotype' || format.startsWith('monothreat')) tierSet = tierSet.slice(slices.Uber);
 		else if (format === 'doublesubers') tierSet = tierSet.slice(slices.DUber);
-		// else if ((format === 'doublesou' || format.includes('doublesou')) && dex.gen > 4) tierSet = tierSet.slice(slices.DOU);
 		else if (format === 'doublesou' && dex.gen > 4) tierSet = tierSet.slice(slices.DOU);
 		else if (format === 'doublesuu') tierSet = tierSet.slice(slices.DUU);
 		else if (format === 'doublesnu') tierSet = tierSet.slice(slices.DNU || slices.DUU);
-		// else if (format === 'agoldenexperiencedoubles' || format.includes('agoldenexperiencedoubles') && dex.gen > 4) tierSet = tierSet.slice(slices.DOU);
 		else if (this.formatType?.startsWith('bdsp') || this.formatType === 'letsgo' || this.formatType === 'stadium') {
 			tierSet = tierSet.slice(slices.Uber);
 		} else if (this.formatType === 'rs' || this.formatType === 'frlg') {
