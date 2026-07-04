@@ -646,16 +646,16 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		} else if (!format) {
 			this.dex = Dex;
 		}
-		if (format.includes('agoldenexperience')) {
-			this.formatType = 'agoldenexperience';
-			this.dex = Dex.mod('gen9agoldenexperience' as ID);
-			format = format.slice(9) as ID;
-		}
 		if (format.includes('agoldenexperiencedoubles')) {
 			this.formatType = 'agoldenexperiencedoubles';
 			this.dex = Dex.mod('gen9agoldenexperience' as ID);
 			format = format.slice(9) as ID;
 			this.isDoubles = true;
+		}
+		if (format.includes('agoldenexperience')) {
+			this.formatType = 'agoldenexperience';
+			this.dex = Dex.mod('gen9agoldenexperience' as ID);
+			format = format.slice(9) as ID;
 		}
 		if (format.includes('touhoumons')) {
 			this.formatType = 'gen9toho';
