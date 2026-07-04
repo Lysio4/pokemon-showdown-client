@@ -463,6 +463,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 						const monTier = species.natDexDoublesOverride;
 						console.log("This is mon tier: " + monTier);
 						if (monTier) return monTier;
+						return species.natDexTier
 					}
 					return species.tier;
 				}
