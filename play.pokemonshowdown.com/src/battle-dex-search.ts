@@ -986,8 +986,8 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.formatType === 'stadium' ? `gen${gen}stadium${gen > 1 ? gen : ''}` :
 			this.formatType === 'champions' ? `champions` :
 			this.formatType === 'natdexchampions' ? `natdexchampions` :
-			this.formatType === 'agoldenexperience' ? `gen9agoldenexperience` :
-			this.formatType === 'agoldenexperiencedoubles' ? `gen9agoldenexperiencedoubles` :
+			(this.formatType === 'agoldenexperience' && !this.isDoubles) ? `gen9agoldenexperience` :
+			(this.formatType === 'agoldenexperience' && this.isDoubles) ? `gen9agoldenexperiencedoubles` :
 			this.formatType === 'touhoumons' ? `gen9toho` :
 			`gen${gen}`;
 		if (table?.[tableKey]) {
