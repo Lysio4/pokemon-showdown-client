@@ -456,8 +456,11 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return species.tier;
 				}
 				if (isAGE) {
-					if (isDoubles) {
+					console.log("alright this is AGE");
+					if (isDoubles) {	
+						console.log("alright this is AGE Doubles");
 						const monTier = species.natDexDoublesOverride;
+						console.log("montier " + monTier);
 						if (monTier) return monTier;
 					}
 					return species.tier;
