@@ -455,9 +455,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				if (species.tier === 'Toho') {
 					return species.tier;
 				}
-				if (isDoubles && genNum > 4) {
-					return species.doublesTier;
-				}
 				if (isAGE) {
 					if (isDoubles) {
 						// const monTier = species.natDexDoublesOverride;
@@ -465,6 +462,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 						return species.natDexDoublesOverride
 					}
 					return species.tier;
+				}
+				if (isDoubles && genNum > 4) {
+					return species.doublesTier;
 				}
 				if (isNatDex || (isPreDLC && genNum === 9.41) || (isSVDLC1 && genNum === 9.411)) {
 					return species.natDexTier;
