@@ -569,6 +569,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].items = items;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].metagameBans = metagameBans;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].formatSlices = formatSlices;
+		} else if (isDoubles && isAGE) {
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].natDexDoublesOverride = doublesTiers;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].metagameBans = metagameBans;
+			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].formatSlices = formatSlices;
 		} else if (isAGE) {
 			BattleTeambuilderTable['gen9agoldenexperience'] = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
@@ -646,13 +654,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9ssb'].tiers = tiers;
 			BattleTeambuilderTable['gen9ssb'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9ssb'].formatSlices = formatSlices;
-		/*} else if (isDoubles && isAGE) {
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].metagameBans = metagameBans;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].formatSlices = formatSlices;*/
 		} else if (is2hu) {
 			BattleTeambuilderTable['gen9toho'] = {};
 			BattleTeambuilderTable['gen9toho'].tiers = tiers;
