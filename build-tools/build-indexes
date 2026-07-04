@@ -500,10 +500,10 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					'aaa', 'bh', 'doubles', // natdex abbreviations
 					'tiershift', 'linked', 'pokebilitiesaaa',
 					// AGE
-					/*'agoldenexperiencedoubles',*/ 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
+					'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
 					'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
 					// AGE
-					/*'gen9agoldenexperiencedoubles',*/ 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
+					'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
 					'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 				])) {
 					const format = Dex.formats.get(`${gen}${isNatDex ? 'nationaldex' : isChampions ? 'champions' : ''}${meta}`);
@@ -564,15 +564,14 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].items = items;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].metagameBans = metagameBans;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].formatSlices = formatSlices;
-		/*} else if (isAGE && isDoubles) {
+		} else if (isAGE && isDoubles) {
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].metagameBans = metagameBans;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].formatSlices = formatSlices;
-		} else if (isAGE && !isDoubles) {*/
-		} else if (isAGE) {
+		} else if (isAGE && !isDoubles) {
 			BattleTeambuilderTable['gen9agoldenexperience'] = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
 			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
