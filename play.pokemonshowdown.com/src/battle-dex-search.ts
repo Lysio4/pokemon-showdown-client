@@ -1228,7 +1228,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		} else if (format === 'monotype' || format.startsWith('monothreat')) tierSet = tierSet.slice(slices.Uber);
 		else if (format === 'doublesubers') tierSet = tierSet.slice(slices.DUber);
 		// else if ((format === 'doublesou' || format.includes('doublesou')) && dex.gen > 4) tierSet = tierSet.slice(slices.DOU);
-		else if (format === 'doublesou' && dex.gen > 4 && !format.includes('agoldenexperience')) tierSet = tierSet.slice(slices.DOU);
+		else if (format === 'doublesou' && dex.gen > 4) tierSet = tierSet.slice(slices.DOU);
 		else if (format === 'doublesuu') tierSet = tierSet.slice(slices.DUU);
 		else if (format === 'doublesnu') tierSet = tierSet.slice(slices.DNU || slices.DUU);
 		else if (this.formatType?.startsWith('bdsp') || this.formatType === 'letsgo' || this.formatType === 'stadium') {
@@ -1476,6 +1476,10 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 		let table = BattleTeambuilderTable;
 		if (this.formatType?.startsWith('bdsp')) {
 			table = table['gen8bdsp'];
+		} else if (this.formatType === 'agoldenexperiencedoubles') {
+			table = table[`gen9agoldenexperiencedoubles`];
+		} else if (this.formatType === 'agoldenexperience') {
+			table = table[`gen9agoldenexperience`];
 		} else if (this.formatType === 'bw1') {
 			table = table['gen5bw1'];
 		} else if (this.formatType === 'rs') {
@@ -1484,18 +1488,14 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 			table = table['gen3frlg'];
 		} else if (this.formatType === 'natdex') {
 			table = table[`gen${this.dex.gen}natdex`];
-		/*} else if (this.formatType?.endsWith('doubles')) { // no natdex/bdsp doubles support
-			table = table[`gen${this.dex.gen}doubles`];*/
+		} else if (this.formatType?.endsWith('doubles')) { // no natdex/bdsp doubles support
+			table = table[`gen${this.dex.gen}doubles`];
 		} else if (this.formatType === 'metronome') {
 			table = table[`gen${this.dex.gen}metronome`];
 		} else if (this.formatType === 'champions') {
 			table = table[`champions`];
 		} else if (this.formatType === 'natdexchampions') {
 			table = table[`natdexchampions`];
-		} else if (this.formatType === 'agoldenexperiencedoubles') {
-			table = table[`gen9agoldenexperiencedoubles`];
-		} else if (this.formatType === 'agoldenexperience') {
-			table = table[`gen9agoldenexperience`];
 		} else if (this.formatType === 'toho') {
 			table = table[`gen9toho`];
 		} else if (this.dex.gen < 9) {
