@@ -1242,9 +1242,6 @@ export class BattleTooltips {
 					if (ability === 'orichalcumpulse') {
 						stats.atk = Math.floor(stats.atk * 1.3333);
 					}
-					if (ability === 'solarenergy') {
-						speedModifiers.push(1.5);
-					}
 					let allyActive = clientPokemon?.side.active;
 					if (allyActive) {
 						for (const ally of allyActive) {
