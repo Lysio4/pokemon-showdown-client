@@ -572,6 +572,13 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].items = items;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].metagameBans = metagameBans;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].formatSlices = formatSlices;
+		} else if (isAGE) {
+			BattleTeambuilderTable['gen9agoldenexperience'] = {};
+			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
+			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
+			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
+			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
+			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 		} else if (isMetBattle) {
 			BattleTeambuilderTable[gen + 'metronome'] = {};
 			BattleTeambuilderTable[gen + 'metronome'].tiers = tiers;
@@ -623,7 +630,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable[gen + 'vgc'].tiers = tiers;
 			BattleTeambuilderTable[gen + 'vgc'].formatSlices = formatSlices;
 			if (genNum === 9) BattleTeambuilderTable[gen + 'vgc'].metagameBans = metagameBans;
-		} else if (isDoubles && !isAGE) {
+		} else if (isDoubles) {
 			BattleTeambuilderTable[gen + 'doubles'] = {};
 			BattleTeambuilderTable[gen + 'doubles'].tiers = tiers;
 			BattleTeambuilderTable[gen + 'doubles'].items = items;
@@ -641,13 +648,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen9ssb'].tiers = tiers;
 			BattleTeambuilderTable['gen9ssb'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9ssb'].formatSlices = formatSlices;
-		} else if (isAGE && !isDoubles) {
-			BattleTeambuilderTable['gen9agoldenexperience'] = {};
-			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
-			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
-			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
-			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
-			BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
 		/*} else if (isDoubles && isAGE) {
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
