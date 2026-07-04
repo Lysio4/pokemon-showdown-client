@@ -1098,6 +1098,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			this.formatType !== 'letsgo' && this.formatType !== 'bdspdoubles' &&
 			this.formatType !== 'ssdlc1doubles' && this.formatType !== 'predlcdoubles' &&
 			this.formatType !== 'svdlc1doubles' && !this.formatType?.includes('natdex') &&
+			!this.formatType?.includes('agoldenexperience') &&
 			(
 				format.includes('doubles') || format.includes('triples') ||
 				format === 'freeforall' || format.startsWith('ffa') ||
@@ -1106,6 +1107,10 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		) {
 			table = table[`gen${dex.gen}doubles`];
 			isDoublesOrBS = true;
+		} else if (this.formatType === 'agoldenexperience') {
+			table = table[`gen9agoldenexperience` + ((this.isDoubles) ? 'doubles' : '')];
+		} else if (this.formatType === 'touhoumons' || this.formatType.includes('touhoumons')) {
+			table = table[`gen9toho`];
 		} else if (dex.gen < 9 && !this.formatType) {
 			table = table[`gen${dex.gen}`];
 		} else if (this.formatType?.startsWith('bdsp')) {
@@ -1150,12 +1155,6 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			}
 		} else if (this.formatType === 'stadium') {
 			table = table[`gen${dex.gen}stadium${dex.gen > 1 ? dex.gen : ''}`];
-		} else if (this.formatType === 'agoldenexperience' || this.formatType.includes('agoldenexperience')) {
-			table = table[`gen9agoldenexperience`];
-		} else if (this.formatType === 'agoldenexperiencedoubles' || this.formatType.includes('agoldenexperiencedoubles')) {
-			table = table[`gen9agoldenexperiencedoubles`];
-		} else if (this.formatType === 'touhoumons' || this.formatType.includes('touhoumons')) {
-			table = table[`gen9toho`];
 		}
 
 		if (!table.tierSet) {
@@ -1169,8 +1168,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		let slices: { [k: string]: number } = table.formatSlices;
 		if (
 			format === 'ubers' || format === 'uber' || format === 'ubersuu' ||
-			format === '4v4doublesuu' || format === 'nationaldexdoubles' //|| 
-			// format === 'agoldenexperiencedoubles' || format === 'gen9agoldenexperiencedoubles'
+			format === '4v4doublesuu' || format === 'nationaldexdoubles'*
 		) {
 			tierSet = tierSet.slice(slices.Uber);
 		} else if (isVGCOrBS || (isHackmons && dex.gen === 9 && !this.formatType)) {
