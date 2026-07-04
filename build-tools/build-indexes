@@ -688,9 +688,9 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isAGE && !isDoubles) {
 				return ["AG", "(AG)", "Uber", "OU", "(OU)", "UUBL", "UU", "RUBL", "RU", "NUBL", "NU", "PUBL", "PU", "ZUBL", "ZU", "New", "NFE", "LC", "Unreleased",];
 			}
-			if (isAGE && isDoubles) {
+			/*if (isAGE && isDoubles) {
 				return ["DUber", "(DUber)", "DOU", "DBL", "(DOU)", "DUU", "(DUU)", "New", "NFE", "LC"];
-			}
+			}*/
 			if (isVGC || isGen9BH) {
 				return ["Mythical", "Restricted", "Regular", "NFE", "LC"];
 			}
