@@ -615,7 +615,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 
 	protected formatType: 'doubles' | 'bdsp' | 'bdspdoubles' | 'rs' | 'frlg' | 'bw1' | 'letsgo' | 'metronome' | 'natdex' |
 		'nfe' | 'ssdlc1' | 'ssdlc1doubles' | 'predlc' | 'predlcdoubles' | 'predlcnatdex' | 'svdlc1' | 'svdlc1doubles' |
-		'svdlc1natdex' | 'stadium' | 'lc' | 'champions' | 'natdexchampions' | 'agoldenexperience' | 'agoldenexperiencedoubles' | 'touhoumons' | null = null;
+		'svdlc1natdex' | 'stadium' | 'lc' | 'champions' | 'natdexchampions' | 'agoldenexperience' | 'touhoumons' | null = null;
 	isDoubles = false;
 
 	/**
@@ -646,16 +646,14 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		} else if (!format) {
 			this.dex = Dex;
 		}
-		if (format.includes('agoldenexperiencedoubles')) {
-			this.formatType = 'agoldenexperiencedoubles';
-			this.dex = Dex.mod('gen9agoldenexperience' as ID);
-			format = format.slice(9) as ID;
-			this.isDoubles = true;
-		}
 		if (format.includes('agoldenexperience')) {
-			this.formatType = 'agoldenexperience';
-			this.dex = Dex.mod('gen9agoldenexperience' as ID);
 			format = format.slice(9) as ID;
+			this.formatType = 'agoldenexperience';
+			if (!format) format = 'ou' as ID;
+			this.isDoubles = format.includes('doubles');
+			let dexmod = `gen9agoldenexperience`;
+			if (this.isDoubles) dexmod += 'doubles';
+			this.dex = Dex.mod(dexmod as ID);
 		}
 		if (format.includes('touhoumons')) {
 			this.formatType = 'gen9toho';
@@ -870,8 +868,8 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		if (this.formatType === 'frlg') table = table['gen3frlg'];
 		if (this.formatType === 'champions') table = table['champions'];
 		if (this.formatType === 'natdexchampions') table = table['natdexchampions'];
-		if (this.formatType === 'agoldenexperience') table = table['gen9agoldenexperience'];
-		if (this.formatType === 'agoldenexperiencedoubles') table = table['gen9agoldenexperiencedoubles'];
+		if (this.formatType === 'agoldenexperience' && !this.isDoubles) table = table['gen9agoldenexperience'];
+		if (this.formatType === 'agoldenexperience' && this.isDoubles) table = table['gen9agoldenexperiencedoubles'];
 		if (this.formatType === 'touhoumons') table = table['gen9toho'];
 		if (speciesid in table.learnsets) return speciesid;
 		const species = this.dex.species.get(speciesid);
@@ -948,7 +946,6 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			if (this.formatType === 'natdexchampions') table = table['natdexchampions'];
 			if (this.formatType === 'agoldenexperience' && !this.isDoubles) table = table['gen9agoldenexperience'];
 			if (this.formatType === 'agoldenexperience' && this.isDoubles) table = table['gen9agoldenexperiencedoubles'];
-			// if (this.formatType === 'agoldenexperiencedoubles') table = table['gen9agoldenexperiencedoubles'];
 			if (this.formatType === 'toho') table = table['gen9toho'];
 			let learnset = table.learnsets[learnsetid];
 			const eggMovesOnly = this.eggMovesOnly(learnsetid, speciesid);
@@ -1262,10 +1259,10 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			'aaa', 'bh', 'doubles', // natdex abbreviations
 			'tiershift', 'linked', '4v4doublesuu', 'pokebilitiesaaa',
 			// AGE
-			/*'agoldenexperiencedoubles',*/ 'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
+			'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
 			'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
 			// AGE
-			/*'gen9agoldenexperiencedoubles',*/ 'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
+			'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
 			'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
 		];
 		if (dex.gen >= 6) {
