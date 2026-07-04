@@ -543,11 +543,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					if (!metagameBans['nationaldex35pokes']) metagameBans['nationaldex35pokes'] = {};
 					metagameBans['nationaldex35pokes'][species.id] = 1;
 				}
-				/*const ageDoubles = Dex.formats.get(gen + 'agoldenexperiencedoubles');
-				if (ageDoubles.exists && Dex.formats.getRuleTable(ageDoubles).isBannedSpecies(species)) {
-					if (!metagameBans['agoldenexperiencedoubles']) metagameBans['agoldenexperiencedoubles'] = {};
-					metagameBans['agoldenexperiencedoubles'][species.id] = 1;
-				}*/
 			}
 		}
 
@@ -569,18 +564,16 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].items = items;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].metagameBans = metagameBans;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].formatSlices = formatSlices;
-		} else if (isDoubles && isAGE) {
+		} else if (isAGE && isDoubles) {
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
-			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].natDexDoublesOverride = doublesTiers;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].metagameBans = metagameBans;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].formatSlices = formatSlices;
-		} else if (isAGE) {
+		} else if (isAGE && !isDoubles) {
 			BattleTeambuilderTable['gen9agoldenexperience'] = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
-			BattleTeambuilderTable['gen9agoldenexperience'].natDexDoublesOverride = doublesTiers;
 			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperience'].formatSlices = formatSlices;
 			BattleTeambuilderTable['gen9agoldenexperience'].items = items;
