@@ -565,15 +565,15 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].items = items;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].metagameBans = metagameBans;
 			BattleTeambuilderTable['gen' + genNum + 'natdex'].formatSlices = formatSlices;
-		/*} else if (isAGE && isDoubles) {
+		} else if (isAGE && isDoubles) {
+			console.log("THE AGE DOUBLES! THE AGE DOUBLES IS REAL");
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'] = {};
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].tiers = tiers;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].items = items;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].overrideTier = overrideTier;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].metagameBans = metagameBans;
 			BattleTeambuilderTable['gen9agoldenexperiencedoubles'].formatSlices = formatSlices;
-		} else if (isAGE && !isDoubles) {*/
-		} else if (isAGE) {
+		} else if (isAGE && !isDoubles) {
 			BattleTeambuilderTable['gen9agoldenexperience'] = {};
 			BattleTeambuilderTable['gen9agoldenexperience'].tiers = tiers;
 			BattleTeambuilderTable['gen9agoldenexperience'].overrideTier = overrideTier;
