@@ -2283,6 +2283,11 @@ export class BattleTooltips {
 				value.modify(2, "Acrobatics + no item");
 			}
 		}
+		if (move.id === 'hindenburg') {
+			if (!serverPokemon.item) {
+				value.modify(2, "Hindenburg + no item");
+			}
+		}
 		let variableBPCap = ['crushgrip', 'wringout'].includes(move.id) ? 120 : move.id === 'hardpress' ? 100 : undefined;
 		if (variableBPCap && target) {
 			value.set(
@@ -2303,6 +2308,9 @@ export class BattleTooltips {
 		}
 		if (move.id === 'facade' && !['', 'slp', 'frz'].includes(pokemon.status)) {
 			value.modify(2, 'Facade + status');
+		}
+		if (move.id === 'hindenburg' && ['brn'].includes(pokemon.status)) {
+			value.modify(2, 'Hindenburg + status');
 		}
 		if (move.id === 'flail' || move.id === 'reversal') {
 			let multiplier;
