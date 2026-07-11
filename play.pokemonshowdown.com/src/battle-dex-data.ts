@@ -739,7 +739,8 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	seatsya: 119,
 
 	// forms
-	lycanrocbloodmoon: 1032 + 143,
+	lycanrocmoonlight: 1032 + 143,
+	lycanrocnihil: 1032 + 160,
 	baskiron: 229,
 	baskironmega: 1320 + 19,
 

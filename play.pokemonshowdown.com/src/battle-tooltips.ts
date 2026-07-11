@@ -2032,6 +2032,8 @@ export class BattleTooltips {
 				}
 			} else if (move.id === 'freezedry' && targetType === 'Water') {
 				factor *= 2;
+			} else if (move.id === 'dispelmagic' && targetType === 'Fairy') {
+				factor *= 2;
 			} else {
 				factor *= [1, 2, 0.5, 0][tType.damageTaken?.[attackType] || 0] ?? 1;
 			}
@@ -2185,6 +2187,9 @@ export class BattleTooltips {
 		if (['hurricane', 'thunder', 'bleakwindstorm', 'wildboltstorm', 'sandsearstorm'].includes(move.id)) {
 			value.weatherModify(0, 'Rain Dance');
 			value.weatherModify(0, 'Primordial Sea');
+		}
+		if (move.flags.wind) {
+			value.abilityModify(0, 'Aerodynamism');
 		}
 		value.abilityModify(0, 'No Guard');
 		if (!value.value) return value;
