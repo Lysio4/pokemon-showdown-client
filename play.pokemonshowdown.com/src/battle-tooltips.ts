@@ -1726,7 +1726,7 @@ export class BattleTooltips {
 
 		let pokemonTypes = pokemon.getTypeList(serverPokemon);
 		value.reset();
-		if (move.id === 'revelationdance' || move.id ==='seasonpass' || move.id ==='colorfulhit' || move.id ==='monkeybusiness' ) {
+		if (move.id === 'revelationdance' || move.id ==='seasonpass' || move.id ==='colorfulhit') {
 			moveType = pokemonTypes[0];
 			if (pokemonTypes[0] === '???' || pokemonTypes[0] === 'Bird' as any) {
 				moveType = pokemonTypes[1] || pokemonTypes[0];
@@ -2635,7 +2635,8 @@ export class BattleTooltips {
 				value.abilityModify(1.2, "Galvanize");
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Pixilate");
 				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Refrigerate");
-				value.abilityModify(this.battle.gen > 6 ? 1.2 : 1.3, "Ignite");
+				// AGE
+				value.abilityModify(1.2, "Ignite");
 			}
 			if (this.battle.gen > 6) {
 				value.abilityModify(1.2, "Normalize");

@@ -33,9 +33,6 @@
 				if (this.curTeam.format.includes('champions')) {
 					this.curTeam.dex = Dex.mod('champions');
 				}
-				if (this.curTeam.format.includes('ndexchamps')) {
-					this.curTeam.dex = Dex.mod('ndexchamps');
-				}
 				if (this.curTeam.format.includes('toho')) {
 					this.curTeam.dex = Dex.mod('gen9toho');
 				}
@@ -770,9 +767,6 @@
 			if (this.curTeam.format.includes('champions')) {
 				this.curTeam.dex = Dex.mod('champions');
 			}
-			if (this.curTeam.format.includes('ndexchamps')) {
-				this.curTeam.dex = Dex.mod('ndexchamps');
-			}
 			if (this.curTeam.format.includes('touhou') || this.curTeam.format.includes('toho')) {
 				this.curTeam.dex = Dex.mod('gen9toho');
 			}
@@ -1305,7 +1299,6 @@
 			if (baseFormat.substr(-5) === 'draft') baseFormat = baseFormat.substr(0, baseFormat.length - 5);
 			var species = this.curTeam.dex.species.get(set.species);
 			var isChampions = baseFormat.includes('champions');
-			var isNDChampions = baseFormat.includes('ndexchamps');
 			var isLetsGo = baseFormat.includes('letsgo');
 			var isBDSP = baseFormat.includes('bdsp');
 			var isNatDex = baseFormat.includes('nationaldex') || baseFormat.includes('natdex');
@@ -3579,7 +3572,7 @@
 				} else if (move.category === 'Physical' && !move.damage && !move.ohko &&
 					!['foulplay', 'endeavor', 'counter', 'bodypress', 'seismictoss', 'bide', 'metalburst', 'superfang'].includes(move.id) && !(this.curTeam.gen < 8 && move.id === 'rapidspin')) {
 					minAtk = false;
-				} else if (['metronome', 'assist', 'copycat', 'mefirst', 'photongeyser', 'shellsidearm', 'terablast', 'dimensionalbleeding', 'braveblade', 'monkeybusiness'].includes(move.id) || (this.curTeam.gen === 5 && move.id === 'naturepower')) {
+				} else if (['metronome', 'assist', 'copycat', 'mefirst', 'photongeyser', 'shellsidearm', 'terablast', 'dimensionalbleeding', 'braveblade'].includes(move.id) || (this.curTeam.gen === 5 && move.id === 'naturepower')) {
 					minAtk = false;
 				}
 				if (minSpe === false && moveName === 'Gyro Ball') {
