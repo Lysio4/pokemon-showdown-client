@@ -1248,6 +1248,13 @@ export class BattleTooltips {
 			stats.def *= 2;
 			stats.spd *= 0.5;
 		}
+		if (ability === 'hugeclamp') {
+			stats.atk *= 1.5;
+			stats.spe *= 0.5;
+		}
+		if (ability === 'convectioncurrent' && this.battle.hasPseudoWeather('Gravity')) {
+			speedModifiers.push(2);
+		}
 		// end of AGE
 		if (ability === 'hustle' || (ability === 'gorillatactics' && !clientPokemon?.volatiles['dynamax'])) {
 			stats.atk = Math.floor(stats.atk * 1.5);
@@ -1263,9 +1270,6 @@ export class BattleTooltips {
 				speedModifiers.push(2);
 			}
 			if (ability === 'slushrush' && (weather === 'hail' || weather === 'snowscape' || weather === 'eternalwinter')) {
-				speedModifiers.push(2);
-			}
-			if (ability === 'convectioncurrent' && this.battle.hasPseudoWeather('Gravity')) {
 				speedModifiers.push(2);
 			}
 			if (item !== 'utilityumbrella') {
@@ -1783,6 +1787,8 @@ export class BattleTooltips {
 				moveType = 'Fairy';
 			} else if (this.battle.hasPseudoWeather('Psychic Terrain')) {
 				moveType = 'Psychic';
+			} else if (this.battle.hasPseudoWeather('Chakra Terrain')) {
+				moveType = 'Fighting';
 			}
 		}
 		if (move.id === 'terablast' && pokemon.terastallized) {
@@ -1958,7 +1964,7 @@ export class BattleTooltips {
 		if (attackType === 'Fire' && abilityid === 'hydrophilic') factor *= 0.5;
 		if (attackType === 'Water' && abilityid === 'waterproof') return 0;
 		if (attackType === 'Electric' && abilityid === 'waterproof') return 0;
-		if (attackType === 'Fairy' && abilityid === 'disilllusioned') return 0;
+		if (attackType === 'Psychic' && abilityid === 'psychicprowess') factor *= 0.5;
 		// end of custom
 		return factor;
 	}
@@ -2085,7 +2091,7 @@ export class BattleTooltips {
 		if (targetAbility === "Leaf Guard" && this.battle.weather === 'sunnyday' && inflictsStatus) return 0;
 		if (targetAbility === "Sweet Veil" && inflictsStatus === 'slp') return 0;
 		if (targetAbility === "Pastel Veil" && inflictsStatus === 'psn') return 0;
-		if (["Water Veil", "Water Bubble", "Thermal Exchange"].includes(targetAbility) && inflictsStatus === 'brn') return 0;
+		if (["Water Veil", "Water Bubble", "Thermal Exchange", "Hydrophilic"].includes(targetAbility) && inflictsStatus === 'brn') return 0;
 
 		if (targetAbility === 'Wonder Guard' && factor < 2 && category !== 'Status') otherFactor = 0;
 		if (targetAbility === "Good as Gold" && category === 'Status') return 0;
