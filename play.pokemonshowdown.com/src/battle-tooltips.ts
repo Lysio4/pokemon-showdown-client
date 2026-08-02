@@ -1946,6 +1946,7 @@ export class BattleTooltips {
 		// custom
 		if (attackType === 'Fairy' && abilityid === 'disilllusioned') return 0;
 		if (attackType === 'Bug' && abilityid === 'insectivorous') return 0;
+		if (attackType === 'Ground' && abilityid === 'healingecho') return 0;
 		// end of custom
 
 		let factor = 1;
