@@ -708,6 +708,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	illumight: 314,
 	ledixy: 166,
 	terados: 168,
+	mothmhine: 414,
 	girafatak: 981,
 	girafataknocturnal: 981,
 	sylvardian: 899,
