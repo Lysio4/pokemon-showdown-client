@@ -821,6 +821,9 @@ export class BattleTooltips {
 			if (move.flags.drill && ability === 'mightyhorn') {
 				text += `<p class="movetag">&#x2713; Kick <small>(boosted by Striker)</small></p>`;
 			}
+			if ((move.flags.heal || ['goodfishing', 'knockoff', 'midnightsnack', 'spectralthief'].includes(move.id)) && ability === 'racketeering') {
+				text += `<p class="movetag">&#x2713; Pulse <small>(boosted by Mega Launcher)</small></p>`;
+			}
 			// RBY healing move glitch
 			if (this.battle.gen === 1 && !toID(this.battle.tier).includes('stadium') &&
 				['recover', 'softboiled', 'rest'].includes(move.id)) {
@@ -1739,8 +1742,8 @@ export class BattleTooltips {
 		// Moves that require an item to change their type.
 		let item = this.battle.dex.items.get(value.itemName);
 		if (move.id === 'multiattack' && item.onMemory) {
+			if (this.battle.tier.includes('A Golden Experience')) moveType = pokemonTypes[0];
 			if (value.itemModify(0)) moveType = item.onMemory;
-			moveType = pokemonTypes[0];
 		}
 		if (move.id === 'judgment' && item.onPlate && !item.zMoveType) {
 			if (value.itemModify(0)) moveType = item.onPlate;
@@ -2219,6 +2222,7 @@ export class BattleTooltips {
 
 		// OHKO moves don't use standard accuracy / evasion modifiers
 		if (move.ohko) {
+			if (this.battle.tier.includes('A Golden Experience') && move.id !== 'sheercold') return value;
 			if (this.battle.gen === 1) {
 				value.set(value.value, `fails if target's Speed is higher`);
 				return value;
@@ -2263,6 +2267,9 @@ export class BattleTooltips {
 		} else if (value.tryAbility('Compound Eyes')) {
 			accuracyModifiers.push(5325);
 			value.abilityModify(1.3, "Compound Eyes");
+		} else if (value.tryAbility('Illuminate') && this.battle.tier.includes('A Golden Experience')) {
+			accuracyModifiers.push(5325);
+			value.abilityModify(1.3, "Illuminate");
 		} else if (value.tryAbility('Mighty Horn') && move.flags['drill']) {
 			accuracyModifiers.push(5325);
 			value.abilityModify(1.3, "Mighty Horn");
@@ -2615,6 +2622,9 @@ export class BattleTooltips {
 		if (move.flags['drill']) {
 			value.abilityModify(1.3, "Mighty Horn");
 		}
+		if (move.flags['heal'] || ['goodfishing', 'knockoff', 'midnightsnack', 'spectralthief'].includes(move.id)) {
+			value.abilityModify(1.5, "Racketeering");
+		}
 
 		for (let i = 1; i <= 5 && i <= pokemon.side.faintCounter; i++) {
 			if (pokemon.volatiles[`fallen${i}`]) {
@@ -2629,7 +2639,7 @@ export class BattleTooltips {
 			}
 		}
 		const noTypeOverride = [
-			'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball', 'seasonpass', 'colorfulhit', 
+			'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball', 'seasonpass', 'colorfulhit',
 		];
 		const allowTypeOverride = !noTypeOverride.includes(move.id) && (move.id !== 'terablast' || !pokemon.terastallized);
 		if (

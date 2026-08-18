@@ -681,7 +681,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	obliteryx: 1560 + 81,
 
 	// Custom
-	
+
 	// Megas
 	venusaurmegay: 1320 + 77,
 	blastoisemegax: 1320 + 78,
@@ -703,7 +703,7 @@ export const BattlePokemonIconIndexes: { [id: string]: number } = {
 	centiskorchmegax: 1320 + 70,
 	centiskorchmegay: 1320 + 70,
 
-	// regular evolutions	
+	// regular evolutions
 	glowtaire: 313,
 	illumight: 314,
 	ledixy: 166,
@@ -1332,6 +1332,10 @@ export interface MoveFlags {
 	// AGE
 	/** Power is multiplied by 1.2 when used by a Pokemon with the Striker Ability. */
 	kick?: 1 | 0;
+	/** Power and accuracy are multiplied by 1.3 when used by a Pokemon with the Mighty Horn Ability. */
+	drill?: 1 | 0;
+	/** Gains +1 priority when used by a Pokemon with the Whiplash Ability. */
+	tail?: 1 | 0;
 }
 
 export type MoveTarget = 'normal' | 'any' | 'adjacentAlly' | 'adjacentFoe' | 'adjacentAllyOrSelf' | // single-target
