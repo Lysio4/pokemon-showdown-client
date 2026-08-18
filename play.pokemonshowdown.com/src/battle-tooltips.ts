@@ -821,7 +821,7 @@ export class BattleTooltips {
 			if (move.flags.drill && ability === 'mightyhorn') {
 				text += `<p class="movetag">&#x2713; Kick <small>(boosted by Striker)</small></p>`;
 			}
-			if ((move.flags.heal || ['goodfishing', 'knockoff', 'midnightsnack', 'spectralthief'].includes(move.id)) && ability === 'racketeering') {
+			if ((move.flags.heal || ['goodfishing', 'knockoff', 'midnightsnack', 'pluck', 'spectralthief', 'thief'].includes(move.id)) && ability === 'racketeering') {
 				text += `<p class="movetag">&#x2713; Pulse <small>(boosted by Mega Launcher)</small></p>`;
 			}
 			// RBY healing move glitch
@@ -2622,7 +2622,7 @@ export class BattleTooltips {
 		if (move.flags['drill']) {
 			value.abilityModify(1.3, "Mighty Horn");
 		}
-		if (move.flags['heal'] || ['goodfishing', 'knockoff', 'midnightsnack', 'spectralthief'].includes(move.id)) {
+		if (move.flags['heal'] || ['goodfishing', 'knockoff', 'midnightsnack', 'pluck', 'spectralthief', 'thief'].includes(move.id)) {
 			value.abilityModify(1.5, "Racketeering");
 		}
 
