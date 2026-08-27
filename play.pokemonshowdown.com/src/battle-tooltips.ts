@@ -2733,6 +2733,10 @@ export class BattleTooltips {
 		if (move.id === 'risingvoltage' && this.battle.hasPseudoWeather('Electric Terrain') && target?.isGrounded()) {
 			value.modify(2, 'Rising Voltage + Electric Terrain boost');
 		}
+		// AGE
+		if (move.id === 'condensate' && this.battle.hasPseudoWeather('Misty Terrain') && target?.isGrounded()) {
+			value.modify(2, 'Condensate + Misty Terrain boost');
+		}
 
 		// Item
 		value = this.getItemBoost(move, value, moveType);

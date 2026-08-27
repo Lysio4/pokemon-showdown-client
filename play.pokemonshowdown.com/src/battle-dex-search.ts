@@ -1727,7 +1727,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 		case 'futuresight':
 			return dex.gen > 5;
 		case 'grassyglide':
-			return abilityid === 'grassysurge';
+			return abilityid === 'grassysurge' || abilityid === 'grasspelt'; // AGE
 		case 'gyroball':
 			return species.baseStats.spe <= 60;
 		case 'headbutt':
@@ -1857,6 +1857,9 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 			return !moves.includes('supercellslam');
 		case 'zapcannon':
 			return abilityid === 'noguard' || (dex.gen < 4 && !moves.includes('thunderwave'));
+		// AGE
+		case 'condensate':
+			return abilityid === 'mistysurge';
 		}
 
 		if (this.isDoubles && BattleMoveSearch.GOOD_DOUBLES_MOVES.includes(id)) {
