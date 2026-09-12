@@ -6,16 +6,23 @@ const child_process = require('node:child_process');
 
 process.chdir(__dirname + '/..');
 
-const debug = true;
+fs.mkdirSync('play.pokemonshowdown.com/data', { recursive: true });
 
+const noUpdate = process.argv.includes('--no-update');
 if (!fs.existsSync('caches/pokemon-showdown')) {
-	child_process.execSync('git clone https://github.com/Lysio4/pokemon-showdown/', {
+	if (noUpdate) {
+		console.error('Missing caches/pokemon-showdown. Check out the server before using --no-update.');
+		process.exit(1);
+	}
+	child_process.execSync('git clone https://github.com/Lysio4/pokemon-showdown.git', {
 		cwd: 'caches',
 	});
 }
 
-process.stdout.write("Syncing data from Git repository... ");
-child_process.execSync('git pull', { cwd: 'caches/pokemon-showdown' });
+process.stdout.write(
+	noUpdate ? "Building data from existing server checkout... " : "Syncing data from Git repository... "
+);
+if (!noUpdate) child_process.execSync('git pull', { cwd: 'caches/pokemon-showdown' });
 child_process.execSync('npm run build', { cwd: 'caches/pokemon-showdown' });
 console.log("DONE");
 
@@ -433,7 +440,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 						return 'Illegal';
 					}
 					if (species.tier !== 'Toho') return 'Illegal';
-					return "Toho";				
+					return "Toho";
 				}
 				if (isGen9BH) {
 					if ((species.natDexTier === 'Illegal' || species.forme.includes('Totem')) &&
@@ -456,7 +463,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					return species.tier;
 				}
 				if (isAGE) {
-					if (isDoubles) {	
+					if (isDoubles) {
 						// const monTier = species.natDexDoublesOverride;
 						// if (monTier) return monTier;
 						return species.doublesTier;
