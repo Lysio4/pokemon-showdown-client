@@ -36,15 +36,10 @@ var full = '';
 
 switch (process.argv[2] || '') {
 case 'full':
-<<<<<<< HEAD
-	execSync(`node ./build-tools/build-indexes`, options);
-	execSync(`node ./build-tools/build-learnsets.mjs`, options);
-=======
 	execFileSync(process.execPath, ['./build-tools/build-indexes'].concat(
 		process.argv.includes('--no-update') ? ['--no-update'] : []
 	), options);
-	execSync(`node ./build-tools/build-learnsets`, options);
->>>>>>> upstream/master
+	execSync(`node ./build-tools/build-learnsets`, options); // flagging here in case
 	execSync(`node ./build-tools/build-minidex`, options);
 	full = ' full';
 	break;
