@@ -37,17 +37,21 @@ function getLanguages() {
 
 function addModText(Dex, text) {
 	for (const mod of CLIENT_MODS) {
-		const modData = Dex.mod(mod).data;
-		for (const table of ['Moves', 'Abilities', 'Items']) {
-			for (const id in modData[table]) {
-				const { desc, shortDesc } = modData[table][id];
-				if (!desc && !shortDesc) continue;
-				text[table][id] = {
-					...text[table][id],
-					[mod]: { desc: desc || shortDesc, shortDesc: shortDesc || desc },
-				};
-			}
-		}
+		try {
+					const modData = Dex.mod(mod).data;
+					for (const table of ['Moves', 'Abilities', 'Items']) {
+						for (const id in modData[table]) {
+							const { desc, shortDesc } = modData[table][id];
+							if (!desc && !shortDesc) continue;
+							text[table][id] = {
+								...text[table][id],
+								[mod]: { desc: desc || shortDesc, shortDesc: shortDesc || desc },
+							};
+						}
+					}
+				} catch (modError) {
+					console.warn(`Warning: Could not load mod ${mod}: ${modError.message}`);
+				}
 	}
 	return text;
 }
