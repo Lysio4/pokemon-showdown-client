@@ -189,6 +189,11 @@
 
 	// These all have static versions
 
+	/** The format's dex (for gen-specific text), or the current-gen dex if there's no engine yet */
+	Search.prototype.dex = function () {
+		return this.engine ? this.engine.dex : Dex;
+	};
+
 	Search.prototype.renderRow = function (id, type, matchStart, matchLength, errorMessage, attrs) {
 		// errorMessage = '<span class="col illegalcol"><em>' + errorMessage + '</em></span>';
 		switch (type) {
@@ -497,7 +502,7 @@
 		}
 
 		// desc
-		buf += '<span class="col itemdesccol">' + BattleLog.escapeHTML(item.shortDesc) + '</span> ';
+		buf += '<span class="col itemdesccol">' + BattleLog.escapeHTML(this.dex().text.get(item).shortDesc) + '</span> ';
 
 		buf += '</a></li>';
 
@@ -523,7 +528,7 @@
 			return buf;
 		}
 
-		buf += '<span class="col abilitydesccol">' + BattleLog.escapeHTML(ability.shortDesc) + '</span> ';
+		buf += '<span class="col abilitydesccol">' + BattleLog.escapeHTML(this.dex().text.get(ability).shortDesc) + '</span> ';
 
 		buf += '</a></li>';
 
@@ -580,7 +585,7 @@
 		buf += '<span class="col pplabelcol"><em>PP</em><br />' + pp + '</span> ';
 
 		// desc
-		buf += '<span class="col movedesccol">' + BattleLog.escapeHTML(move.shortDesc) + '</span> ';
+		buf += '<span class="col movedesccol">' + BattleLog.escapeHTML(this.dex().text.get(move).shortDesc) + '</span> ';
 
 		buf += '</a></li>';
 
@@ -621,7 +626,7 @@
 		buf += '<span class="col pplabelcol"><em>PP</em><br />' + pp + '</span> ';
 
 		// desc
-		buf += '<span class="col movedesccol">' + BattleLog.escapeHTML(move.shortDesc || move.desc) + '</span> ';
+		buf += '<span class="col movedesccol">' + BattleLog.escapeHTML(this.dex().text.get(move).shortDesc) + '</span> ';
 
 		buf += '</a>';
 
@@ -664,7 +669,7 @@
 		buf += '<span class="col pplabelcol"><em>PP</em><br />' + pp + '</span> ';
 
 		// desc
-		buf += '<span class="col movedesccol">' + BattleLog.escapeHTML(move.shortDesc || move.desc) + '</span> ';
+		buf += '<span class="col movedesccol">' + BattleLog.escapeHTML(this.dex().text.get(move).shortDesc) + '</span> ';
 
 		buf += '</a></li>';
 
