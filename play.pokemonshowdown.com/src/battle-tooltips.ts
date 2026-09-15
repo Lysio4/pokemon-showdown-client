@@ -2327,6 +2327,21 @@ export class BattleTooltips {
 			value.abilityModify(1.3, "Mighty Horn");
 		}
 
+		const speciesName = value.pokemon.name;
+		const noblePokemon = ['Arcanine', 'Electrode', 'Lilligant', 'Avalugg', 'Kleavor'];
+		if (noblePokemon.includes(speciesName)) {
+			const speciesForme = value.pokemon.getSpeciesForme();
+			if (value.tryItem('Noble Crest') &&
+				speciesForme.startsWith('Arcanine-Hisui') ||
+				speciesForme.startsWith('Electrode-Hisui') ||
+				speciesForme.startsWith('Lilligant-Hisui') ||
+				speciesForme.startsWith('Avalugg-Hisui') ||
+				speciesForme.startsWith('Kleavor')
+			) {
+				value.itemModify(0, 'Noble Crest');
+			}
+		}
+
 		if (value.tryItem('Wide Lens')) {
 			accuracyModifiers.push(4505);
 			value.itemModify(1.1, "Wide Lens");
@@ -2995,6 +3010,21 @@ export class BattleTooltips {
 				(speciesForme.startsWith('Ogerpon-Wellspring') && itemName === 'Wellspring Mask') ||
 				(speciesForme.startsWith('Ogerpon-Hearthflame') && itemName === 'Hearthflame Mask') ||
 				(speciesForme.startsWith('Ogerpon-Cornerstone') && itemName === 'Cornerstone Mask')
+			) {
+				value.itemModify(1.2);
+				return value;
+			}
+		}
+		// AGE
+		const noblePokemon = ['Arcanine', 'Electrode', 'Lilligant', 'Avalugg', 'Kleavor'];
+		if (noblePokemon.includes(speciesName)) {
+			const speciesForme = value.pokemon.getSpeciesForme();
+			if (itemName === 'Noble Crest' &&
+				speciesForme.startsWith('Arcanine-Hisui') ||
+				speciesForme.startsWith('Electrode-Hisui') ||
+				speciesForme.startsWith('Lilligant-Hisui') ||
+				speciesForme.startsWith('Avalugg-Hisui') ||
+				speciesForme.startsWith('Kleavor')
 			) {
 				value.itemModify(1.2);
 				return value;
