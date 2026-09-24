@@ -38,8 +38,15 @@ function getLanguages() {
 function addModText(Dex, text) {
 	for (const mod of CLIENT_MODS) {
 		try {
-					const modData = Dex.mod(mod).data;
-					for (const table of ['Moves', 'Abilities', 'Items']) {
+					// const modData = Dex.mod(mod).data;
+					let modData;
+			if (mod === 'gen9agoldenexperiencedoubles') {
+				modData = Dex.mod('gen9agoldenexperience').data;
+					}
+			else {
+				modData = Dex.mod(mod).data;
+					}
+			for (const table of ['Moves', 'Abilities', 'Items']) {
 						for (const id in modData[table]) {
 							const { desc, shortDesc } = modData[table][id];
 							if (!desc && !shortDesc) continue;
