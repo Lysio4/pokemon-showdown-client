@@ -761,6 +761,8 @@ export class BattleTooltips {
 					called = this.battle.dex.moves.get('Moonblast');
 				} else if (this.battle.hasPseudoWeather('Psychic Terrain')) {
 					called = this.battle.dex.moves.get('Psychic');
+				} else if (this.battle.hasPseudoWeather('Chakra Terrain')) {
+					called = this.battle.dex.moves.get('Aura Sphere');
 				} else {
 					called = this.battle.dex.moves.get('Tri Attack');
 				}
@@ -2564,7 +2566,8 @@ export class BattleTooltips {
 				this.battle.hasPseudoWeather('Electric Terrain') ||
 				this.battle.hasPseudoWeather('Grassy Terrain') ||
 				this.battle.hasPseudoWeather('Misty Terrain') ||
-				this.battle.hasPseudoWeather('Psychic Terrain')
+				this.battle.hasPseudoWeather('Psychic Terrain') ||
+				this.battle.hasPseudoWeather('Chakra Terrain')
 			) {
 				value.modify(2, 'Terrain Pulse boost');
 			}
@@ -2777,7 +2780,8 @@ export class BattleTooltips {
 		// Terrain
 		if ((this.battle.hasPseudoWeather('Electric Terrain') && moveType === 'Electric') ||
 			(this.battle.hasPseudoWeather('Grassy Terrain') && moveType === 'Grass') ||
-			(this.battle.hasPseudoWeather('Psychic Terrain') && moveType === 'Psychic')) {
+			(this.battle.hasPseudoWeather('Psychic Terrain') && moveType === 'Psychic') ||
+			(this.battle.hasPseudoWeather('Chakra Terrain') && moveType === 'Fighting')) {
 			if (pokemon.isGrounded(serverPokemon)) {
 				value.modify(this.battle.gen > 7 ? 1.3 : 1.5, 'Terrain boost');
 			}
@@ -2833,7 +2837,8 @@ export class BattleTooltips {
 			!this.battle.hasPseudoWeather('Electric Terrain') &&
 			!this.battle.hasPseudoWeather('Grassy Terrain') &&
 			!this.battle.hasPseudoWeather('Misty Terrain') &&
-			!this.battle.hasPseudoWeather('Psychic Terrain')
+			!this.battle.hasPseudoWeather('Psychic Terrain') &&
+			!this.battle.hasPseudoWeather('Chakra Terrain')
 		) {
 			value.set(0, 'no Terrain');
 		}
