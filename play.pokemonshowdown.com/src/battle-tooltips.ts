@@ -2347,6 +2347,7 @@ export class BattleTooltips {
 			) {
 				value.itemModify(0, 'Noble Crest');
 			}
+			else return value;
 		}
 
 		if (value.tryItem('Wide Lens')) {
