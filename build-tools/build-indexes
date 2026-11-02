@@ -487,7 +487,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (species.forme) {
 				if ((
 					[
-						'Aegislash', 'Castform', /*'Cherrim',*/ 'Cramorant', 'Eiscue', /*'Meloetta',*/ 'Mimikyu', 'Minior', 'Morpeko', 'Ramnarok', 'Wishiwashi',
+						'Aegislash', 'Castform', /*'Cherrim',*/ 'Cramorant', 'Eiscue', /*'Meloetta',*/ 'Mimikyu', 'Minior', 'Morpeko', 'Ramnarok', /*'Wishiwashi',*/
 					].includes(species.baseSpecies) || species.forme.includes('Totem') || species.forme.includes('Zen') ||
 					(species.baseSpecies === 'Ogerpon' && species.forme.includes('Tera')) || species.isCosmeticForme
 				) && !species.forme.includes('Mega')) {
@@ -510,10 +510,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					'tiershift', 'linked', 'pokebilitiesaaa',
 					// AGE
 					'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
-					'agoldenexperiencestabmons', 'agoldenexperiencetrademarked',
-					// AGE
-					'gen9agoldenexperienceaaa', 'gen9agoldenexperiencebh', 'gen9agoldenexperiencegodlygift', 'gen9agoldenexperiencemixandmega',
-					'gen9agoldenexperiencestabmons', 'gen9agoldenexperiencetrademarked',
+					'agoldenexperiencestabmons', 'agoldenexperiencepokebilitiesaaa',
 				])) {
 					const format = Dex.formats.get(`${gen}${isNatDex ? 'nationaldex' : isChampions ? 'champions' : ''}${meta}`);
 					if (!format.exists) continue;
