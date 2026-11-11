@@ -977,7 +977,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 	protected canLearn(speciesid: ID, moveid: ID) {
 		const move = this.dex.moves.get(moveid);
 		if ((this.formatType?.includes('natdex') || this.formatType === 'agoldenexperience' || this.formatType.includes('agoldenexperience') || this.formatType === 'toho' || this.formatType === 'touhoumons') &&
-			move.isNonstandard && move.isNonstandard !== 'Past') {
+			move.isNonstandard !== 'Past' && move.isNonstandard !== 'Unobtainable') {
 			return false;
 		}
 		const gen = this.dex.gen;
