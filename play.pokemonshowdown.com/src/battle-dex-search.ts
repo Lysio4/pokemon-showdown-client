@@ -718,7 +718,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.dex = Dex.mod(dexmod as ID);
 		}
 		if (format.includes('touhoumons')) {
-			this.formatType = 'gen9toho';
+			this.formatType = 'touhoumons';
 			this.dex = Dex.mod('gen9toho' as ID);
 			this.isDoubles = format.includes('doubles');
 		}
@@ -976,7 +976,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 	}
 	protected canLearn(speciesid: ID, moveid: ID) {
 		const move = this.dex.moves.get(moveid);
-		if ((this.formatType?.includes('natdex') || this.formatType === 'agoldenexperience' || this.formatType.includes('agoldenexperience') || this.formatType === 'toho' || this.formatType === 'touhoumons') &&
+		if ((this.formatType?.includes('natdex') || this.formatType === 'agoldenexperience' || this.formatType === 'touhoumons') &&
 			move.isNonstandard !== 'Past' && move.isNonstandard !== 'Unobtainable') {
 			return false;
 		}
@@ -988,7 +988,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.format.startsWith('battlespot') ||
 			this.format.startsWith('battlestadium') ||
 			this.format.startsWith('battlefestival') ||
-			(this.dex.gen === 9 && !this.formatType?.includes('natdex') && this.formatType !== 'agoldenexperience' && this.formatType !== 'toho' && this.formatType !== 'touhoumons')
+			(this.dex.gen === 9 && !this.formatType?.includes('natdex') && this.formatType !== 'agoldenexperience' && this.formatType !== 'touhoumons')
 		) {
 			if (gen === 9) {
 				genChar = 'a';
@@ -1013,7 +1013,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			// if (this.formatType === 'agoldenexperience' && !this.isDoubles) table = table['gen9agoldenexperience'];
 			// if (this.formatType === 'agoldenexperience' && this.isDoubles) table = table['gen9agoldenexperiencedoubles'];
 			if (this.formatType === 'agoldenexperience') table = table['gen9agoldenexperience'];
-			if (this.formatType === 'toho') table = table['gen9toho'];
+			if (this.formatType === 'touhoumons') table = table['gen9toho'];
 			let learnset = table.learnsets[learnsetid];
 			const eggMovesOnly = this.eggMovesOnly(learnsetid, speciesid);
 			if (learnset && (moveid in learnset) && (!this.format.startsWith('tradebacks') ? learnset[moveid].includes(genChar) :
@@ -1177,7 +1177,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 			isDoublesOrBS = true;
 		} else if (this.formatType === 'agoldenexperience') {
 			table = table[`gen9agoldenexperience` + ((this.isDoubles) ? 'doubles' : '')];
-		} else if (this.formatType === 'touhoumons' || this.formatType.includes('touhoumons')) {
+		} else if (this.formatType === 'touhoumons') {
 			table = table[`gen9toho`];
 		} else if (dex.gen < 9 && !this.formatType) {
 			table = table[`gen${dex.gen}`];
@@ -1352,8 +1352,8 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 					return true;
 				});
 			}
-			// if ((format === 'doubles' || format === 'monotype') && (this.formatType === 'natdex' || this.formatType === 'agoldenexperience') && table.metagameBans?.[format]) {
-			if ((format.includes('doubles') || format.includes('monotype')) && (this.formatType.includes('natdex') || this.formatType.includes('agoldenexperience')) && table.metagameBans?.[format]) {
+			if ((format === 'doubles' || format === 'monotype') && (this.formatType === 'natdex' || this.formatType === 'agoldenexperience') && table.metagameBans?.[format]) {
+			// if ((format.includes('doubles') || format.includes('monotype')) && (this.formatType.includes('natdex') || this.formatType.includes('agoldenexperience')) && table.metagameBans?.[format]) {
 				tierSet = tierSet.filter(([type, id]) => {
 					if (id in table.metagameBans[format]) return false;
 					if ('miraidon' in table.metagameBans[format] && 'calyrexshadow' in table.metagameBans[format] &&
@@ -1542,8 +1542,8 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 		let table = BattleTeambuilderTable;
 		if (this.formatType?.startsWith('bdsp')) {
 			table = table['gen8bdsp'];
-		} else if (this.formatType === 'agoldenexperiencedoubles') {
-			table = table[`gen9agoldenexperiencedoubles`];
+			// } else if (this.formatType === 'agoldenexperiencedoubles') {
+			// table = table[`gen9agoldenexperiencedoubles`];
 		} else if (this.formatType === 'agoldenexperience') {
 			table = table[`gen9agoldenexperience`];
 		} else if (this.formatType === 'bw1') {
@@ -1562,7 +1562,7 @@ class BattleItemSearch extends BattleTypedSearch<'item'> {
 			table = table[`champions`];
 		} else if (this.formatType === 'natdexchampions') {
 			table = table[`natdexchampions`];
-		} else if (this.formatType === 'toho') {
+		} else if (this.formatType === 'touhoumons') {
 			table = table[`gen9toho`];
 		} else if (this.dex.gen < 9) {
 			table = table[`gen${this.dex.gen}`];
