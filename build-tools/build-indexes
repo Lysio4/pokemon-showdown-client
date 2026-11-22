@@ -320,7 +320,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isFRLG) genStr += 'frlg';
 			if (isChampions || isNDChampions) genStr = 'champions';
 			// custom mods
-			if (isAGE) genStr = 'agoldenexperience';
+			// if (isAGE) genStr = 'agoldenexperience';
 			if (is2hu) genStr += 'toho';
 			return genStr;
 		})();
@@ -441,8 +441,6 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				}
 				if (isAGE) {
 					if (isDoubles) {
-						// const monTier = species.natDexDoublesOverride;
-						// if (monTier) return monTier;
 						return species.doublesTier;
 					}
 					return species.tier;
@@ -488,7 +486,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					'agoldenexperienceaaa', 'agoldenexperiencebh', 'agoldenexperiencegodlygift', 'agoldenexperiencemixandmega',
 					'agoldenexperiencestabmons', 'agoldenexperiencepokebilitiesaaa',
 				])) {
-					const format = Dex.formats.get(`${gen}${isNatDex ? 'nationaldex' : isChampions ? 'champions' : ''}${meta}`);
+					const format = Dex.formats.get(`${gen}${isNatDex ? 'nationaldex' : isChampions ? 'champions' : isAGE ? 'champions' : ''}${meta}`);
 					if (!format.exists) continue;
 					const ruleTable = Dex.formats.getRuleTable(format);
 					let banned = ruleTable.isBannedSpecies(species);
