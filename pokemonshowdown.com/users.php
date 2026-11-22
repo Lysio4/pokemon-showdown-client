@@ -93,11 +93,11 @@ $formats = array(
 	'gen3ou' => '[Gen 3] OU',
 	'gen2ou' => '[Gen 2] OU',
 	'gen1ou' => '[Gen 1] OU',
-	'agoldenexperience' => 'A Golden Experience',
-	'agoldenexperienceuu' => 'A Golden Experience UU',
-	'agoldenexperienceru' => 'A Golden Experience RU',
-	'agoldenexperiencenu' => 'A Golden Experience NU',
-	'agoldenexperiencepu' => 'A Golden Experience PU',
+	'gen9agoldenexperience' => 'A Golden Experience',
+	'gen9agoldenexperienceuu' => 'A Golden Experience UU',
+	'gen9agoldenexperienceru' => 'A Golden Experience RU',
+	'gen9agoldenexperiencenu' => 'A Golden Experience NU',
+	'gen9agoldenexperiencepu' => 'A Golden Experience PU',
 	'gen9toho' => 'Toho',
 );
 
