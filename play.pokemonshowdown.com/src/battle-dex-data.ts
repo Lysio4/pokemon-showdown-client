@@ -89,7 +89,7 @@ export class BattleFormat implements FormatData {
 		if (this.gen === 7 && this.isLetsGo) this.mod = 'gen7letsgo' as ID;
 		if (this.gen === 8 && this.isBDSP) this.mod = 'gen8bdsp' as ID;
 		if (this.gen === 9 && this.isChampions) this.mod = 'champions' as ID;
-		if (this.gen === 9 && this.isAGE) this.mod = 'gen9agoldenexperience' as ID;
+		if (this.gen === 9 && this.isAGE) this.mod = 'agoldenexperience' as ID;
 		if (id.includes('almostanyability') || id.includes('aaa')) this.abilityLegality = 'hackmons';
 		if (id.includes('hackmons') || id.includes('bh')) {
 			this.formeLegality = 'hackmons';
