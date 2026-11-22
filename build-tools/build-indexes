@@ -344,7 +344,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			if (isFRLG) genStr += 'frlg';
 			if (isChampions || isNDChampions) genStr = 'champions';
 			// custom mods
-			if (isAGE) genStr = 'agoldenexperience';
+			if (isAGE) genStr += 'agoldenexperience';
 			if (is2hu) genStr += 'toho';
 			return genStr;
 		})();
