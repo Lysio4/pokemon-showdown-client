@@ -1296,7 +1296,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 		}
 	}
 	// AGE learnsets
-	const AGELearnsets = Dex.mod('gen9agoldenexperience').data.Learnsets;
+	/*const AGELearnsets = Dex.mod('gen9agoldenexperience').data.Learnsets;
 	for (const id in AGELearnsets) {
 		const species = Dex.mod('champions').species.get(id);
 		if (species.isNonstandard) continue;
@@ -1349,7 +1349,66 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 				BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid] += 'a';
 			}
 		}
-	}
+	}*/
+	// AGE learnsets
+		const AGELearnsets = Dex.mod('gen9agoldenexperience').data.Learnsets;
+		BattleTeambuilderTable['gen9agoldenexperience'].learnsets = {};
+		for (const id in BattleTeambuilderTable['natdexchampions'].learnsets) {
+			BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id] = {
+				...BattleTeambuilderTable['natdexchampions'].learnsets[id],
+			};
+		}
+		for (const id in AGELearnsets) {
+			const species = Dex.mod('champions').species.get(id);
+			if (species.isNonstandard) continue;
+			const learnset = AGELearnsets[id].learnset;
+			if (!learnset) continue;
+			if (!BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id]) {
+				BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id] = {};
+			}
+			for (const moveid in learnset) {
+				const existing = BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid];
+				if (existing && existing.includes('9')) continue;
+				const gens = learnset[moveid].map(x => Number(x[0]));
+				const minGen = Math.min(...gens);
+
+				if (minGen <= 4 && (gen3HMs.has(moveid) || gen4HMs.has(moveid))) {
+					let legalGens = '';
+					let available = false;
+
+					if (minGen === 3) {
+						legalGens += '3';
+						available = true;
+					}
+					if (available) available = !gen3HMs.has(moveid);
+
+					if (available || gens.includes(4)) {
+						legalGens += '4';
+						available = true;
+					}
+					if (available) available = !gen4HMs.has(moveid);
+
+					const minUpperGen = available ? 5 : Math.min(
+						...gens.filter(gen => gen > 4)
+					);
+					legalGens += '0123456789'.slice(minUpperGen);
+					BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid] = legalGens;
+				} else {
+					BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid] = '0123456789'.slice(minGen);
+				}
+
+				if (gens.indexOf(6) >= 0) BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid] += 'p';
+				if (gens.indexOf(7) >= 0 && learnset[moveid].some(x => x[0] === '7' && x !== '7V')) {
+					BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid] += 'q';
+				}
+				if (gens.indexOf(8) >= 0 && learnset[moveid].some(x => x[0] === '8' && x !== '8V')) {
+					BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid] += 'g';
+				}
+				if (gens.indexOf(9) >= 0 && learnset[moveid].some(x => x[0] === '9' && x !== '9V')) {
+					BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid] += 'a';
+				}
+			}
+		}
 	// Touhou
 	const TouhouLearnsets = Dex.mod('gen9toho').data.Learnsets;
 	for (const id in TouhouLearnsets) {
