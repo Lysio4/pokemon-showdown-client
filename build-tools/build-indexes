@@ -1298,10 +1298,18 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	// AGE learnsets
 	const AGELearnsets = Dex.mod('gen9agoldenexperience').data.Learnsets;
 	for (const id in AGELearnsets) {
+		const species = Dex.mod('champions').species.get(id);
+		if (species.isNonstandard) continue;
 		const learnset = AGELearnsets[id].learnset;
 		if (!learnset) continue;
 		BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id] = {};
 		for (const moveid in learnset) {
+			if (moveid in BattleTeambuilderTable['natdexchampions'].learnsets[id]) {
+				if (BattleTeambuilderTable['natdexchampions'].learnsets[id][moveid].includes('9')) continue;
+				BattleTeambuilderTable['natdexchampions'].learnsets[id][moveid] += '9a';
+			} else {
+				BattleTeambuilderTable['natdexchampions'].learnsets[id][moveid] = '9a';
+			}
 			const gens = learnset[moveid].map(x => Number(x[0]));
 			const minGen = Math.min(...gens);
 
@@ -1342,7 +1350,7 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 			}
 		}
 	}
-	// Touhou test
+	// Touhou
 	const TouhouLearnsets = Dex.mod('gen9toho').data.Learnsets;
 	for (const id in TouhouLearnsets) {
 		const learnset = TouhouLearnsets[id].learnset;
