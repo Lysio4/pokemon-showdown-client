@@ -1872,23 +1872,7 @@ class BattleMoveSearch extends BattleTypedSearch<'move'> {
 		let sketchMoves: string[] = [];
 		let sketch = false;
 		let gen = `${dex.gen}`;
-<<<<<<< HEAD
-		let lsetTable = BattleTeambuilderTable;
-		if (this.formatType?.startsWith('bdsp')) lsetTable = lsetTable['gen8bdsp'];
-		if (this.formatType === 'letsgo') lsetTable = lsetTable['gen7letsgo'];
-		if (this.formatType === 'bw1') lsetTable = lsetTable['gen5bw1'];
-		if (this.formatType === 'rs') lsetTable = lsetTable['gen3rs'];
-		if (this.formatType === 'frlg') lsetTable = lsetTable['gen3frlg'];
-		if (this.formatType === 'champions') lsetTable = lsetTable['champions'];
-		if (this.formatType === 'natdexchampions') lsetTable = lsetTable['natdexchampions'];
-		if (this.formatType === 'agoldenexperience') lsetTable = lsetTable['gen9agoldenexperience'];
-		if (this.formatType === 'touhoumons') lsetTable = lsetTable['gen9toho'];
-		if (this.formatType?.startsWith('ssdlc1')) lsetTable = lsetTable['gen8dlc1'];
-		if (this.formatType?.startsWith('predlc')) lsetTable = lsetTable['gen9predlc'];
-		if (this.formatType?.startsWith('svdlc1')) lsetTable = lsetTable['gen9dlc1'];
-=======
 		const lsetTable = this.getLearnsetTable();
->>>>>>> upstream/master
 		while (learnsetid) {
 			let learnset = lsetTable.learnsets[learnsetid];
 			if (learnset) {
