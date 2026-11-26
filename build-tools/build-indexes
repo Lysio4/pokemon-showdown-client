@@ -1371,6 +1371,20 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 					BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid] += 'a';
 			}
 		}
+		for (const id in BattleTeambuilderTable['gen9agoldenexperience'].learnsets) {
+				delete BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id].hiddenpower;
+			}
+			for (const id in BattleTeambuilderTable['gen9agoldenexperience'].learnsets) {
+				delete BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id].terablast;
+			}
+			const ageSpecificDeletions = {
+				kangaskhan: ['seismictoss'],
+			};
+			for (const [id, moves] of Object.entries(ageSpecificDeletions)) {
+				for (const moveid of moves) {
+					delete BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id]?.[moveid];
+				}
+			}
 	}
 	// Touhou
 	const TouhouLearnsets = Dex.mod('gen9toho').data.Learnsets;
