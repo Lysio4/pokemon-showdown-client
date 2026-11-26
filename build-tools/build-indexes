@@ -1297,10 +1297,17 @@ process.stdout.write("Building `data/teambuilder-tables.js`... ");
 	}
 	// AGE learnsets
 	const AGELearnsets = Dex.mod('gen9agoldenexperience').data.Learnsets;
+	const BaseLearnsets = Dex.data.Learnsets;
 	for (const id in AGELearnsets) {
 		const learnset = AGELearnsets[id].learnset;
+		const baseLearnset = BaseLearnsets[id]?.learnset;
 		if (!learnset) continue;
 		BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id] = {};
+		for (const moveid in baseLearnset) {
+			if (!(moveid in learnset)) {
+				delete BattleTeambuilderTable['gen9agoldenexperience'].learnsets[id][moveid];
+			}
+		}
 		for (const moveid in learnset) {
 			const gens = learnset[moveid].map(x => Number(x[0]));
 			const minGen = Math.min(...gens);
